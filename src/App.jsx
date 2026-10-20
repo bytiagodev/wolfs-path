@@ -110,6 +110,7 @@ export default function App() {
   const [savedState, setSavedState] = useState(readSavedState);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [journeyFilter, setJourneyFilter] = useState("all");
   const [characterFilter, setCharacterFilter] = useState("all");
   const [characterQuery, setCharacterQuery] = useState("");
@@ -144,6 +145,7 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       setRoute(parseRoute(window.location.hash));
+      setMobileMenuOpen(false);
       window.scrollTo({ top: 0, behavior: "instant" });
       requestAnimationFrame(() =>
         pageHeading.current?.focus({ preventScroll: true }),
@@ -1325,12 +1327,16 @@ export default function App() {
     <a
       key={page}
       href={`#/${page}`}
+      onClick={() => setMobileMenuOpen(false)}
       className={`nav-link ${currentNavigation === page ? "active" : ""}`}
       aria-current={currentNavigation === page ? "page" : undefined}
     >
       <span>{label}</span>
     </a>
   ));
+  const progressPercent = Math.round(
+    (completedChapters / chapters.length) * 100,
+  );
 
   return (
     <div className="app-shell">
@@ -1345,6 +1351,14 @@ export default function App() {
         Skip to content
       </a>
       <header className="topbar">
+        <button
+          className="mobile-menu icon-button"
+          aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen((previous) => !previous)}
+        >
+          {mobileMenuOpen ? "Close" : "Menu"}
+        </button>
         <a href="#/home" className="brand">
           <img src={interfaceImages.medallion} alt="" />
           <span>THE WOLF’S PATH</span>
@@ -1382,6 +1396,56 @@ export default function App() {
           </button>
         </div>
       </header>
+      <aside
+        className={`sidebar ${mobileMenuOpen ? "mobile-open" : ""}`}
+        inert={!mobileMenuOpen}
+        aria-label="Navigation"
+      >
+        <nav aria-label="Main navigation, compact">{navTabs}</nav>
+        <div className="ornament" aria-hidden="true">
+          <span />
+          <i />
+          <span />
+        </div>
+        <div className="sidebar-secondary">
+          <a
+            href="#/saved"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`nav-link ${route.page === "saved" ? "active" : ""}`}
+          >
+            <span>Your bookmarks</span>
+            {savedState.bookmarks.length > 0 && (
+              <span className="nav-count">{savedState.bookmarks.length}</span>
+            )}
+          </a>
+          <a
+            href="#/sources"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`nav-link ${route.page === "sources" ? "active" : ""}`}
+          >
+            <span>Sources & lore</span>
+          </a>
+        </div>
+        <div className="sidebar-progress">
+          <span>
+            YOUR JOURNEY
+            <span>{progressPercent}%</span>
+          </span>
+          <div className="progress-track">
+            <span style={{ width: `${progressPercent}%` }} />
+          </div>
+          <small>
+            {completedChapters} / {chapters.length} chapters remembered
+          </small>
+        </div>
+      </aside>
+      {mobileMenuOpen && (
+        <button
+          className="mobile-backdrop"
+          aria-label="Close navigation"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
       <div className="main-shell">
         <main id="main-content" tabIndex={-1}>
           {route.page === "home"
