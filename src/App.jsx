@@ -1450,8 +1450,8 @@ export default function App() {
           </div>
           <div className="footer-row">
             <span>
-              THE WOLF’S PATH <span className="footer-diamond">◆</span> PRIVATE
-              READING COMPANION
+              THE WOLF’S PATH <span className="footer-diamond">◆</span>{" "}
+              UNOFFICIAL WITCHER COMPANION
             </span>
             <span>
               Inspired by the world of Andrzej Sapkowski & CD PROJEKT RED.

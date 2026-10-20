@@ -1,4 +1,4 @@
-// Original publisher imagery, hosted locally for this private companion.
+// Original publisher imagery, hosted locally for this fan companion.
 export const chapterArtwork = [
   {
     id: "w1-ss-0",
