@@ -1,4 +1,5 @@
 import CharacterPortrait from "./CharacterPortrait.jsx";
+import { assetUrl } from "../asset-url.js";
 import { comparisonLayouts, getBookTitle } from "../visual-guide.js";
 import { publicationArtwork } from "../artwork.js";
 import { characterEntries } from "../data/continuity.js";
@@ -17,7 +18,7 @@ export default function ComparisonSpread({ article }) {
           return (
             <section className="sidegame-comparison" key={identifier}>
               <figure>
-                <img src={artwork.path} alt={artwork.caption} />
+                <img src={assetUrl(artwork.path)} alt={artwork.caption} />
                 <figcaption>{artwork.title} imagery</figcaption>
               </figure>
               <div>

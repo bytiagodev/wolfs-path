@@ -1,3 +1,4 @@
+import { assetUrl } from "../asset-url.js";
 import { portraits } from "../portraits.js";
 
 export default function CharacterPortrait({
@@ -12,7 +13,7 @@ export default function CharacterPortrait({
       className={`character-portrait-frame ${portrait.treatment === "scene" ? "is-scene" : "is-render"} ${className}`}
     >
       <img
-        src={portrait.path}
+        src={assetUrl(portrait.path)}
         alt={decorative ? "" : name}
         loading="lazy"
         style={{

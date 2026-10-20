@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import CharacterPortrait from "./components/CharacterPortrait.jsx";
 import ComparisonSpread from "./components/ComparisonSpread.jsx";
 import SourcesLibrary from "./components/SourcesLibrary.jsx";
+import { assetUrl } from "./asset-url.js";
 import { portraits } from "./portraits.js";
 import {
   chapterArtwork,
@@ -77,7 +78,7 @@ function ArticleLink({
       {artwork && (
         <img
           className="article-thumbnail"
-          src={artwork.path}
+          src={assetUrl(artwork.path)}
           alt=""
           loading="lazy"
         />
@@ -88,7 +89,7 @@ function ArticleLink({
           {tracked && (
             <img
               className="quest-marker"
-              src={interfaceImages["main-quest"]}
+              src={assetUrl(interfaceImages["main-quest"])}
               alt="Next chapter"
             />
           )}
@@ -239,13 +240,13 @@ export default function App() {
         <section className="hero">
           <img
             className="hero-image"
-            src="/images/world/w3-key-art.jpg"
+            src={assetUrl("/images/world/w3-key-art.jpg")}
             alt=""
           />
           <div className="hero-content">
             <img
               className="hero-medallion"
-              src={interfaceImages.medallion}
+              src={assetUrl(interfaceImages.medallion)}
               alt=""
             />
             <p className="eyebrow">THE WOLF'S PATH</p>
@@ -301,14 +302,14 @@ export default function App() {
                     className="game-card framed"
                     onClick={() => openArticle(game.entries[0])}
                   >
-                    <img src={game.image} alt={game.alt} />
+                    <img src={assetUrl(game.image)} alt={game.alt} />
                     <span className="game-card-copy">
                       <span className="eyebrow">
                         {game.year} · {game.entries.length} chapters
                       </span>
                       <img
                         className="game-logo"
-                        src={game.logo}
+                        src={assetUrl(game.logo)}
                         alt={game.title}
                       />
                       <span className="game-card-summary">{game.summary}</span>
@@ -333,7 +334,7 @@ export default function App() {
           </section>
         </div>
         <figure className="interlude">
-          <img src="/images/world/w3-0.jpg" alt="" loading="lazy" />
+          <img src={assetUrl("/images/world/w3-0.jpg")} alt="" loading="lazy" />
           <blockquote>
             “Evil is evil. Lesser, greater, middling, it’s all the same.”
             <cite>GERALT OF RIVIA · THE LAST WISH</cite>
@@ -390,7 +391,7 @@ export default function App() {
               <p className="eyebrow">READING PROGRESS</p>
               <h3>Your saved progress</h3>
               <div className="journey-count">
-                <img src={interfaceImages.xp} alt="" />
+                <img src={assetUrl(interfaceImages.xp)} alt="" />
                 <strong>{completedChapters}</strong>
                 <span>/ {chapters.length}</span>
               </div>
@@ -422,7 +423,11 @@ export default function App() {
             />
             <div className="principles-grid">
               <div>
-                <img className="sign-icon" src={interfaceImages.axii} alt="" />
+                <img
+                  className="sign-icon"
+                  src={assetUrl(interfaceImages.axii)}
+                  alt=""
+                />
                 <h3>Alternative routes</h3>
                 <p>
                   Different routes are marked throughout. Roche or Iorveth,
@@ -431,7 +436,11 @@ export default function App() {
                 </p>
               </div>
               <div>
-                <img className="sign-icon" src={interfaceImages.yrden} alt="" />
+                <img
+                  className="sign-icon"
+                  src={assetUrl(interfaceImages.yrden)}
+                  alt=""
+                />
                 <h3>Sources for each chapter</h3>
                 <p>
                   Follow each chapter’s sources. Game events, book material, and
@@ -439,7 +448,11 @@ export default function App() {
                 </p>
               </div>
               <div>
-                <img className="sign-icon" src={interfaceImages.quen} alt="" />
+                <img
+                  className="sign-icon"
+                  src={assetUrl(interfaceImages.quen)}
+                  alt=""
+                />
                 <h3>Witcher 3 spoiler protection</h3>
                 <p>
                   Get the history you need for Witcher 3 without learning its
@@ -517,13 +530,13 @@ export default function App() {
           .map((section) => (
             <section className="chapter-section" key={section.id}>
               <div className="section-banner">
-                <img src={section.image} alt="" loading="lazy" />
+                <img src={assetUrl(section.image)} alt="" loading="lazy" />
                 <SectionHeading
                   eyebrow={section.label}
                   title={
                     <img
                       className="section-logo"
-                      src={section.logo}
+                      src={assetUrl(section.logo)}
                       alt={section.title}
                     />
                   }
@@ -583,7 +596,7 @@ export default function App() {
       >
         <header className="reader-banner">
           <img
-            src={chapterArt?.path ?? "/images/rogue-mage-scene.jpg"}
+            src={assetUrl(chapterArt?.path ?? "/images/rogue-mage-scene.jpg")}
             alt={chapterArt?.caption ?? ""}
           />
           <div className="reader-banner-copy">
@@ -647,7 +660,11 @@ export default function App() {
         <article className="reader">
           {bookSpoilersLocked ? (
             <div className="spoiler-gate">
-              <img className="gate-lock" src={interfaceImages.locked} alt="" />
+              <img
+                className="gate-lock"
+                src={assetUrl(interfaceImages.locked)}
+                alt=""
+              />
               <h2>Book spoilers are hidden</h2>
               <p>
                 This comparison discusses the books, including the ending of the
@@ -955,11 +972,11 @@ export default function App() {
               {["thronebreaker", "rogue-mage"].map((identifier) => (
                 <img
                   key={identifier}
-                  src={
+                  src={assetUrl(
                     publicationArtwork.find(
                       (publication) => publication.id === identifier,
-                    ).path
-                  }
+                    ).path,
+                  )}
                   alt=""
                   loading="lazy"
                 />
@@ -985,7 +1002,11 @@ export default function App() {
           </p>
           <span className="text-link">
             {!savedState.bookSpoilers && (
-              <img className="lock-icon" src={interfaceImages.locked} alt="" />
+              <img
+                className="lock-icon"
+                src={assetUrl(interfaceImages.locked)}
+                alt=""
+              />
             )}
             {savedState.bookSpoilers
               ? "Read comparison"
@@ -1332,7 +1353,7 @@ export default function App() {
           {mobileMenuOpen ? "Close" : "Menu"}
         </button>
         <a href="#/home" className="brand">
-          <img src={interfaceImages.medallion} alt="" />
+          <img src={assetUrl(interfaceImages.medallion)} alt="" />
           <span>THE WOLF’S PATH</span>
         </a>
         <nav className="main-tabs" aria-label="Main navigation">
@@ -1546,7 +1567,13 @@ function PageIntro({
 }) {
   return (
     <div className={`page-intro ${image ? "has-art" : ""}`}>
-      {image && <img src={image} alt="" style={{ objectPosition: position }} />}
+      {image && (
+        <img
+          src={assetUrl(image)}
+          alt=""
+          style={{ objectPosition: position }}
+        />
+      )}
       <div className="page-intro-copy">
         <p className="eyebrow">{eyebrow}</p>
         <h1 ref={headingRef} tabIndex={-1}>
@@ -1561,7 +1588,11 @@ function PageIntro({
 function EmptyState({ title, description, action }) {
   return (
     <div className="empty-state">
-      <img className="empty-medallion" src={interfaceImages.medallion} alt="" />
+      <img
+        className="empty-medallion"
+        src={assetUrl(interfaceImages.medallion)}
+        alt=""
+      />
       <h2>{title}</h2>
       <p>{description}</p>
       {action}
