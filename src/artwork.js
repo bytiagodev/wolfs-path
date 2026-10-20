@@ -484,6 +484,7 @@ export const worldArtwork = [
 export const topicArtwork = {
   "book-geralt": {
     path: "/images/topics/book-geralt.jpg",
+    objectPosition: "50% 0%",
     caption: "Geralt in The Witcher 3.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/3a3f430982cc3bccac1633d3ea60a30bf3d1ae9e/ss_3a3f430982cc3bccac1633d3ea60a30bf3d1ae9e.1920x1080.jpg",
@@ -492,6 +493,7 @@ export const topicArtwork = {
   },
   "book-yennefer": {
     path: "/images/topics/book-yennefer.jpg",
+    objectPosition: "55% 35%",
     caption: "Geralt and Yennefer in the mountains.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/8/8d/Tw3_Romance_Yennefer_and_Geralt.jpg",
@@ -501,6 +503,7 @@ export const topicArtwork = {
   },
   "book-ciri": {
     path: "/images/topics/book-ciri.jpg",
+    objectPosition: "40% 25%",
     caption: "Ciri in The Witcher 3.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/203487f667e4ac00baf482b1c93c87a2b830a6fc/ss_203487f667e4ac00baf482b1c93c87a2b830a6fc.1920x1080.jpg",
@@ -509,6 +512,7 @@ export const topicArtwork = {
   },
   "book-wild-hunt": {
     path: "/images/topics/book-wild-hunt.jpg",
+    objectPosition: "50% 15%",
     caption: "The riders of the Wild Hunt, GWENT art.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/b/be/Gwent_triptych_monsters_wild_hunt.jpg",
@@ -518,6 +522,7 @@ export const topicArtwork = {
   },
   "book-triss": {
     path: "/images/topics/book-triss.jpg",
+    objectPosition: "55% 30%",
     caption: "Geralt and Triss.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/7/72/Tw3_Romance_Triss_and_Geralt.jpg",
@@ -527,6 +532,7 @@ export const topicArtwork = {
   },
   "book-foltest-adda": {
     path: "/images/topics/book-foltest-adda.jpg",
+    objectPosition: "60% 20%",
     caption: "King Foltest and Velerad in burning Vizima.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/ss_ddd36794809eb8c9e9e11270f217ddcd7bfb4d39.1920x1080.jpg",
@@ -535,6 +541,7 @@ export const topicArtwork = {
   },
   "book-emhyr": {
     path: "/images/topics/book-emhyr.jpg",
+    objectPosition: "65% 0%",
     caption: "Emperor Emhyr on his throne.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/9/9e/Tw3_Emhyr_on_throne.jpg",
@@ -543,6 +550,7 @@ export const topicArtwork = {
   },
   "book-lodge": {
     path: "/images/topics/book-lodge.jpg",
+    objectPosition: "45% 35%",
     caption: "Geralt in a magical clash in The Witcher 2.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_e5b03d03d2e5b6012e0d91bd7dc583a5aae47b81.1920x1080.jpg",
@@ -551,6 +559,7 @@ export const topicArtwork = {
   },
   "book-scoiatael": {
     path: "/images/topics/book-scoiatael.jpg",
+    objectPosition: "55% 0%",
     caption: "Iorveth in The Witcher 2.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_4eea3cb2f151e3d5630008378010f395b0e038a7.1920x1080.jpg",
@@ -559,6 +568,7 @@ export const topicArtwork = {
   },
   "book-friends": {
     path: "/images/topics/book-friends.jpg",
+    objectPosition: "50% 20%",
     caption: "Zoltan's company at the Battle of Brenna, GWENT art.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/5/53/Gwent_triptych_Zoltan%27s_company_brenna.jpeg",
@@ -568,6 +578,7 @@ export const topicArtwork = {
   },
   "book-kaer-morhen": {
     path: "/images/topics/book-kaer-morhen.jpg",
+    objectPosition: "60% 45%",
     caption: "Young Ciri with the witchers at Kaer Morhen.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/a/a3/TW3_Young_Ciri_and_witchers.jpg",
@@ -577,6 +588,7 @@ export const topicArtwork = {
   },
   "separate-continuities": {
     path: "/images/topics/separate-continuities.jpg",
+    objectPosition: "55% 60%",
     caption: "A Novigrad street.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/78ecbfb8bc64b8e9d4a372f4a8ffa5069e9325d0/ss_78ecbfb8bc64b8e9d4a372f4a8ffa5069e9325d0.1920x1080.jpg",
@@ -585,6 +597,7 @@ export const topicArtwork = {
   },
   "saga-ending": {
     path: "/images/topics/saga-ending.jpg",
+    objectPosition: "25% 15%",
     caption: "A rider before a manor in the mist.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/378649/ss_d1b79fa260f7547114adbacd365599e765f1e6e6.1920x1080.jpg",
@@ -593,6 +606,7 @@ export const topicArtwork = {
   },
   "amnesia-and-hunt": {
     path: "/images/topics/amnesia-and-hunt.jpg",
+    objectPosition: "45% 40%",
     caption: "A night fight in The Witcher.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/0000005390.1920x1080.jpg",
@@ -601,6 +615,7 @@ export const topicArtwork = {
   },
   "family-before-games": {
     path: "/images/topics/family-before-games.jpg",
+    objectPosition: "50% 45%",
     caption: "The training pendulum at Kaer Morhen.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/0/06/Tw3_pendulum_ciri.png",
@@ -609,6 +624,7 @@ export const topicArtwork = {
   },
   "triss-and-yennefer": {
     path: "/images/topics/triss-and-yennefer.jpg",
+    objectPosition: "45% 15%",
     caption: "Triss in The Witcher 3.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/0/0e/Tw3_Geralt_and_Triss.png",
@@ -617,6 +633,7 @@ export const topicArtwork = {
   },
   "documented-adaptation-decisions": {
     path: "/images/topics/documented-adaptation-decisions.jpg",
+    objectPosition: "50% 20%",
     caption: "Geralt fighting under the moon in The Witcher.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/0000005384.1920x1080.jpg",
@@ -625,6 +642,7 @@ export const topicArtwork = {
   },
   "new-stories-familiar-history": {
     path: "/images/topics/new-stories-familiar-history.jpg",
+    objectPosition: "50% 5%",
     caption: "Temerian infantry, GWENT art.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/1/10/Gwent_triptych_northern_temerian_infantry.jpg",
@@ -634,6 +652,7 @@ export const topicArtwork = {
   },
   "names-and-translations": {
     path: "/images/topics/names-and-translations.jpg",
+    objectPosition: "65% 5%",
     caption: "Dandelion and Geralt in The Witcher 2.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/f/f5/Dandelion_screen1.jpg",
@@ -642,6 +661,7 @@ export const topicArtwork = {
   },
   "between-first-two": {
     path: "/images/topics/between-first-two.jpg",
+    objectPosition: "50% 15%",
     caption: "A street fight in The Witcher 2.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_de19231726554938a659c7dc74ce8a8752fa2d39.1920x1080.jpg",
@@ -650,6 +670,7 @@ export const topicArtwork = {
   },
   "premium-adventures": {
     path: "/images/topics/premium-adventures.jpg",
+    objectPosition: "50% 5%",
     caption: "Witchers of the School of the Wolf, GWENT art.",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/6/6f/Gwent_triptych_neutral_wolf_school_witchers.jpg",
@@ -659,6 +680,7 @@ export const topicArtwork = {
   },
   "other-games": {
     path: "/images/topics/other-games.jpg",
+    objectPosition: "50% 0%",
     caption: "Thronebreaker: The Witcher Tales key art.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/973760/library_hero_2x.jpg",
@@ -667,6 +689,7 @@ export const topicArtwork = {
   },
   "screens-and-branches": {
     path: "/images/topics/screens-and-branches.jpg",
+    objectPosition: "60% 45%",
     caption: "Geralt riding through sunflower fields.",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/378648/ss_3cc15e5fbe9f7f9832a0643d94ae6c2f8ec5aa44.1920x1080.jpg",

@@ -602,6 +602,7 @@ export default function App() {
           <img
             src={assetUrl(bannerArt?.path ?? "/images/rogue-mage-scene.jpg")}
             alt={bannerArt?.caption ?? ""}
+            style={{ objectPosition: bannerArt?.objectPosition }}
           />
           <div className="reader-banner-copy">
             <button
@@ -972,6 +973,9 @@ export default function App() {
           <img
             src={assetUrl(topicArtwork[article.id].path)}
             alt=""
+            style={{
+              objectPosition: topicArtwork[article.id].objectPosition,
+            }}
             loading="lazy"
           />
           <span className="comparison-card-number">

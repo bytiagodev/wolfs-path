@@ -105,6 +105,11 @@ test("every comparison has its own locally available credited topic image", () =
   );
   for (const [identifier, artwork] of Object.entries(topicArtwork)) {
     assert.ok(artwork.caption?.trim(), `${identifier}: missing caption`);
+    assert.match(
+      artwork.objectPosition,
+      /^\d+(?:\.\d+)?% \d+(?:\.\d+)?%$/,
+      `${identifier}: missing banner focal point`,
+    );
     assertLocalImage({ id: identifier, ...artwork });
   }
 });
