@@ -2,7 +2,9 @@
   <img src="docs/banner.jpg" alt="The Wolf's Path: Before The Witcher 3" width="100%">
 </p>
 
-A private companion for returning to The Witcher 3. It recaps the first two games, tracks the people who come back, and sets the books against the games, so the third game makes sense without replaying everything.
+**[Live site](https://bytiagodev.github.io/wolfs-path/)**
+
+An unofficial fan companion for returning to The Witcher 3. It recaps the first two games, tracks the people who come back, and sets the books against the games, so the third game makes sense without replaying everything.
 
 ## What's inside
 
@@ -29,9 +31,11 @@ React, plain JavaScript, Vite and CSS. No backend.
 
 - `src/data/` recaps, characters, comparisons and their sources
 - `src/` app shell, pages, components and styles
-- `public/images/` chapter art, banners, portraits, covers and interface art
+- `public/images/` chapter art, banners, portraits and interface art
 - `notes/` research behind the recaps
 
 ## Credits
 
-The Witcher was created by Andrzej Sapkowski. Game art, logos, screenshots and characters © CD PROJEKT S.A. Book covers © Orbit / Hachette Book Group. Every image and its original source is listed on the app's Sources page. This is a personal, non-commercial project.
+Unofficial fan project, not affiliated with or endorsed by CD PROJEKT RED. The Witcher was created by Andrzej Sapkowski.
+
+Game art, logos, screenshots and characters © CD PROJEKT S.A. Every image and its original source is listed on the app's Sources page. This is a personal, non-commercial project.
