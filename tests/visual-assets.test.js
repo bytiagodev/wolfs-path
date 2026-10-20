@@ -2,7 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { portraits } from "../src/portraits.js";
-import { chapterArtwork, publicationArtwork } from "../src/artwork.js";
+import {
+  chapterArtwork,
+  publicationArtwork,
+  topicArtwork,
+} from "../src/artwork.js";
 import {
   bookTitles,
   comparisonLayouts,
@@ -81,13 +85,27 @@ test("comparison spreads show every approved paragraph exactly once", () => {
       `${article.id}: missing, repeated or invalid paragraph`,
     );
     assert.ok(
-      portraits[layout.character],
-      `${article.id}: unavailable comparison portrait`,
-    );
-    assert.ok(
       Object.values(bookTitles).includes(getBookTitle(article.id)),
       `${article.id}: unavailable book title`,
     );
+  }
+});
+
+test("every comparison has its own locally available credited topic image", () => {
+  const articleIds = continuityArticles.map((article) => article.id).sort();
+  assert.deepEqual(Object.keys(topicArtwork).sort(), articleIds);
+  assert.equal(
+    new Set(Object.values(topicArtwork).map((artwork) => artwork.path)).size,
+    articleIds.length,
+  );
+  assert.equal(
+    new Set(Object.values(topicArtwork).map((artwork) => artwork.sourceUrl))
+      .size,
+    articleIds.length,
+  );
+  for (const [identifier, artwork] of Object.entries(topicArtwork)) {
+    assert.ok(artwork.caption?.trim(), `${identifier}: missing caption`);
+    assertLocalImage({ id: identifier, ...artwork });
   }
 });
 

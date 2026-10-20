@@ -481,6 +481,200 @@ export const worldArtwork = [
   },
 ];
 
+export const topicArtwork = {
+  "book-geralt": {
+    path: "/images/topics/book-geralt.jpg",
+    caption: "Geralt in The Witcher 3.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/3a3f430982cc3bccac1633d3ea60a30bf3d1ae9e/ss_3a3f430982cc3bccac1633d3ea60a30bf3d1ae9e.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/292030/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "book-yennefer": {
+    path: "/images/topics/book-yennefer.jpg",
+    caption: "Geralt and Yennefer in the mountains.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/8/8d/Tw3_Romance_Yennefer_and_Geralt.jpg",
+    sourcePage:
+      "https://witcher.fandom.com/wiki/File:Tw3_Romance_Yennefer_and_Geralt.jpg",
+    credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
+  },
+  "book-ciri": {
+    path: "/images/topics/book-ciri.jpg",
+    caption: "Ciri in The Witcher 3.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/203487f667e4ac00baf482b1c93c87a2b830a6fc/ss_203487f667e4ac00baf482b1c93c87a2b830a6fc.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/292030/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "book-wild-hunt": {
+    path: "/images/topics/book-wild-hunt.jpg",
+    caption: "The riders of the Wild Hunt, GWENT art.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/b/be/Gwent_triptych_monsters_wild_hunt.jpg",
+    sourcePage:
+      "https://witcher.fandom.com/wiki/File:Gwent_triptych_monsters_wild_hunt.jpg",
+    credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
+  },
+  "book-triss": {
+    path: "/images/topics/book-triss.jpg",
+    caption: "Geralt and Triss.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/7/72/Tw3_Romance_Triss_and_Geralt.jpg",
+    sourcePage:
+      "https://witcher.fandom.com/wiki/File:Tw3_Romance_Triss_and_Geralt.jpg",
+    credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
+  },
+  "book-foltest-adda": {
+    path: "/images/topics/book-foltest-adda.jpg",
+    caption: "King Foltest and Velerad in burning Vizima.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/ss_ddd36794809eb8c9e9e11270f217ddcd7bfb4d39.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/20900/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "book-emhyr": {
+    path: "/images/topics/book-emhyr.jpg",
+    caption: "Emperor Emhyr on his throne.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/9/9e/Tw3_Emhyr_on_throne.jpg",
+    sourcePage: "https://witcher.fandom.com/wiki/File:Tw3_Emhyr_on_throne.jpg",
+    credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
+  },
+  "book-lodge": {
+    path: "/images/topics/book-lodge.jpg",
+    caption: "Geralt in a magical clash in The Witcher 2.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_e5b03d03d2e5b6012e0d91bd7dc583a5aae47b81.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/20920/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "book-scoiatael": {
+    path: "/images/topics/book-scoiatael.jpg",
+    caption: "Iorveth in The Witcher 2.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_4eea3cb2f151e3d5630008378010f395b0e038a7.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/20920/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "book-friends": {
+    path: "/images/topics/book-friends.jpg",
+    caption: "Zoltan's company at the Battle of Brenna, GWENT art.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/5/53/Gwent_triptych_Zoltan%27s_company_brenna.jpeg",
+    sourcePage:
+      "https://witcher.fandom.com/wiki/File:Gwent_triptych_Zoltan's_company_brenna.jpeg",
+    credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
+  },
+  "book-kaer-morhen": {
+    path: "/images/topics/book-kaer-morhen.jpg",
+    caption: "Young Ciri with the witchers at Kaer Morhen.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/a/a3/TW3_Young_Ciri_and_witchers.jpg",
+    sourcePage:
+      "https://witcher.fandom.com/wiki/File:TW3_Young_Ciri_and_witchers.jpg",
+    credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
+  },
+  "separate-continuities": {
+    path: "/images/topics/separate-continuities.jpg",
+    caption: "A Novigrad street.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/78ecbfb8bc64b8e9d4a372f4a8ffa5069e9325d0/ss_78ecbfb8bc64b8e9d4a372f4a8ffa5069e9325d0.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/292030/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "saga-ending": {
+    path: "/images/topics/saga-ending.jpg",
+    caption: "A rider before a manor in the mist.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/378649/ss_d1b79fa260f7547114adbacd365599e765f1e6e6.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/378649/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "amnesia-and-hunt": {
+    path: "/images/topics/amnesia-and-hunt.jpg",
+    caption: "A night fight in The Witcher.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/0000005390.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/20900/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "family-before-games": {
+    path: "/images/topics/family-before-games.jpg",
+    caption: "The training pendulum at Kaer Morhen.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/0/06/Tw3_pendulum_ciri.png",
+    sourcePage: "https://witcher.fandom.com/wiki/File:Tw3_pendulum_ciri.png",
+    credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
+  },
+  "triss-and-yennefer": {
+    path: "/images/topics/triss-and-yennefer.jpg",
+    caption: "Triss in The Witcher 3.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/0/0e/Tw3_Geralt_and_Triss.png",
+    sourcePage: "https://witcher.fandom.com/wiki/File:Tw3_Geralt_and_Triss.png",
+    credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
+  },
+  "documented-adaptation-decisions": {
+    path: "/images/topics/documented-adaptation-decisions.jpg",
+    caption: "Geralt fighting under the moon in The Witcher.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/0000005384.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/20900/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "new-stories-familiar-history": {
+    path: "/images/topics/new-stories-familiar-history.jpg",
+    caption: "Temerian infantry, GWENT art.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/1/10/Gwent_triptych_northern_temerian_infantry.jpg",
+    sourcePage:
+      "https://witcher.fandom.com/wiki/File:Gwent_triptych_northern_temerian_infantry.jpg",
+    credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
+  },
+  "names-and-translations": {
+    path: "/images/topics/names-and-translations.jpg",
+    caption: "Dandelion and Geralt in The Witcher 2.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/f/f5/Dandelion_screen1.jpg",
+    sourcePage: "https://witcher.fandom.com/wiki/File:Dandelion_screen1.jpg",
+    credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
+  },
+  "between-first-two": {
+    path: "/images/topics/between-first-two.jpg",
+    caption: "A street fight in The Witcher 2.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_de19231726554938a659c7dc74ce8a8752fa2d39.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/20920/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+  "premium-adventures": {
+    path: "/images/topics/premium-adventures.jpg",
+    caption: "Witchers of the School of the Wolf, GWENT art.",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/6/6f/Gwent_triptych_neutral_wolf_school_witchers.jpg",
+    sourcePage:
+      "https://witcher.fandom.com/wiki/File:Gwent_triptych_neutral_wolf_school_witchers.jpg",
+    credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
+  },
+  "other-games": {
+    path: "/images/topics/other-games.jpg",
+    caption: "Thronebreaker: The Witcher Tales key art.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/973760/library_hero_2x.jpg",
+    sourcePage: "https://store.steampowered.com/app/973760/",
+    credit: "CD PROJEKT RED, official Steam library artwork",
+  },
+  "screens-and-branches": {
+    path: "/images/topics/screens-and-branches.jpg",
+    caption: "Geralt riding through sunflower fields.",
+    sourceUrl:
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/378648/ss_3cc15e5fbe9f7f9832a0643d94ae6c2f8ec5aa44.1920x1080.jpg",
+    sourcePage: "https://store.steampowered.com/app/378648/",
+    credit: "CD PROJEKT RED, official Steam store screenshot",
+  },
+};
+
 export const interfaceArtwork = [
   {
     id: "logo-w1",
