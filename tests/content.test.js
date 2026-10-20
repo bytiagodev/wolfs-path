@@ -8,9 +8,17 @@ import {
   witcherTwoChapters,
   witcherTwoSources,
 } from "../src/data/witcher-two.js";
-import { characterEntries, continuitySources } from "../src/data/continuity.js";
+import {
+  characterEntries,
+  continuityArticles,
+  continuitySources,
+} from "../src/data/continuity.js";
 
-const articles = [...witcherOneChapters, ...witcherTwoChapters];
+const articles = [
+  ...witcherOneChapters,
+  ...witcherTwoChapters,
+  ...continuityArticles,
+];
 const entries = [...articles, ...characterEntries];
 const sources = [
   ...witcherOneSources,
@@ -126,4 +134,49 @@ test("the second-game reading path retains both routes and the personal and poli
       `Missing choice context: ${identifier}`,
     );
   }
+});
+
+test("the reference layer keeps book continuity, inter-game media and key returning people", () => {
+  const articleIdentifiers = new Set(
+    continuityArticles.map((article) => article.id),
+  );
+  for (const identifier of [
+    "separate-continuities",
+    "saga-ending",
+    "amnesia-and-hunt",
+    "triss-and-yennefer",
+    "between-first-two",
+    "premium-adventures",
+    "other-games",
+    "screens-and-branches",
+  ])
+    assert.ok(
+      articleIdentifiers.has(identifier),
+      `Missing comparison: ${identifier}`,
+    );
+  const characterIdentifiers = new Set(
+    characterEntries.map((character) => character.id),
+  );
+  for (const identifier of [
+    "geralt",
+    "yennefer",
+    "triss",
+    "ciri",
+    "dandelion",
+    "zoltan",
+    "vesemir",
+    "roche",
+    "iorveth",
+    "letho",
+    "philippa",
+    "emhyr",
+    "radovid",
+    "sile",
+    "thaler",
+    "alvin",
+  ])
+    assert.ok(
+      characterIdentifiers.has(identifier),
+      `Missing reference: ${identifier}`,
+    );
 });

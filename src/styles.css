@@ -591,6 +591,22 @@ main:focus {
   );
 }
 
+.inline-notice button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  color: var(--gold);
+  font-family: var(--caps);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.inline-notice button:hover {
+  color: var(--gold-bright);
+}
+
 .inline-notice {
   margin-bottom: 32px;
 }
@@ -600,8 +616,13 @@ main:focus {
   font-size: 16px;
 }
 
-.character-card:hover .character-portrait-frame {
+.character-card:hover .character-portrait-frame,
+.comparison-card:hover {
   border-color: var(--line-strong);
+}
+
+.comparison-card:hover::before {
+  opacity: 1;
 }
 
 /* ---------- Filter tabs ---------- */
@@ -1183,6 +1204,289 @@ main:focus {
   text-transform: lowercase;
 }
 
+.spoiler-gate {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 56px 32px;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--red);
+  background:
+    var(--noise),
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(184, 48, 31, 0.16),
+      transparent 65%
+    ),
+    var(--panel);
+  text-align: center;
+}
+
+.spoiler-gate h2 {
+  font-size: 34px;
+}
+
+.spoiler-gate p {
+  max-width: 52ch;
+  color: var(--text);
+}
+
+.spoiler-gate .button {
+  margin-top: 10px;
+}
+
+/* ---------- Comparisons ---------- */
+
+.comparison-reader-layout .reader {
+  max-width: 900px;
+}
+
+.comparison-spread {
+  margin-top: 32px;
+}
+
+.comparison-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.comparison-column {
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.comparison-book-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 300px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, #3a2c1c, #110e0b 75%);
+}
+
+.comparison-book-art img {
+  height: 240px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.7);
+}
+
+.comparison-book-art span {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  color: var(--parchment);
+  font-size: 15px;
+}
+
+.comparison-book-art small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.comparison-character-art.character-portrait-frame {
+  height: 300px;
+  aspect-ratio: auto;
+}
+
+.comparison-column-copy {
+  padding: 26px;
+}
+
+.comparison-column-copy .eyebrow {
+  margin-bottom: 12px;
+}
+
+.comparison-column-copy p:not(.eyebrow),
+.comparison-context p,
+.sidegame-comparison p:not(.eyebrow) {
+  margin-bottom: 1em;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.comparison-context {
+  margin-top: 32px;
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--gold);
+  background: var(--panel);
+}
+
+.comparison-context h2 {
+  margin-bottom: 14px;
+  font-size: 28px;
+}
+
+.sidegame-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.sidegame-comparison {
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.sidegame-comparison figure {
+  margin: 0;
+}
+
+.sidegame-comparison img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.sidegame-comparison figcaption {
+  padding: 8px 16px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.sidegame-comparison > div {
+  padding: 22px 24px;
+}
+
+.sidegame-comparison h2 {
+  margin: 8px 0 12px;
+  font-size: 28px;
+}
+
+.continuity-banner {
+  display: flex;
+  gap: 22px;
+  margin-bottom: 24px;
+  padding: 30px 32px;
+  border: 1px solid var(--line);
+  background:
+    var(--noise), linear-gradient(180deg, var(--elevated), var(--panel));
+}
+
+.continuity-banner h2 {
+  font-size: 30px;
+}
+
+.continuity-banner p {
+  margin-top: 10px;
+  max-width: 70ch;
+  color: var(--text);
+}
+
+.comparison-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.comparison-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.comparison-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 3;
+  pointer-events: none;
+  --corner: var(--gold);
+  --size: 14px;
+  background:
+    linear-gradient(var(--corner), var(--corner)) top left / var(--size) 1px,
+    linear-gradient(var(--corner), var(--corner)) top left / 1px var(--size),
+    linear-gradient(var(--corner), var(--corner)) bottom right / var(--size) 1px,
+    linear-gradient(var(--corner), var(--corner)) bottom right / 1px var(--size);
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.comparison-card-art {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 230px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 30% 40%, #33271a, #0f0d0a 75%);
+  border-bottom: 1px solid var(--line);
+}
+
+.comparison-card-art > div {
+  display: grid;
+  place-items: center;
+}
+
+.comparison-card-art > div img {
+  height: 180px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.75);
+  transition: transform 0.4s ease;
+}
+
+.comparison-card:hover .comparison-card-art > div img {
+  transform: translateY(-4px) rotate(-2deg);
+}
+
+.comparison-card-art .character-portrait-frame {
+  height: 100%;
+  aspect-ratio: auto;
+  border-left: 1px solid var(--line-soft);
+}
+
+.comparison-game-art {
+  grid-template-columns: 1fr 1fr;
+}
+
+.comparison-game-art img {
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.comparison-card-number {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 2;
+  color: var(--gold-bright);
+  font-family: var(--caps);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.comparison-card-copy {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  flex: 1;
+  padding: 24px;
+}
+
+.comparison-card-copy h2 {
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.comparison-card-copy p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.comparison-card-copy .text-link {
+  margin-top: 6px;
+}
+
 /* ---------- Characters / glossary ---------- */
 
 .character-portrait-frame {
@@ -1392,4 +1696,12 @@ main:focus {
 
 .brand span {
   white-space: nowrap;
+}
+
+.comparison-group + .comparison-group {
+  margin-top: 72px;
+}
+
+.comparison-group .section-heading {
+  margin-top: 40px;
 }

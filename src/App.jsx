@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import CharacterPortrait from "./components/CharacterPortrait.jsx";
+import ComparisonSpread from "./components/ComparisonSpread.jsx";
+import { publicationArtwork } from "./artwork.js";
+import { comparisonLayouts, getBookArtwork } from "./visual-guide.js";
 import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
 import { witcherTwoChapters, witcherTwoSources } from "./data/witcher-two.js";
-import { continuitySources, characterEntries } from "./data/continuity.js";
+import {
+  continuityArticles,
+  continuitySources,
+  characterEntries,
+} from "./data/continuity.js";
 import {
   matchesCharacterName,
   parseRoute,
@@ -13,7 +20,7 @@ import {
 } from "./lib.js";
 
 const chapters = [...witcherOneChapters, ...witcherTwoChapters];
-const allArticles = [...chapters];
+const allArticles = [...chapters, ...continuityArticles];
 const sources = [
   ...new Map(
     [...witcherOneSources, ...witcherTwoSources, ...continuitySources].map(
@@ -25,6 +32,7 @@ const navigation = [
   { page: "home", label: "Overview" },
   { page: "journey", label: "Game recaps" },
   { page: "characters", label: "Characters" },
+  { page: "continuity", label: "Books & games" },
 ];
 
 function goTo(page, identifier = "") {
@@ -76,9 +84,9 @@ export default function App() {
   const nextChapter =
     chapters.find((chapter) => !savedState.completed.includes(chapter.id)) ??
     chapters[0];
-  const currentArticle = chapters.find(
-    (article) => article.id === route.identifier,
-  );
+  const currentArticle = (
+    route.page === "article" ? continuityArticles : chapters
+  ).find((article) => article.id === route.identifier);
   const currentCharacter = characterEntries.find(
     (character) => character.id === route.identifier,
   );
@@ -88,7 +96,9 @@ export default function App() {
       ? "journey"
       : route.page === "character"
         ? "characters"
-        : route.page;
+        : route.page === "article"
+          ? "continuity"
+          : route.page;
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -256,23 +266,30 @@ export default function App() {
 
   function renderArticle() {
     if (!currentArticle) return renderNotFound();
-    const articleCollection = chapters;
+    const isBookArticle = route.page === "article";
+    const articleCollection = isBookArticle ? continuityArticles : chapters;
     const articleIndex = articleCollection.findIndex(
       (article) => article.id === currentArticle.id,
     );
     const nextArticle = articleCollection[articleIndex + 1];
     const previousArticle = articleCollection[articleIndex - 1];
+    const bookSpoilersLocked = isBookArticle && !savedState.bookSpoilers;
     const relatedCharacters = characterEntries.filter((character) =>
       currentArticle.characters.some((name) =>
         matchesCharacterName(character.name, name),
       ),
     );
     return (
-      <div className="reader-layout">
+      <div
+        className={`reader-layout ${isBookArticle ? "comparison-reader-layout" : ""}`}
+      >
         <header className="reader-banner">
           <div className="reader-banner-copy">
-            <button className="back-link" onClick={() => goTo("journey")}>
-              All chapters
+            <button
+              className="back-link"
+              onClick={() => goTo(isBookArticle ? "continuity" : "journey")}
+            >
+              {isBookArticle ? "Books & games" : "All chapters"}
             </button>
             <span className="eyebrow">{currentArticle.kicker}</span>
             <h1 ref={pageHeading} tabIndex={-1}>
@@ -280,7 +297,11 @@ export default function App() {
             </h1>
             <div className="reader-meta">
               {readingMinutes(currentArticle)} minute read<span>·</span>
-              <span>Witcher 1 & 2 spoilers</span>
+              <span>
+                {isBookArticle
+                  ? "Book & game spoilers"
+                  : "Witcher 1 & 2 spoilers"}
+              </span>
               <button
                 className={`icon-button ${savedState.bookmarks.includes(currentArticle.id) ? "bookmarked" : ""}`}
                 onClick={() => toggleSaved("bookmarks", currentArticle.id)}
@@ -299,7 +320,9 @@ export default function App() {
           </div>
         </header>
         <aside className="reader-sidebar">
-          <p className="eyebrow">YOUR READING PATH</p>
+          <p className="eyebrow">
+            {isBookArticle ? "COMPARISONS" : "YOUR READING PATH"}
+          </p>
           <nav aria-label="Chapters">
             {articleCollection.map((article, index) => (
               <button
@@ -314,104 +337,133 @@ export default function App() {
           </nav>
         </aside>
         <article className="reader">
-          <>
-            <p className="reader-lead">{currentArticle.summary}</p>
-            {currentArticle.branchNote && (
-              <div className="branch-note">
-                <div>
-                  <strong>A fork in the Path</strong>
-                  <p>{currentArticle.branchNote}</p>
+          {bookSpoilersLocked ? (
+            <div className="spoiler-gate">
+              <h2>Book spoilers are hidden</h2>
+              <p>
+                This comparison discusses the books, including the ending of the
+                original saga. It does not reveal later Witcher 3 outcomes.
+              </p>
+              <button
+                className="button primary"
+                onClick={() =>
+                  setSavedState((previous) => ({
+                    ...previous,
+                    bookSpoilers: true,
+                  }))
+                }
+              >
+                Show book comparisons
+              </button>
+            </div>
+          ) : (
+            <>
+              <p className="reader-lead">{currentArticle.summary}</p>
+              {currentArticle.branchNote && (
+                <div className="branch-note">
+                  <div>
+                    <strong>A fork in the Path</strong>
+                    <p>{currentArticle.branchNote}</p>
+                  </div>
                 </div>
-              </div>
-            )}
-            <div className="reader-prose">
-              {currentArticle.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="takeaways">
-              <p className="eyebrow">CARRY THIS INTO WITCHER 3</p>
-              <ul>
-                {currentArticle.takeaways.map((takeaway) => (
-                  <li key={takeaway}>{takeaway}</li>
-                ))}
-              </ul>
-            </div>
-            {relatedCharacters.length > 0 && (
-              <div className="related-characters">
-                <p className="eyebrow">PEOPLE IN THIS CHAPTER</p>
-                <div>
-                  {relatedCharacters.map((character) => (
-                    <button
-                      key={character.id}
-                      onClick={() => goTo("character", character.id)}
-                    >
-                      <CharacterPortrait
-                        characterId={character.id}
-                        decorative
-                        className="related-portrait"
-                      />
-                      <span>{character.name}</span>
-                    </button>
+              )}
+              {isBookArticle ? (
+                <ComparisonSpread article={currentArticle} />
+              ) : (
+                <div className="reader-prose">
+                  {currentArticle.paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
                   ))}
                 </div>
+              )}
+              <div className="takeaways">
+                <p className="eyebrow">CARRY THIS INTO WITCHER 3</p>
+                <ul>
+                  {currentArticle.takeaways.map((takeaway) => (
+                    <li key={takeaway}>{takeaway}</li>
+                  ))}
+                </ul>
               </div>
-            )}
-            <details className="chapter-sources">
-              <summary>
-                Sources & further reading{" "}
-                <span>{sourceLinks(currentArticle.sourceIds).length}</span>
-              </summary>
-              {sourceLinks(currentArticle.sourceIds).map((source) => (
-                <a
-                  href={source.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={source.id}
-                >
-                  <span>
-                    <strong>{source.title}</strong>
-                    <small>{source.detail}</small>
-                  </span>
-                </a>
-              ))}
-            </details>
-            <button
-              className={`button completion-button ${savedState.completed.includes(currentArticle.id) ? "completed" : ""}`}
-              onClick={() => toggleSaved("completed", currentArticle.id)}
-            >
-              {savedState.completed.includes(currentArticle.id)
-                ? "Chapter remembered"
-                : "Mark as remembered"}
-            </button>
-            <div className="reader-pagination">
-              {previousArticle ? (
-                <button onClick={() => openArticle(previousArticle)}>
-                  <span>
-                    <small>PREVIOUS</small>
-                    {previousArticle.title}
-                  </span>
-                </button>
-              ) : (
-                <span />
+              {relatedCharacters.length > 0 && (
+                <div className="related-characters">
+                  <p className="eyebrow">PEOPLE IN THIS CHAPTER</p>
+                  <div>
+                    {relatedCharacters.map((character) => (
+                      <button
+                        key={character.id}
+                        onClick={() => goTo("character", character.id)}
+                      >
+                        <CharacterPortrait
+                          characterId={character.id}
+                          decorative
+                          className="related-portrait"
+                        />
+                        <span>{character.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               )}
-              {nextArticle ? (
-                <button onClick={() => openArticle(nextArticle)}>
-                  <span>
-                    <small>NEXT CHAPTER</small>
-                    {nextArticle.title}
-                  </span>
-                </button>
-              ) : (
-                <button onClick={() => goTo("characters")}>
-                  <span>
-                    <small>KEEP EXPLORING</small>
-                    Familiar faces
-                  </span>
-                </button>
-              )}
-            </div>
-          </>
+              <details className="chapter-sources">
+                <summary>
+                  Sources & further reading{" "}
+                  <span>{sourceLinks(currentArticle.sourceIds).length}</span>
+                </summary>
+                {sourceLinks(currentArticle.sourceIds).map((source) => (
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={source.id}
+                  >
+                    <span>
+                      <strong>{source.title}</strong>
+                      <small>{source.detail}</small>
+                    </span>
+                  </a>
+                ))}
+              </details>
+              <button
+                className={`button completion-button ${savedState.completed.includes(currentArticle.id) ? "completed" : ""}`}
+                onClick={() => toggleSaved("completed", currentArticle.id)}
+              >
+                {savedState.completed.includes(currentArticle.id)
+                  ? "Chapter remembered"
+                  : "Mark as remembered"}
+              </button>
+              <div className="reader-pagination">
+                {previousArticle ? (
+                  <button onClick={() => openArticle(previousArticle)}>
+                    <span>
+                      <small>PREVIOUS</small>
+                      {previousArticle.title}
+                    </span>
+                  </button>
+                ) : (
+                  <span />
+                )}
+                {nextArticle ? (
+                  <button onClick={() => openArticle(nextArticle)}>
+                    <span>
+                      <small>NEXT CHAPTER</small>
+                      {nextArticle.title}
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => goTo(isBookArticle ? "home" : "characters")}
+                  >
+                    <span>
+                      <small>KEEP EXPLORING</small>
+                      {isBookArticle
+                        ? "Back to the beginning"
+                        : "Familiar faces"}
+                    </span>
+                  </button>
+                )}
+              </div>
+            </>
+          )}
         </article>
       </div>
     );
@@ -555,6 +607,139 @@ export default function App() {
     );
   }
 
+  function renderComparisonCard(article, index) {
+    return (
+      <button
+        className="comparison-card"
+        key={article.id}
+        onClick={() => openArticle(article)}
+      >
+        <div
+          className={`comparison-card-art ${article.id === "other-games" ? "comparison-game-art" : ""}`}
+        >
+          {article.id === "other-games" ? (
+            <>
+              {["thronebreaker", "rogue-mage"].map((identifier) => (
+                <img
+                  key={identifier}
+                  src={
+                    publicationArtwork.find(
+                      (publication) => publication.id === identifier,
+                    ).path
+                  }
+                  alt=""
+                  loading="lazy"
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              <div>
+                <img
+                  src={getBookArtwork(article.id).path}
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <CharacterPortrait
+                characterId={comparisonLayouts[article.id].character}
+                decorative
+              />
+            </>
+          )}
+          <span className="comparison-card-number">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+        <div className="comparison-card-copy">
+          <p className="eyebrow">{article.kicker}</p>
+          <h2>{article.title}</h2>
+          <p>
+            {savedState.bookSpoilers
+              ? article.summary
+              : "Open to choose whether to reveal the book and game comparison."}
+          </p>
+          <span className="text-link">
+            {savedState.bookSpoilers
+              ? "Read comparison"
+              : "Book spoilers hidden"}
+          </span>
+        </div>
+      </button>
+    );
+  }
+
+  function renderContinuity() {
+    return (
+      <div className="page-content">
+        <PageIntro
+          eyebrow="BOOKS & GAMES"
+          title="Books & games"
+          description="The same roots. Different continuities. Understand what CD Projekt Red continued, what it adapted, and where the evidence ends."
+          headingRef={pageHeading}
+        />
+        <div className="continuity-banner">
+          <div>
+            <h2>A continuation, in the games’ own continuity.</h2>
+            <p>
+              The games build on Andrzej Sapkowski’s books. They do not turn
+              their later events into sequels written by Sapkowski. This guide
+              keeps that distinction visible.
+            </p>
+          </div>
+        </div>
+        <div className="inline-notice">
+          <span>
+            Comparisons may discuss the original saga’s ending.{" "}
+            {savedState.bookSpoilers
+              ? "Book spoilers are currently enabled."
+              : "You’ll be asked to reveal the comparison text."}
+          </span>
+          {savedState.bookSpoilers && (
+            <button
+              onClick={() =>
+                setSavedState((previous) => ({
+                  ...previous,
+                  bookSpoilers: false,
+                }))
+              }
+            >
+              Hide book spoilers
+            </button>
+          )}
+        </div>
+        <section className="comparison-group">
+          <SectionHeading
+            eyebrow="BOOKS AND GAMES COMPARED"
+            title="What the books add"
+          >
+            The saga’s version of each person and event, set against the first
+            two games, and what Witcher 3 assumes you already know.
+          </SectionHeading>
+          <div className="comparison-card-grid">
+            {continuityArticles
+              .filter((article) => article.group === "compare")
+              .map((article, index) => renderComparisonCard(article, index))}
+          </div>
+        </section>
+        <section className="comparison-group">
+          <SectionHeading
+            eyebrow="CANON AND OTHER MEDIA"
+            title="Notes on continuity"
+          >
+            How the games relate to the books as canon, plus the side games,
+            comics and adaptations around them.
+          </SectionHeading>
+          <div className="comparison-card-grid">
+            {continuityArticles
+              .filter((article) => article.group === "canon")
+              .map((article, index) => renderComparisonCard(article, index))}
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   function renderSaved() {
     const savedArticles = allArticles.filter((article) =>
       savedState.bookmarks.includes(article.id),
@@ -572,7 +757,16 @@ export default function App() {
             {savedArticles.map((article, index) => (
               <ArticleLink
                 key={article.id}
-                article={article}
+                article={
+                  continuityArticles.includes(article) &&
+                  !savedState.bookSpoilers
+                    ? {
+                        ...article,
+                        summary:
+                          "Book and game comparison. Book spoiler protection is enabled.",
+                      }
+                    : article
+                }
                 number={index + 1}
                 completed={savedState.completed.includes(article.id)}
                 onClick={() => openArticle(article)}
@@ -667,9 +861,11 @@ export default function App() {
                 ? renderCharacters()
                 : route.page === "character"
                   ? renderCharacter()
-                  : ["chapter", "article"].includes(route.page)
-                    ? renderArticle()
-                    : renderSaved()}
+                  : route.page === "continuity"
+                    ? renderContinuity()
+                    : ["chapter", "article"].includes(route.page)
+                      ? renderArticle()
+                      : renderSaved()}
         </main>
         {storageError && (
           <p className="storage-warning" role="status">

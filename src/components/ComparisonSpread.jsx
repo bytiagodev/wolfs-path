@@ -1,0 +1,78 @@
+import CharacterPortrait from "./CharacterPortrait.jsx";
+import { comparisonLayouts, getBookArtwork } from "../visual-guide.js";
+import { publicationArtwork } from "../artwork.js";
+import { characterEntries } from "../data/continuity.js";
+
+export default function ComparisonSpread({ article }) {
+  const layout = comparisonLayouts[article.id];
+  const book = getBookArtwork(article.id);
+  if (article.id === "other-games") {
+    const games = ["thronebreaker", "rogue-mage", "gwent", "adventure-game"];
+    return (
+      <div className="sidegame-comparison-grid">
+        {games.map((identifier, index) => {
+          const artwork = publicationArtwork.find(
+            (publication) => publication.id === identifier,
+          );
+          return (
+            <section className="sidegame-comparison" key={identifier}>
+              <figure>
+                <img src={artwork.path} alt={artwork.caption} />
+                <figcaption>{artwork.title} imagery</figcaption>
+              </figure>
+              <div>
+                <p className="eyebrow">
+                  {index < 2 ? "Earlier campaigns" : "Other formats"}
+                </p>
+                <h2>{artwork.title}</h2>
+                <p>{article.paragraphs[index]}</p>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    );
+  }
+  return (
+    <div className="comparison-spread">
+      <div className="comparison-columns">
+        <section className="comparison-column">
+          <div className="comparison-book-art">
+            <img src={book.path} alt={`${book.title}, ${book.edition}`} />
+            <span>
+              {book.title}
+              <small>Orbit edition cover</small>
+            </span>
+          </div>
+          <div className="comparison-column-copy">
+            <p className="eyebrow">{layout.leftLabel ?? "In the books"}</p>
+            {layout.left.map((index) => (
+              <p key={index}>{article.paragraphs[index]}</p>
+            ))}
+          </div>
+        </section>
+        <section className="comparison-column">
+          <CharacterPortrait
+            characterId={layout.character}
+            name={`${characterEntries.find((character) => character.id === layout.character).name}, CD PROJEKT RED game artwork`}
+            className="comparison-character-art"
+          />
+          <div className="comparison-column-copy">
+            <p className="eyebrow">{layout.rightLabel ?? "In the games"}</p>
+            {layout.right.map((index) => (
+              <p key={index}>{article.paragraphs[index]}</p>
+            ))}
+          </div>
+        </section>
+      </div>
+      {layout.context.length > 0 && (
+        <div className="comparison-context">
+          <h2>{layout.contextLabel ?? "Context and evidence"}</h2>
+          {layout.context.map((index) => (
+            <p key={index}>{article.paragraphs[index]}</p>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
