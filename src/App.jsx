@@ -1,13 +1,62 @@
 import { useEffect, useRef, useState } from "react";
-import { parseRoute } from "./lib.js";
+import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
+import { witcherTwoChapters, witcherTwoSources } from "./data/witcher-two.js";
+import { parseRoute, readingMinutes } from "./lib.js";
 
-const navigation = [{ page: "home", label: "Overview" }];
+const chapters = [...witcherOneChapters, ...witcherTwoChapters];
+const sources = [
+  ...new Map(
+    [...witcherOneSources, ...witcherTwoSources].map((source) => [
+      source.id,
+      source,
+    ]),
+  ).values(),
+];
+const navigation = [
+  { page: "home", label: "Overview" },
+  { page: "journey", label: "Game recaps" },
+];
+
+function goTo(page, identifier = "") {
+  window.location.hash = `/${page}${identifier ? `/${encodeURIComponent(identifier)}` : ""}`;
+}
+
+function SectionHeading({ eyebrow, title, children, action }) {
+  return (
+    <div className="section-heading">
+      <div>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+        {children && <p className="section-description">{children}</p>}
+      </div>
+      {action}
+    </div>
+  );
+}
+
+function ArticleLink({ article, onClick, number }) {
+  return (
+    <button className="article-row" onClick={onClick}>
+      <span className="chapter-number">{String(number).padStart(2, "0")}</span>
+      <span className="article-row-copy">
+        <span className="eyebrow">{article.kicker}</span>
+        <strong>{article.title}</strong>
+        <span>{article.summary}</span>
+      </span>
+      <span className="row-duration">{readingMinutes(article)} min</span>
+    </button>
+  );
+}
 
 export default function App() {
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
+  const [journeyFilter, setJourneyFilter] = useState("all");
   const pageHeading = useRef(null);
+  const currentArticle = chapters.find(
+    (article) => article.id === route.identifier,
+  );
 
-  const currentNavigation = route.page;
+  const currentNavigation = route.page === "chapter" ? "journey" : route.page;
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -20,6 +69,28 @@ export default function App() {
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
+
+  useEffect(() => {
+    if (currentArticle && ["chapter", "article"].includes(route.page)) {
+      document.title = `${currentArticle.title} | The Wolf's Path`;
+    } else
+      document.title = `${navigation.find((item) => item.page === route.page)?.label ?? "The Wolf's Path"} | A Witcher companion`;
+  }, [route.page, route.identifier, currentArticle]);
+
+  function openArticle(article) {
+    goTo(
+      chapters.some((chapter) => chapter.id === article.id)
+        ? "chapter"
+        : "article",
+      article.id,
+    );
+  }
+
+  function sourceLinks(sourceIds = []) {
+    return sourceIds
+      .map((identifier) => sources.find((source) => source.id === identifier))
+      .filter(Boolean);
+  }
 
   function renderHome() {
     return (
@@ -39,6 +110,208 @@ export default function App() {
           </div>
         </section>
       </>
+    );
+  }
+
+  function renderJourney() {
+    const sections = [
+      {
+        id: "one",
+        label: "THE WITCHER · 2007",
+        title: "The Witcher",
+        intro:
+          "From the walls of Kaer Morhen to the burning streets of Vizima.",
+        entries: witcherOneChapters,
+      },
+      {
+        id: "two",
+        label: "THE WITCHER 2 · 2011",
+        title: "The Witcher 2",
+        intro:
+          "The kingslayers, two very different roads, and the truth Geralt recovers.",
+        entries: witcherTwoChapters,
+      },
+    ];
+    return (
+      <div className="page-content">
+        <PageIntro
+          eyebrow="GAME RECAPS"
+          title="The Witcher 1 & 2"
+          description="A chapter-by-chapter return to the first two games. Read in order, or pick up the part you’ve forgotten."
+          headingRef={pageHeading}
+        />
+        <div className="inline-notice">
+          <span>
+            Full spoilers for games 1 & 2. Choices are presented as branches,
+            never a single mandatory history.
+          </span>
+        </div>
+        <div className="filter-bar">
+          {[
+            ["all", "The whole journey"],
+            ["one", "The Witcher"],
+            ["two", "The Witcher 2"],
+          ].map(([value, label]) => (
+            <button
+              key={value}
+              className={journeyFilter === value ? "active" : ""}
+              aria-pressed={journeyFilter === value}
+              onClick={() => setJourneyFilter(value)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        {sections
+          .filter(
+            (section) =>
+              journeyFilter === "all" || journeyFilter === section.id,
+          )
+          .map((section) => (
+            <section className="chapter-section" key={section.id}>
+              <SectionHeading eyebrow={section.label} title={section.title}>
+                {section.intro}
+              </SectionHeading>
+              <div className="chapter-list">
+                {section.entries.map((article, index) => (
+                  <ArticleLink
+                    key={article.id}
+                    article={article}
+                    number={index + 1}
+                    onClick={() => openArticle(article)}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+      </div>
+    );
+  }
+
+  function renderArticle() {
+    if (!currentArticle) return renderNotFound();
+    const articleCollection = chapters;
+    const articleIndex = articleCollection.findIndex(
+      (article) => article.id === currentArticle.id,
+    );
+    const nextArticle = articleCollection[articleIndex + 1];
+    const previousArticle = articleCollection[articleIndex - 1];
+    return (
+      <div className="reader-layout">
+        <header className="reader-banner">
+          <div className="reader-banner-copy">
+            <button className="back-link" onClick={() => goTo("journey")}>
+              All chapters
+            </button>
+            <span className="eyebrow">{currentArticle.kicker}</span>
+            <h1 ref={pageHeading} tabIndex={-1}>
+              {currentArticle.title}
+            </h1>
+            <div className="reader-meta">
+              {readingMinutes(currentArticle)} minute read<span>·</span>
+              <span>Witcher 1 & 2 spoilers</span>
+            </div>
+          </div>
+        </header>
+        <aside className="reader-sidebar">
+          <p className="eyebrow">YOUR READING PATH</p>
+          <nav aria-label="Chapters">
+            {articleCollection.map((article, index) => (
+              <button
+                className={article.id === currentArticle.id ? "active" : ""}
+                key={article.id}
+                onClick={() => openArticle(article)}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {article.title}
+              </button>
+            ))}
+          </nav>
+        </aside>
+        <article className="reader">
+          <>
+            <p className="reader-lead">{currentArticle.summary}</p>
+            {currentArticle.branchNote && (
+              <div className="branch-note">
+                <div>
+                  <strong>A fork in the Path</strong>
+                  <p>{currentArticle.branchNote}</p>
+                </div>
+              </div>
+            )}
+            <div className="reader-prose">
+              {currentArticle.paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="takeaways">
+              <p className="eyebrow">CARRY THIS INTO WITCHER 3</p>
+              <ul>
+                {currentArticle.takeaways.map((takeaway) => (
+                  <li key={takeaway}>{takeaway}</li>
+                ))}
+              </ul>
+            </div>
+            <details className="chapter-sources">
+              <summary>
+                Sources & further reading{" "}
+                <span>{sourceLinks(currentArticle.sourceIds).length}</span>
+              </summary>
+              {sourceLinks(currentArticle.sourceIds).map((source) => (
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={source.id}
+                >
+                  <span>
+                    <strong>{source.title}</strong>
+                    <small>{source.detail}</small>
+                  </span>
+                </a>
+              ))}
+            </details>
+            <div className="reader-pagination">
+              {previousArticle ? (
+                <button onClick={() => openArticle(previousArticle)}>
+                  <span>
+                    <small>PREVIOUS</small>
+                    {previousArticle.title}
+                  </span>
+                </button>
+              ) : (
+                <span />
+              )}
+              {nextArticle ? (
+                <button onClick={() => openArticle(nextArticle)}>
+                  <span>
+                    <small>NEXT CHAPTER</small>
+                    {nextArticle.title}
+                  </span>
+                </button>
+              ) : (
+                <span />
+              )}
+            </div>
+          </>
+        </article>
+      </div>
+    );
+  }
+
+  function renderNotFound() {
+    return (
+      <div className="page-content">
+        <PageIntro
+          eyebrow="UNKNOWN ENTRY"
+          title="Page not found"
+          description="That entry could not be found. Return to the chapter list to find your way."
+          headingRef={pageHeading}
+        />
+        <button className="button primary" onClick={() => goTo("journey")}>
+          Back to the story
+        </button>
+      </div>
     );
   }
 
@@ -75,7 +348,13 @@ export default function App() {
       </header>
       <div className="main-shell">
         <main id="main-content" tabIndex={-1}>
-          {renderHome()}
+          {route.page === "home"
+            ? renderHome()
+            : route.page === "journey"
+              ? renderJourney()
+              : ["chapter", "article"].includes(route.page)
+                ? renderArticle()
+                : renderHome()}
         </main>
         <footer className="footer">
           <div className="ornament" aria-hidden="true">
@@ -93,6 +372,20 @@ export default function App() {
             </span>
           </div>
         </footer>
+      </div>
+    </div>
+  );
+}
+
+function PageIntro({ eyebrow, title, description, headingRef }) {
+  return (
+    <div className="page-intro">
+      <div className="page-intro-copy">
+        <p className="eyebrow">{eyebrow}</p>
+        <h1 ref={headingRef} tabIndex={-1}>
+          {title}
+        </h1>
+        <p>{description}</p>
       </div>
     </div>
   );
