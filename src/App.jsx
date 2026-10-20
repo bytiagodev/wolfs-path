@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
 import { witcherTwoChapters, witcherTwoSources } from "./data/witcher-two.js";
-import { parseRoute, readingMinutes } from "./lib.js";
+import {
+  parseRoute,
+  readSavedState,
+  readingMinutes,
+  STORAGE_KEY,
+  toggleItem,
+} from "./lib.js";
 
 const chapters = [...witcherOneChapters, ...witcherTwoChapters];
+const allArticles = [...chapters];
 const sources = [
   ...new Map(
     [...witcherOneSources, ...witcherTwoSources].map((source) => [
@@ -34,10 +41,12 @@ function SectionHeading({ eyebrow, title, children, action }) {
   );
 }
 
-function ArticleLink({ article, onClick, number }) {
+function ArticleLink({ article, onClick, completed = false, number }) {
   return (
     <button className="article-row" onClick={onClick}>
-      <span className="chapter-number">{String(number).padStart(2, "0")}</span>
+      <span className={`chapter-number ${completed ? "is-complete" : ""}`}>
+        {String(number).padStart(2, "0")}
+      </span>
       <span className="article-row-copy">
         <span className="eyebrow">{article.kicker}</span>
         <strong>{article.title}</strong>
@@ -50,8 +59,19 @@ function ArticleLink({ article, onClick, number }) {
 
 export default function App() {
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
+  const [savedState, setSavedState] = useState(readSavedState);
   const [journeyFilter, setJourneyFilter] = useState("all");
+  const [storageError, setStorageError] = useState(false);
   const pageHeading = useRef(null);
+  const completedChapters = chapters.filter((chapter) =>
+    savedState.completed.includes(chapter.id),
+  ).length;
+  const lastArticle = allArticles.find(
+    (article) => article.id === savedState.lastRead,
+  );
+  const nextChapter =
+    chapters.find((chapter) => !savedState.completed.includes(chapter.id)) ??
+    chapters[0];
   const currentArticle = chapters.find(
     (article) => article.id === route.identifier,
   );
@@ -71,7 +91,20 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(savedState));
+      setStorageError(false);
+    } catch {
+      setStorageError(true);
+    }
+  }, [savedState]);
+
+  useEffect(() => {
     if (currentArticle && ["chapter", "article"].includes(route.page)) {
+      setSavedState((previous) => ({
+        ...previous,
+        lastRead: currentArticle.id,
+      }));
       document.title = `${currentArticle.title} | The Wolf's Path`;
     } else
       document.title = `${navigation.find((item) => item.page === route.page)?.label ?? "The Wolf's Path"} | A Witcher companion`;
@@ -84,6 +117,13 @@ export default function App() {
         : "article",
       article.id,
     );
+  }
+
+  function toggleSaved(field, identifier) {
+    setSavedState((previous) => ({
+      ...previous,
+      [field]: toggleItem(previous[field], identifier),
+    }));
   }
 
   function sourceLinks(sourceIds = []) {
@@ -169,7 +209,20 @@ export default function App() {
           )
           .map((section) => (
             <section className="chapter-section" key={section.id}>
-              <SectionHeading eyebrow={section.label} title={section.title}>
+              <SectionHeading
+                eyebrow={section.label}
+                title={section.title}
+                action={
+                  <span className="section-progress">
+                    {
+                      section.entries.filter((entry) =>
+                        savedState.completed.includes(entry.id),
+                      ).length
+                    }{" "}
+                    / {section.entries.length} remembered
+                  </span>
+                }
+              >
                 {section.intro}
               </SectionHeading>
               <div className="chapter-list">
@@ -178,6 +231,7 @@ export default function App() {
                     key={article.id}
                     article={article}
                     number={index + 1}
+                    completed={savedState.completed.includes(article.id)}
                     onClick={() => openArticle(article)}
                   />
                 ))}
@@ -210,6 +264,20 @@ export default function App() {
             <div className="reader-meta">
               {readingMinutes(currentArticle)} minute read<span>·</span>
               <span>Witcher 1 & 2 spoilers</span>
+              <button
+                className={`icon-button ${savedState.bookmarks.includes(currentArticle.id) ? "bookmarked" : ""}`}
+                onClick={() => toggleSaved("bookmarks", currentArticle.id)}
+                aria-label={
+                  savedState.bookmarks.includes(currentArticle.id)
+                    ? "Remove bookmark"
+                    : "Bookmark chapter"
+                }
+                aria-pressed={savedState.bookmarks.includes(currentArticle.id)}
+              >
+                {savedState.bookmarks.includes(currentArticle.id)
+                  ? "Bookmarked"
+                  : "Bookmark"}
+              </button>
             </div>
           </div>
         </header>
@@ -218,7 +286,7 @@ export default function App() {
           <nav aria-label="Chapters">
             {articleCollection.map((article, index) => (
               <button
-                className={article.id === currentArticle.id ? "active" : ""}
+                className={`${article.id === currentArticle.id ? "active" : ""} ${savedState.completed.includes(article.id) ? "is-complete" : ""}`}
                 key={article.id}
                 onClick={() => openArticle(article)}
               >
@@ -271,6 +339,14 @@ export default function App() {
                 </a>
               ))}
             </details>
+            <button
+              className={`button completion-button ${savedState.completed.includes(currentArticle.id) ? "completed" : ""}`}
+              onClick={() => toggleSaved("completed", currentArticle.id)}
+            >
+              {savedState.completed.includes(currentArticle.id)
+                ? "Chapter remembered"
+                : "Mark as remembered"}
+            </button>
             <div className="reader-pagination">
               {previousArticle ? (
                 <button onClick={() => openArticle(previousArticle)}>
@@ -295,6 +371,48 @@ export default function App() {
             </div>
           </>
         </article>
+      </div>
+    );
+  }
+
+  function renderSaved() {
+    const savedArticles = allArticles.filter((article) =>
+      savedState.bookmarks.includes(article.id),
+    );
+    return (
+      <div className="page-content">
+        <PageIntro
+          eyebrow="READING LIST"
+          title="Bookmarked chapters"
+          description="Your bookmarked chapters, ready when a name or a memory needs another look. Saved only in this browser."
+          headingRef={pageHeading}
+        />
+        {savedArticles.length ? (
+          <div className="chapter-list">
+            {savedArticles.map((article, index) => (
+              <ArticleLink
+                key={article.id}
+                article={article}
+                number={index + 1}
+                completed={savedState.completed.includes(article.id)}
+                onClick={() => openArticle(article)}
+              />
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            title="No bookmarks yet"
+            description="Use the bookmark icon in any chapter to keep it here."
+            action={
+              <button
+                className="button primary"
+                onClick={() => goTo("journey")}
+              >
+                Explore the story
+              </button>
+            }
+          />
+        )}
       </div>
     );
   }
@@ -345,6 +463,19 @@ export default function App() {
         <nav className="main-tabs" aria-label="Main navigation">
           {navTabs}
         </nav>
+        <div className="topbar-actions">
+          <a
+            href="#/saved"
+            className={`topbar-icon ${route.page === "saved" ? "active" : ""}`}
+            aria-label={`Your bookmarks${savedState.bookmarks.length ? `, ${savedState.bookmarks.length}` : ""}`}
+            title="Your bookmarks"
+          >
+            Bookmarks
+            {savedState.bookmarks.length > 0 && (
+              <span className="nav-count">{savedState.bookmarks.length}</span>
+            )}
+          </a>
+        </div>
       </header>
       <div className="main-shell">
         <main id="main-content" tabIndex={-1}>
@@ -354,8 +485,14 @@ export default function App() {
               ? renderJourney()
               : ["chapter", "article"].includes(route.page)
                 ? renderArticle()
-                : renderHome()}
+                : renderSaved()}
         </main>
+        {storageError && (
+          <p className="storage-warning" role="status">
+            Browser storage is unavailable. Progress will last for this visit
+            only.
+          </p>
+        )}
         <footer className="footer">
           <div className="ornament" aria-hidden="true">
             <span />
@@ -387,6 +524,16 @@ function PageIntro({ eyebrow, title, description, headingRef }) {
         </h1>
         <p>{description}</p>
       </div>
+    </div>
+  );
+}
+
+function EmptyState({ title, description, action }) {
+  return (
+    <div className="empty-state">
+      <h2>{title}</h2>
+      <p>{description}</p>
+      {action}
     </div>
   );
 }

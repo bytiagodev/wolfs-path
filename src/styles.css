@@ -207,6 +207,33 @@ p {
     0 0 34px rgba(230, 196, 124, 0.35);
 }
 
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  height: 40px;
+  padding: 0 14px;
+  font-family: var(--caps);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: rgba(12, 11, 9, 0.6);
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.icon-button:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+.icon-button.bookmarked {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
 .section-heading {
   display: flex;
   align-items: flex-end;
@@ -339,6 +366,55 @@ p {
   transform: translateX(-50%) rotate(45deg);
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.topbar-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 12px;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--caps);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  border: 1px solid transparent;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.topbar-icon:hover,
+.topbar-icon.active {
+  color: var(--gold-bright);
+  border-color: var(--line);
+}
+
+.topbar-icon .nav-count {
+  position: static;
+}
+
+.nav-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: var(--red);
+  color: #fff4ec;
+  font-family: var(--caps);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 /* ---------- Main + footer ---------- */
 
 .main-shell {
@@ -354,6 +430,14 @@ main:focus {
   max-width: calc(var(--content) + var(--gutter) * 2);
   margin: 0 auto;
   padding: 0 var(--gutter) 96px;
+}
+
+.storage-warning {
+  max-width: var(--content);
+  margin: 0 auto 24px;
+  padding: 12px 16px;
+  border: 1px solid var(--red);
+  color: var(--parchment);
 }
 
 .footer {
@@ -512,6 +596,14 @@ main:focus {
   margin-top: 56px;
 }
 
+.section-progress {
+  color: var(--gold);
+  font-family: var(--caps);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
 .chapter-list {
   display: grid;
 }
@@ -575,6 +667,16 @@ main:focus {
   border: 1px solid var(--line-strong);
   background: rgba(12, 11, 9, 0.6);
   transform: rotate(45deg);
+}
+
+.chapter-number.is-complete {
+  color: var(--button-text);
+}
+
+.chapter-number.is-complete::before {
+  border-color: var(--gold-bright);
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(230, 196, 124, 0.45);
 }
 
 .article-row-copy {
@@ -677,6 +779,10 @@ main:focus {
   text-transform: lowercase;
 }
 
+.reader-meta .icon-button {
+  margin-left: 12px;
+}
+
 .reader-sidebar {
   position: sticky;
   top: calc(var(--topbar) + 24px);
@@ -722,6 +828,10 @@ main:focus {
 .reader-sidebar nav button:hover {
   color: var(--parchment);
   background: rgba(201, 163, 91, 0.06);
+}
+
+.reader-sidebar nav button.is-complete > span {
+  color: var(--gold);
 }
 
 .reader-sidebar nav button.active {
@@ -919,6 +1029,15 @@ main:focus {
   font-size: 14px;
 }
 
+.completion-button {
+  width: 100%;
+}
+
+.completion-button.completed {
+  background: rgba(201, 163, 91, 0.22);
+  color: var(--parchment);
+}
+
 .reader-pagination {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -959,6 +1078,29 @@ main:focus {
   font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: lowercase;
+}
+
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 72px 24px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  text-align: center;
+}
+
+.empty-state h2 {
+  font-size: 30px;
+}
+
+.empty-state p {
+  max-width: 46ch;
+  color: var(--muted);
+}
+
+.empty-state .button {
+  margin-top: 12px;
 }
 
 @media (prefers-reduced-motion: reduce) {
