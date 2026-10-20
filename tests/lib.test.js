@@ -1,12 +1,22 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  matchesCharacterName,
   parseRoute,
   readSavedState,
   readingMinutes,
   STORAGE_KEY,
   toggleItem,
 } from "../src/lib.js";
+
+test("character links match whole names without confusing Ves with Vesemir", () => {
+  assert.equal(matchesCharacterName("Ves", "Vesemir"), false);
+  assert.equal(matchesCharacterName("Geralt of Rivia", "Geralt"), true);
+  assert.equal(matchesCharacterName("King Foltest", "Foltest"), true);
+  assert.equal(matchesCharacterName("Vernon Roche", "Roche"), true);
+  assert.equal(matchesCharacterName("Síle de Tansarville", "Sile"), true);
+  assert.equal(matchesCharacterName("Geralt of Rivia", ""), false);
+});
 
 const emptyState = {
   completed: [],

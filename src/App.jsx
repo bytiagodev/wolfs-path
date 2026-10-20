@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import CharacterPortrait from "./components/CharacterPortrait.jsx";
 import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
 import { witcherTwoChapters, witcherTwoSources } from "./data/witcher-two.js";
+import { continuitySources, characterEntries } from "./data/continuity.js";
 import {
+  matchesCharacterName,
   parseRoute,
   readSavedState,
   readingMinutes,
@@ -13,15 +16,15 @@ const chapters = [...witcherOneChapters, ...witcherTwoChapters];
 const allArticles = [...chapters];
 const sources = [
   ...new Map(
-    [...witcherOneSources, ...witcherTwoSources].map((source) => [
-      source.id,
-      source,
-    ]),
+    [...witcherOneSources, ...witcherTwoSources, ...continuitySources].map(
+      (source) => [source.id, source],
+    ),
   ).values(),
 ];
 const navigation = [
   { page: "home", label: "Overview" },
   { page: "journey", label: "Game recaps" },
+  { page: "characters", label: "Characters" },
 ];
 
 function goTo(page, identifier = "") {
@@ -61,6 +64,7 @@ export default function App() {
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
   const [savedState, setSavedState] = useState(readSavedState);
   const [journeyFilter, setJourneyFilter] = useState("all");
+  const [characterFilter, setCharacterFilter] = useState("all");
   const [storageError, setStorageError] = useState(false);
   const pageHeading = useRef(null);
   const completedChapters = chapters.filter((chapter) =>
@@ -75,8 +79,16 @@ export default function App() {
   const currentArticle = chapters.find(
     (article) => article.id === route.identifier,
   );
+  const currentCharacter = characterEntries.find(
+    (character) => character.id === route.identifier,
+  );
 
-  const currentNavigation = route.page === "chapter" ? "journey" : route.page;
+  const currentNavigation =
+    route.page === "chapter"
+      ? "journey"
+      : route.page === "character"
+        ? "characters"
+        : route.page;
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -250,6 +262,11 @@ export default function App() {
     );
     const nextArticle = articleCollection[articleIndex + 1];
     const previousArticle = articleCollection[articleIndex - 1];
+    const relatedCharacters = characterEntries.filter((character) =>
+      currentArticle.characters.some((name) =>
+        matchesCharacterName(character.name, name),
+      ),
+    );
     return (
       <div className="reader-layout">
         <header className="reader-banner">
@@ -320,6 +337,26 @@ export default function App() {
                 ))}
               </ul>
             </div>
+            {relatedCharacters.length > 0 && (
+              <div className="related-characters">
+                <p className="eyebrow">PEOPLE IN THIS CHAPTER</p>
+                <div>
+                  {relatedCharacters.map((character) => (
+                    <button
+                      key={character.id}
+                      onClick={() => goTo("character", character.id)}
+                    >
+                      <CharacterPortrait
+                        characterId={character.id}
+                        decorative
+                        className="related-portrait"
+                      />
+                      <span>{character.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             <details className="chapter-sources">
               <summary>
                 Sources & further reading{" "}
@@ -366,11 +403,154 @@ export default function App() {
                   </span>
                 </button>
               ) : (
-                <span />
+                <button onClick={() => goTo("characters")}>
+                  <span>
+                    <small>KEEP EXPLORING</small>
+                    Familiar faces
+                  </span>
+                </button>
               )}
             </div>
           </>
         </article>
+      </div>
+    );
+  }
+
+  function renderCharacters() {
+    const visibleCharacters = characterEntries.filter(
+      (character) =>
+        characterFilter === "all" ||
+        (characterFilter === "witchers"
+          ? /witcher/i.test(character.role + character.faction)
+          : characterFilter === "magic"
+            ? /sorcer|mage|magic/i.test(character.role + character.faction)
+            : /king|queen|emperor|intelligence|commander|politic|spy|soldier/i.test(
+                character.role + character.faction,
+              )),
+    );
+    return (
+      <div className="page-content">
+        <PageIntro
+          eyebrow="CHARACTER GUIDE"
+          title="Returning characters"
+          description="The people behind the names. Their history, their loyalties, and what to remember before you meet again."
+          headingRef={pageHeading}
+        />
+        <div className="character-tools">
+          <div className="filter-bar">
+            {[
+              ["all", "Everyone"],
+              ["witchers", "Witchers"],
+              ["magic", "Magic"],
+              ["politics", "Power & politics"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                className={characterFilter === value ? "active" : ""}
+                aria-pressed={characterFilter === value}
+                onClick={() => setCharacterFilter(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <p className="result-count">
+          {visibleCharacters.length} people on the Path
+        </p>
+        <div className="character-grid">
+          {visibleCharacters.map((character) => (
+            <button
+              className="character-card"
+              key={character.id}
+              onClick={() => goTo("character", character.id)}
+            >
+              <CharacterPortrait
+                characterId={character.id}
+                name={character.name}
+                decorative
+              />
+              <div className="character-card-copy">
+                <p className="eyebrow">{character.faction}</p>
+                <h2>{character.name}</h2>
+                <p>{character.role}</p>
+                <span className="text-link">View character history</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  function renderCharacter() {
+    if (!currentCharacter) return renderNotFound();
+    const relatedArticles = chapters.filter((article) =>
+      article.characters.some((name) =>
+        matchesCharacterName(currentCharacter.name, name),
+      ),
+    );
+    return (
+      <div className="page-content character-detail">
+        <button className="back-link" onClick={() => goTo("characters")}>
+          All familiar faces
+        </button>
+        <div className="character-detail-header">
+          <div className="character-detail-intro">
+            <p className="eyebrow">{currentCharacter.faction}</p>
+            <h1 ref={pageHeading} tabIndex={-1}>
+              {currentCharacter.name}
+            </h1>
+            <p className="character-role">{currentCharacter.role}</p>
+            <p className="reader-lead">{currentCharacter.summary}</p>
+          </div>
+          <CharacterPortrait
+            characterId={currentCharacter.id}
+            name={currentCharacter.name}
+            className="character-detail-portrait framed"
+          />
+        </div>
+        <div className="character-history">
+          <h2>Before the Wild Hunt</h2>
+          {currentCharacter.earlier.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+        <div className="takeaways">
+          <p className="eyebrow">THE THING TO REMEMBER</p>
+          <p>{currentCharacter.remember}</p>
+        </div>
+        {relatedArticles.length > 0 && (
+          <section className="character-chapters">
+            <SectionHeading
+              eyebrow="RELATED CHAPTERS"
+              title="Earlier appearances"
+            />
+            {relatedArticles.map((article, index) => (
+              <ArticleLink
+                key={article.id}
+                article={article}
+                number={index + 1}
+                completed={savedState.completed.includes(article.id)}
+                onClick={() => openArticle(article)}
+              />
+            ))}
+          </section>
+        )}
+        <details className="chapter-sources">
+          <summary>Character sources</summary>
+          {sourceLinks(currentCharacter.sourceIds).map((source) => (
+            <a
+              href={source.url}
+              key={source.id}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {source.title}
+            </a>
+          ))}
+        </details>
       </div>
     );
   }
@@ -483,9 +663,13 @@ export default function App() {
             ? renderHome()
             : route.page === "journey"
               ? renderJourney()
-              : ["chapter", "article"].includes(route.page)
-                ? renderArticle()
-                : renderSaved()}
+              : route.page === "characters"
+                ? renderCharacters()
+                : route.page === "character"
+                  ? renderCharacter()
+                  : ["chapter", "article"].includes(route.page)
+                    ? renderArticle()
+                    : renderSaved()}
         </main>
         {storageError && (
           <p className="storage-warning" role="status">

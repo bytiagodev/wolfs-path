@@ -8,10 +8,15 @@ import {
   witcherTwoChapters,
   witcherTwoSources,
 } from "../src/data/witcher-two.js";
+import { characterEntries, continuitySources } from "../src/data/continuity.js";
 
 const articles = [...witcherOneChapters, ...witcherTwoChapters];
-const entries = [...articles];
-const sources = [...witcherOneSources, ...witcherTwoSources];
+const entries = [...articles, ...characterEntries];
+const sources = [
+  ...witcherOneSources,
+  ...witcherTwoSources,
+  ...continuitySources,
+];
 
 test("every entry has a unique stable identifier suitable for a bookmarked URL", () => {
   const identifiers = entries.map((entry) => entry.id);
@@ -44,7 +49,7 @@ test("every displayed citation resolves to a labelled, valid external source", (
   }
 });
 
-test("articles supply the fields required by the reader", () => {
+test("articles and character histories supply the fields required by the reader", () => {
   for (const article of articles) {
     for (const field of ["title", "summary", "kicker"])
       assert.ok(article[field]?.trim(), `${article.id}: missing ${field}`);
@@ -60,6 +65,14 @@ test("articles supply the fields required by the reader", () => {
         `${article.id}: invalid ${field}`,
       );
     }
+  }
+  for (const character of characterEntries) {
+    for (const field of ["name", "role", "faction", "summary", "remember"])
+      assert.ok(character[field]?.trim(), `${character.id}: missing ${field}`);
+    assert.ok(
+      character.earlier.length > 0,
+      `${character.id}: missing earlier history`,
+    );
   }
 });
 
