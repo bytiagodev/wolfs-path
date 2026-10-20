@@ -4,8 +4,9 @@ import { readFileSync } from "node:fs";
 import { portraits } from "../src/portraits.js";
 import { chapterArtwork, publicationArtwork } from "../src/artwork.js";
 import {
+  bookTitles,
   comparisonLayouts,
-  getBookArtwork,
+  getBookTitle,
   getChapterArtwork,
 } from "../src/visual-guide.js";
 import {
@@ -84,8 +85,8 @@ test("comparison spreads show every approved paragraph exactly once", () => {
       `${article.id}: unavailable comparison portrait`,
     );
     assert.ok(
-      publicationArtwork.includes(getBookArtwork(article.id)),
-      `${article.id}: unavailable book cover`,
+      Object.values(bookTitles).includes(getBookTitle(article.id)),
+      `${article.id}: unavailable book title`,
     );
   }
 });
@@ -112,7 +113,7 @@ test("all 21 recap chapters resolve to artwork from their own game", () => {
   assert.equal(getChapterArtwork("unrecognised-chapter"), undefined);
 });
 
-test("chapter illustrations and publication covers are available offline with original source credits", () => {
+test("chapter illustrations and publication artwork are available offline with original source credits", () => {
   const artwork = [...chapterArtwork, ...publicationArtwork];
   assert.equal(new Set(artwork.map((asset) => asset.id)).size, artwork.length);
   for (const asset of artwork) assertLocalImage(asset);

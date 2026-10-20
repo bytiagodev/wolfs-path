@@ -952,54 +952,12 @@ main:focus {
 
 .books-panel {
   display: grid;
-  grid-template-columns: 260px 1fr;
   align-items: center;
-  gap: 32px;
   padding: 36px;
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(12, 11, 9, 0.2), rgba(12, 11, 9, 0.92) 55%),
     url("/images/rogue-mage-scene.jpg") 20% 60% / cover;
-}
-
-.book-fan {
-  position: relative;
-  height: 230px;
-}
-
-.book-fan img {
-  position: absolute;
-  top: 10px;
-  width: 128px;
-  height: 200px;
-  object-fit: cover;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  transition: transform 0.4s ease;
-}
-
-.book-fan img:nth-child(1) {
-  left: 8px;
-  transform: rotate(-8deg);
-}
-
-.book-fan img:nth-child(2) {
-  left: 66px;
-  z-index: 2;
-  transform: translateY(-8px);
-}
-
-.book-fan img:nth-child(3) {
-  left: 132px;
-  transform: rotate(8deg);
-}
-
-.books-panel:hover .book-fan img:nth-child(1) {
-  transform: rotate(-12deg) translateX(-6px);
-}
-
-.books-panel:hover .book-fan img:nth-child(3) {
-  transform: rotate(12deg) translateX(6px);
 }
 
 .books-panel-copy {
@@ -1806,34 +1764,6 @@ main:focus {
   background: var(--panel);
 }
 
-.comparison-book-art {
-  position: relative;
-  display: grid;
-  place-items: center;
-  height: 300px;
-  overflow: hidden;
-  background: radial-gradient(ellipse at 50% 40%, #3a2c1c, #110e0b 75%);
-}
-
-.comparison-book-art img {
-  height: 240px;
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.7);
-}
-
-.comparison-book-art span {
-  position: absolute;
-  left: 16px;
-  bottom: 12px;
-  color: var(--parchment);
-  font-size: 15px;
-}
-
-.comparison-book-art small {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-}
-
 .comparison-character-art.character-portrait-frame {
   height: 300px;
   aspect-ratio: auto;
@@ -1845,6 +1775,11 @@ main:focus {
 
 .comparison-column-copy .eyebrow {
   margin-bottom: 12px;
+}
+
+.comparison-column-copy h2 {
+  margin-bottom: 14px;
+  font-size: 28px;
 }
 
 .comparison-column-copy p:not(.eyebrow),
@@ -1964,32 +1899,16 @@ main:focus {
 .comparison-card-art {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   height: 230px;
   overflow: hidden;
   background: radial-gradient(ellipse at 30% 40%, #33271a, #0f0d0a 75%);
   border-bottom: 1px solid var(--line);
 }
 
-.comparison-card-art > div {
-  display: grid;
-  place-items: center;
-}
-
-.comparison-card-art > div img {
-  height: 180px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.75);
-  transition: transform 0.4s ease;
-}
-
-.comparison-card:hover .comparison-card-art > div img {
-  transform: translateY(-4px) rotate(-2deg);
-}
-
 .comparison-card-art .character-portrait-frame {
   height: 100%;
   aspect-ratio: auto;
-  border-left: 1px solid var(--line-soft);
 }
 
 .comparison-game-art {
@@ -2880,17 +2799,10 @@ main:focus {
   }
 
   .books-panel {
-    grid-template-columns: 1fr;
     padding: 26px;
     background:
       linear-gradient(0deg, rgba(12, 11, 9, 0.95) 45%, rgba(12, 11, 9, 0.35)),
       url("/images/rogue-mage-scene.jpg") 20% 30% / cover;
-  }
-
-  .book-fan {
-    height: 210px;
-    width: 260px;
-    justify-self: center;
   }
 
   .journey-strip {

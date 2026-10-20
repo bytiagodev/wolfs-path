@@ -1,5 +1,16 @@
-import { chapterArtwork, publicationArtwork } from "./artwork.js";
+import { chapterArtwork } from "./artwork.js";
 import { bookComparisons } from "./data/book-comparisons.js";
+
+export const bookTitles = {
+  "last-wish": "The Last Wish",
+  "sword-of-destiny": "Sword of Destiny",
+  "blood-of-elves": "Blood of Elves",
+  "time-of-contempt": "The Time of Contempt",
+  "baptism-of-fire": "Baptism of Fire",
+  "tower-of-swallows": "The Tower of Swallows",
+  "lady-of-the-lake": "The Lady of the Lake",
+  "season-of-storms": "Season of Storms",
+};
 
 const chapterImages = {
   "w1-kaer-morhen": "w1-kaer-morhen-art",
@@ -31,7 +42,7 @@ export function getChapterArtwork(identifier) {
   );
 }
 
-export function getBookArtwork(identifier) {
+export function getBookTitle(identifier) {
   const layoutBook = comparisonLayouts[identifier]?.book;
   const bookId =
     layoutBook ??
@@ -42,7 +53,7 @@ export function getBookArtwork(identifier) {
         : ["family-before-games", "triss-and-yennefer"].includes(identifier)
           ? "blood-of-elves"
           : "last-wish");
-  return publicationArtwork.find((artwork) => artwork.id === bookId);
+  return bookTitles[bookId];
 }
 
 export const comparisonLayouts = {

@@ -10,11 +10,7 @@ import {
   publicationArtwork,
   worldArtwork,
 } from "./artwork.js";
-import {
-  comparisonLayouts,
-  getBookArtwork,
-  getChapterArtwork,
-} from "./visual-guide.js";
+import { comparisonLayouts, getChapterArtwork } from "./visual-guide.js";
 import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
 import { witcherTwoChapters, witcherTwoSources } from "./data/witcher-two.js";
 import {
@@ -383,21 +379,6 @@ export default function App() {
               className="books-panel framed"
               onClick={() => goTo("continuity")}
             >
-              <span className="book-fan" aria-hidden="true">
-                {["last-wish", "blood-of-elves", "lady-of-the-lake"].map(
-                  (identifier) => (
-                    <img
-                      key={identifier}
-                      src={
-                        publicationArtwork.find(
-                          (publication) => publication.id === identifier,
-                        )?.path
-                      }
-                      alt=""
-                    />
-                  ),
-                )}
-              </span>
               <span className="books-panel-copy">
                 <span className="eyebrow">CONTINUITY & ADAPTATION</span>
                 <strong>Books & games</strong>
@@ -985,19 +966,10 @@ export default function App() {
               ))}
             </>
           ) : (
-            <>
-              <div>
-                <img
-                  src={getBookArtwork(article.id).path}
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <CharacterPortrait
-                characterId={comparisonLayouts[article.id].character}
-                decorative
-              />
-            </>
+            <CharacterPortrait
+              characterId={comparisonLayouts[article.id].character}
+              decorative
+            />
           )}
           <span className="comparison-card-number">
             {String(index + 1).padStart(2, "0")}

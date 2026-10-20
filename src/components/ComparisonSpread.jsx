@@ -1,11 +1,11 @@
 import CharacterPortrait from "./CharacterPortrait.jsx";
-import { comparisonLayouts, getBookArtwork } from "../visual-guide.js";
+import { comparisonLayouts, getBookTitle } from "../visual-guide.js";
 import { publicationArtwork } from "../artwork.js";
 import { characterEntries } from "../data/continuity.js";
 
 export default function ComparisonSpread({ article }) {
   const layout = comparisonLayouts[article.id];
-  const book = getBookArtwork(article.id);
+  const bookTitle = getBookTitle(article.id);
   if (article.id === "other-games") {
     const games = ["thronebreaker", "rogue-mage", "gwent", "adventure-game"];
     return (
@@ -37,15 +37,9 @@ export default function ComparisonSpread({ article }) {
     <div className="comparison-spread">
       <div className="comparison-columns">
         <section className="comparison-column">
-          <div className="comparison-book-art">
-            <img src={book.path} alt={`${book.title}, ${book.edition}`} />
-            <span>
-              {book.title}
-              <small>Orbit edition cover</small>
-            </span>
-          </div>
           <div className="comparison-column-copy">
             <p className="eyebrow">{layout.leftLabel ?? "In the books"}</p>
+            <h2>{bookTitle}</h2>
             {layout.left.map((index) => (
               <p key={index}>{article.paragraphs[index]}</p>
             ))}
