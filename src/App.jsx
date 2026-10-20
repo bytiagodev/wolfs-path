@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import CharacterPortrait from "./components/CharacterPortrait.jsx";
 import ComparisonSpread from "./components/ComparisonSpread.jsx";
+import SourcesLibrary from "./components/SourcesLibrary.jsx";
+import { portraits } from "./portraits.js";
 import { publicationArtwork } from "./artwork.js";
 import { comparisonLayouts, getBookArtwork } from "./visual-guide.js";
 import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
@@ -783,6 +785,95 @@ export default function App() {
     );
   }
 
+  function renderSources() {
+    return (
+      <div className="page-content">
+        <PageIntro
+          eyebrow="REFERENCE LIBRARY"
+          title="Sources & lore"
+          description="A reference library for this companion. Every recap and character entry links back to the sources used to write it."
+          headingRef={pageHeading}
+        />
+        <div className="source-principles">
+          <div>
+            <h2>How this guide handles facts</h2>
+            <p>
+              Game plot is checked against quest walkthroughs, game dialogue,
+              and CD Projekt Red’s own material. Community-maintained references
+              are identified as such. A character’s accusation or theory is not
+              automatically a confirmed event.
+            </p>
+          </div>
+          <div>
+            <h2>Branches stay branches</h2>
+            <p>
+              Player-dependent outcomes are conditional. Adaptation explanations
+              are attributed when documented; an unexplained difference stays
+              unexplained. No later Witcher 3 story outcomes are needed for
+              these recaps.
+            </p>
+          </div>
+        </div>
+        <p className="source-date">
+          Research compiled 19 October 2026. This is an independent fan
+          companion, not an official CD Projekt Red publication. External source
+          sites can contain spoilers beyond this companion.
+        </p>
+        <h2 className="source-section-title">
+          Reading & reference library <span>{sources.length}</span>
+        </h2>
+        <SourcesLibrary
+          witcherOneSources={witcherOneSources}
+          witcherTwoSources={witcherTwoSources}
+          continuitySources={continuitySources}
+        />
+        <section className="art-credits">
+          <h2>Artwork & attribution</h2>
+          <p>
+            The Witcher universe was created by Andrzej Sapkowski. The Witcher
+            game artwork and characters © CD PROJEKT S.A.
+          </p>
+          <details className="visual-credits">
+            <summary>
+              Image credits and original sources{" "}
+              <span>
+                {Object.keys(portraits).length + publicationArtwork.length}
+              </span>
+            </summary>
+            {Object.entries(portraits).map(([identifier, portrait]) => (
+              <a
+                key={identifier}
+                href={portrait.sourcePage}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong>
+                  {
+                    characterEntries.find(
+                      (character) => character.id === identifier,
+                    ).name
+                  }
+                </strong>
+                <span>{portrait.credit}</span>
+              </a>
+            ))}
+            {[...publicationArtwork].map((artwork) => (
+              <a
+                key={artwork.id}
+                href={artwork.sourcePage}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong>{artwork.title ?? artwork.caption}</strong>
+                <span>{artwork.credit}</span>
+              </a>
+            ))}
+          </details>
+        </section>
+      </div>
+    );
+  }
+
   function renderSaved() {
     const savedArticles = allArticles.filter((article) =>
       savedState.bookmarks.includes(article.id),
@@ -930,6 +1021,14 @@ export default function App() {
               <span className="nav-count">{savedState.bookmarks.length}</span>
             )}
           </a>
+          <a
+            href="#/sources"
+            className={`topbar-icon ${route.page === "sources" ? "active" : ""}`}
+            aria-label="Sources & lore"
+            title="Sources & lore"
+          >
+            Sources
+          </a>
           <button
             className="search-trigger"
             aria-label="Search the Continent"
@@ -954,7 +1053,9 @@ export default function App() {
                     ? renderContinuity()
                     : ["chapter", "article"].includes(route.page)
                       ? renderArticle()
-                      : renderSaved()}
+                      : route.page === "sources"
+                        ? renderSources()
+                        : renderSaved()}
         </main>
         {storageError && (
           <p className="storage-warning" role="status">
@@ -975,6 +1076,7 @@ export default function App() {
             </span>
             <span>
               Inspired by the world of Andrzej Sapkowski & CD PROJEKT RED.
+              <button onClick={() => goTo("sources")}>Sources & credits</button>
             </span>
           </div>
         </footer>

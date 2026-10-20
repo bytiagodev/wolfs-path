@@ -557,6 +557,20 @@ main:focus {
   margin: 0 6px;
 }
 
+.footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer button:hover {
+  color: var(--gold-bright);
+}
+
 /* ---------- Page intro with full-bleed art ---------- */
 
 .page-intro {
@@ -1743,6 +1757,216 @@ main:focus {
 
 .character-chapters {
   margin-top: 48px;
+}
+
+/* ---------- Sources ---------- */
+
+.source-principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.source-principles > div {
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--elevated), var(--panel));
+}
+
+.source-principles h2 {
+  margin: 14px 0 10px;
+  font-size: 26px;
+}
+
+.source-principles p {
+  color: var(--text);
+}
+
+.source-date {
+  margin: 24px 0 48px;
+  color: var(--muted);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.source-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-size: 32px;
+}
+
+.source-section-title span,
+.source-group-count {
+  color: var(--gold);
+  font-family: var(--caps);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+
+.source-groups {
+  display: grid;
+  gap: 12px;
+}
+
+.source-game-group {
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.source-group-heading,
+.source-type-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 22px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.source-group-heading::-webkit-details-marker,
+.source-type-heading::-webkit-details-marker,
+.visual-credits summary::-webkit-details-marker {
+  display: none;
+}
+
+.source-group-heading > span:first-child {
+  color: var(--parchment);
+  font-size: 23px;
+}
+
+.source-group-heading:hover > span:first-child,
+.source-type-heading:hover > span:first-child {
+  color: var(--gold-bright);
+}
+
+.source-type-group {
+  border-top: 1px solid var(--line-soft);
+}
+
+.source-type-heading {
+  padding: 14px 22px 14px 36px;
+}
+
+.source-type-heading > span:first-child {
+  color: var(--text);
+  font-family: var(--caps);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.source-list {
+  display: grid;
+  padding: 0 22px 12px 36px;
+}
+
+.source-entry {
+  display: grid;
+  grid-template-columns: 36px 1fr 20px;
+  gap: 14px;
+  padding: 14px 10px;
+  border-top: 1px solid var(--line-soft);
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.source-entry:hover {
+  background: rgba(201, 163, 91, 0.06);
+}
+
+.source-index {
+  color: var(--muted);
+  font-family: var(--caps);
+  font-size: 14px;
+}
+
+.source-entry strong {
+  display: block;
+  margin: 4px 0;
+  color: var(--parchment);
+  font-weight: 500;
+}
+
+.source-entry p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.source-entry small {
+  display: block;
+  margin-top: 4px;
+  color: var(--gold);
+  font-size: 13px;
+}
+
+.art-credits {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.art-credits h2 {
+  margin-bottom: 14px;
+  font-size: 30px;
+}
+
+.art-credits > p {
+  max-width: 80ch;
+  color: var(--text);
+}
+
+.art-credits a {
+  color: var(--gold);
+}
+
+.visual-credits {
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.visual-credits summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+  color: var(--parchment);
+  font-family: var(--caps);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  cursor: pointer;
+  list-style: none;
+}
+
+.visual-credits summary span {
+  color: var(--gold);
+}
+
+.visual-credits a {
+  display: grid;
+  gap: 2px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--line-soft);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.visual-credits a:hover {
+  background: rgba(201, 163, 91, 0.06);
+}
+
+.visual-credits a strong {
+  color: var(--parchment);
+  font-weight: 500;
+}
+
+.visual-credits a span {
+  color: var(--muted);
+  font-size: 14px;
 }
 
 /* ---------- Search ---------- */
