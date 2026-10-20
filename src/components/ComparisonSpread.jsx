@@ -1,8 +1,6 @@
-import CharacterPortrait from "./CharacterPortrait.jsx";
 import { assetUrl } from "../asset-url.js";
 import { comparisonLayouts, getBookTitle } from "../visual-guide.js";
 import { publicationArtwork } from "../artwork.js";
-import { characterEntries } from "../data/continuity.js";
 
 export default function ComparisonSpread({ article }) {
   const layout = comparisonLayouts[article.id];
@@ -40,18 +38,13 @@ export default function ComparisonSpread({ article }) {
         <section className="comparison-column">
           <div className="comparison-column-copy">
             <p className="eyebrow">{layout.leftLabel ?? "In the books"}</p>
-            <h2>{bookTitle}</h2>
+            {bookTitle && <p className="comparison-book-title">{bookTitle}</p>}
             {layout.left.map((index) => (
               <p key={index}>{article.paragraphs[index]}</p>
             ))}
           </div>
         </section>
         <section className="comparison-column">
-          <CharacterPortrait
-            characterId={layout.character}
-            name={`${characterEntries.find((character) => character.id === layout.character).name}, CD PROJEKT RED game artwork`}
-            className="comparison-character-art"
-          />
           <div className="comparison-column-copy">
             <p className="eyebrow">{layout.rightLabel ?? "In the games"}</p>
             {layout.right.map((index) => (

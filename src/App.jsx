@@ -586,6 +586,9 @@ export default function App() {
     const chapterArt = isBookArticle
       ? null
       : getChapterArtwork(currentArticle.id);
+    const bannerArt = isBookArticle
+      ? topicArtwork[currentArticle.id]
+      : chapterArt;
     const relatedCharacters = characterEntries.filter((character) =>
       currentArticle.characters.some((name) =>
         matchesCharacterName(character.name, name),
@@ -597,8 +600,8 @@ export default function App() {
       >
         <header className="reader-banner">
           <img
-            src={assetUrl(chapterArt?.path ?? "/images/rogue-mage-scene.jpg")}
-            alt={chapterArt?.caption ?? ""}
+            src={assetUrl(bannerArt?.path ?? "/images/rogue-mage-scene.jpg")}
+            alt={bannerArt?.caption ?? ""}
           />
           <div className="reader-banner-copy">
             <button

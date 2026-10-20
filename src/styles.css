@@ -1764,11 +1764,6 @@ main:focus {
   background: var(--panel);
 }
 
-.comparison-character-art.character-portrait-frame {
-  height: 300px;
-  aspect-ratio: auto;
-}
-
 .comparison-column-copy {
   padding: 26px;
 }
@@ -1777,12 +1772,14 @@ main:focus {
   margin-bottom: 12px;
 }
 
-.comparison-column-copy h2 {
-  margin-bottom: 14px;
-  font-size: 28px;
+.comparison-book-title {
+  margin: -6px 0 14px;
+  color: var(--muted);
+  font-size: 15px;
+  font-style: italic;
 }
 
-.comparison-column-copy p:not(.eyebrow),
+.comparison-column-copy p:not(.eyebrow, .comparison-book-title),
 .comparison-context p,
 .sidegame-comparison p:not(.eyebrow) {
   margin-bottom: 1em;
