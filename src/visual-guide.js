@@ -67,13 +67,11 @@ export const comparisonLayouts = {
     left: [1],
     right: [0],
     context: [2],
-    character: "geralt",
   },
   "saga-ending": {
     left: [0, 1],
     right: [2],
     context: [],
-    character: "yennefer",
   },
   "amnesia-and-hunt": {
     left: [0],
@@ -81,19 +79,16 @@ export const comparisonLayouts = {
     context: [3],
     leftLabel: "Geralt at the opening",
     rightLabel: "The history recovered",
-    character: "letho",
   },
   "family-before-games": {
     left: [0, 1],
     right: [3],
     context: [2],
-    character: "ciri",
   },
   "triss-and-yennefer": {
     left: [0],
     right: [1],
     context: [2],
-    character: "triss",
   },
   "documented-adaptation-decisions": {
     left: [0],
@@ -101,25 +96,21 @@ export const comparisonLayouts = {
     context: [2],
     leftLabel: "The narrative decision",
     rightLabel: "The production decision",
-    character: "geralt",
   },
   "new-stories-familiar-history": {
     left: [2],
     right: [0, 1],
     context: [],
-    character: "iorveth",
   },
   "names-and-translations": {
     left: [0],
     right: [1],
     context: [2, 3],
-    character: "dandelion",
   },
   "between-first-two": {
     left: [1],
     right: [0],
     context: [2, 3, 4],
-    character: "foltest",
   },
   "premium-adventures": {
     left: [0, 1],
@@ -127,7 +118,6 @@ export const comparisonLayouts = {
     context: [],
     leftLabel: "The Price of Neutrality",
     rightLabel: "Side Effects",
-    character: "eskel",
   },
   "other-games": {
     left: [0, 1],
@@ -135,7 +125,6 @@ export const comparisonLayouts = {
     context: [],
     leftLabel: "Earlier campaigns",
     rightLabel: "Other formats",
-    character: "geralt",
   },
   "screens-and-branches": {
     left: [0],
@@ -143,6 +132,5 @@ export const comparisonLayouts = {
     context: [2],
     leftLabel: "Screen adaptations",
     rightLabel: "Game continuity",
-    character: "geralt",
   },
 };
