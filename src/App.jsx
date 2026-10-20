@@ -11,6 +11,7 @@ import {
   characterEntries,
 } from "./data/continuity.js";
 import {
+  matchesSearch,
   matchesCharacterName,
   parseRoute,
   readSavedState,
@@ -71,9 +72,13 @@ function ArticleLink({ article, onClick, completed = false, number }) {
 export default function App() {
   const [route, setRoute] = useState(() => parseRoute(window.location.hash));
   const [savedState, setSavedState] = useState(readSavedState);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [journeyFilter, setJourneyFilter] = useState("all");
   const [characterFilter, setCharacterFilter] = useState("all");
+  const [characterQuery, setCharacterQuery] = useState("");
   const [storageError, setStorageError] = useState(false);
+  const searchDialog = useRef(null);
   const pageHeading = useRef(null);
   const completedChapters = chapters.filter((chapter) =>
     savedState.completed.includes(chapter.id),
@@ -120,6 +125,22 @@ export default function App() {
       setStorageError(true);
     }
   }, [savedState]);
+
+  useEffect(() => {
+    if (searchOpen) searchDialog.current?.showModal();
+    else if (searchDialog.current?.open) searchDialog.current.close();
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const handleKeyboard = (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setSearchOpen((previous) => !previous);
+      }
+    };
+    window.addEventListener("keydown", handleKeyboard);
+    return () => window.removeEventListener("keydown", handleKeyboard);
+  }, []);
 
   useEffect(() => {
     if (currentArticle && ["chapter", "article"].includes(route.page)) {
@@ -472,14 +493,22 @@ export default function App() {
   function renderCharacters() {
     const visibleCharacters = characterEntries.filter(
       (character) =>
-        characterFilter === "all" ||
-        (characterFilter === "witchers"
-          ? /witcher/i.test(character.role + character.faction)
-          : characterFilter === "magic"
-            ? /sorcer|mage|magic/i.test(character.role + character.faction)
-            : /king|queen|emperor|intelligence|commander|politic|spy|soldier/i.test(
-                character.role + character.faction,
-              )),
+        matchesSearch(
+          {
+            name: character.name,
+            role: character.role,
+            faction: character.faction,
+          },
+          characterQuery,
+        ) &&
+        (characterFilter === "all" ||
+          (characterFilter === "witchers"
+            ? /witcher/i.test(character.role + character.faction)
+            : characterFilter === "magic"
+              ? /sorcer|mage|magic/i.test(character.role + character.faction)
+              : /king|queen|emperor|intelligence|commander|politic|spy|soldier/i.test(
+                  character.role + character.faction,
+                ))),
     );
     return (
       <div className="page-content">
@@ -507,6 +536,14 @@ export default function App() {
               </button>
             ))}
           </div>
+          <label className="inline-search">
+            <input
+              value={characterQuery}
+              onChange={(event) => setCharacterQuery(event.target.value)}
+              placeholder="Find a familiar name…"
+              aria-label="Search characters"
+            />
+          </label>
         </div>
         <p className="result-count">
           {visibleCharacters.length} people on the Path
@@ -532,6 +569,12 @@ export default function App() {
             </button>
           ))}
         </div>
+        {visibleCharacters.length === 0 && (
+          <EmptyState
+            title="No characters found"
+            description="Try another name or choose Everyone to widen your search."
+          />
+        )}
       </div>
     );
   }
@@ -807,6 +850,44 @@ export default function App() {
     );
   }
 
+  const searchResults =
+    searchQuery.trim().length > 1
+      ? [
+          ...chapters
+            .filter((article) => matchesSearch(article, searchQuery))
+            .map((article) => ({
+              ...article,
+              type: "Chapter",
+              target: "chapter",
+            })),
+          ...characterEntries
+            .filter((character) => matchesSearch(character, searchQuery))
+            .map((character) => ({
+              ...character,
+              title: character.name,
+              type: "Character",
+              target: "character",
+            })),
+          ...continuityArticles
+            .filter((article) =>
+              matchesSearch(
+                savedState.bookSpoilers
+                  ? article
+                  : { title: article.title, kicker: article.kicker },
+                searchQuery,
+              ),
+            )
+            .map((article) => ({
+              ...article,
+              summary: savedState.bookSpoilers
+                ? article.summary
+                : "Book comparison · spoiler protection enabled",
+              type: "Books & games",
+              target: "article",
+            })),
+        ]
+      : [];
+
   const navTabs = navigation.map(({ page, label }) => (
     <a
       key={page}
@@ -849,6 +930,14 @@ export default function App() {
               <span className="nav-count">{savedState.bookmarks.length}</span>
             )}
           </a>
+          <button
+            className="search-trigger"
+            aria-label="Search the Continent"
+            onClick={() => setSearchOpen(true)}
+          >
+            <span>Search</span>
+            <kbd>Ctrl K</kbd>
+          </button>
         </div>
       </header>
       <div className="main-shell">
@@ -890,6 +979,74 @@ export default function App() {
           </div>
         </footer>
       </div>
+      <dialog
+        className="search-dialog"
+        aria-label="Search the companion"
+        ref={searchDialog}
+        onCancel={() => setSearchOpen(false)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setSearchOpen(false);
+        }}
+      >
+        <div className="search-panel">
+          <div className="search-input-wrap">
+            <input
+              autoFocus
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="A name, a place, a half-remembered story…"
+              aria-label="Search the companion"
+            />
+            <button
+              className="icon-button"
+              aria-label="Close search"
+              onClick={() => setSearchOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+          <div className="search-results">
+            {searchQuery.trim().length < 2 ? (
+              <div className="search-hint">
+                <p>Search the companion</p>
+                <span>
+                  Search chapters, characters, and book comparisons.
+                  <br />
+                  Try “Letho”, “Salamandra”, or “Yennefer”.
+                </span>
+              </div>
+            ) : searchResults.length ? (
+              <>
+                <p className="eyebrow">{searchResults.length} THREADS FOUND</p>
+                {searchResults.slice(0, 30).map((result) => (
+                  <button
+                    key={`${result.target}-${result.id}`}
+                    onClick={() => {
+                      goTo(result.target, result.id);
+                      setSearchOpen(false);
+                    }}
+                  >
+                    <span className="eyebrow">{result.type}</span>
+                    <strong>{result.title}</strong>
+                    <span>{result.summary}</span>
+                  </button>
+                ))}
+              </>
+            ) : (
+              <div className="search-hint">
+                <p>No results found</p>
+                <span>Try a shorter name or another spelling.</span>
+              </div>
+            )}
+          </div>
+          <div className="search-footer">
+            <span>
+              <kbd>Esc</kbd> to close
+            </span>
+            <span>Chapters, characters, and comparisons</span>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 }

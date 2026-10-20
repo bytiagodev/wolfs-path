@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   matchesCharacterName,
+  matchesSearch,
   parseRoute,
   readSavedState,
   readingMinutes,
@@ -144,6 +145,32 @@ test("malformed external links never throw while decoding an identifier", () => 
     assert.doesNotThrow(() => parseRoute(malformedHash));
     assert.equal(parseRoute(malformedHash).identifier, "");
   }
+});
+
+test("search finds memories, roles, character lists and reader takeaways", () => {
+  const chapter = {
+    title: "A forgotten memory",
+    paragraphs: ["A king ruled Temeria."],
+    takeaways: ["Remember the Viper School."],
+    characters: ["Letho of Gulet"],
+  };
+  assert.equal(matchesSearch(chapter, "  TEMERIA  "), true);
+  assert.equal(matchesSearch(chapter, "viper school"), true);
+  assert.equal(matchesSearch(chapter, "Gulet"), true);
+  assert.equal(
+    matchesSearch(
+      { earlier: ["Served Foltest."], role: "Commander" },
+      "commander",
+    ),
+    true,
+  );
+  assert.equal(matchesSearch(chapter, "Novigrad"), false);
+});
+
+test("search accepts unaccented names and both styles of apostrophe", () => {
+  assert.equal(matchesSearch({ name: "Síle de Tansarville" }, "sile"), true);
+  assert.equal(matchesSearch({ faction: "Scoia’tael" }, "scoia'tael"), true);
+  assert.equal(matchesSearch({ faction: "Scoia’tael" }, "scoiatael"), true);
 });
 
 test("reading estimates retain a one-minute minimum and round longer articles up", () => {

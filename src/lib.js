@@ -43,6 +43,31 @@ export function readingMinutes(article) {
   return Math.max(1, Math.ceil(wordCount / 210));
 }
 
+export function matchesSearch(entry, query) {
+  const searchableText = [
+    entry.title,
+    entry.name,
+    entry.summary,
+    entry.role,
+    entry.faction,
+    entry.kicker,
+    ...(entry.paragraphs ?? []),
+    ...(entry.takeaways ?? []),
+    ...(entry.characters ?? []),
+    ...(entry.earlier ?? []),
+    entry.remember,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const normalize = (text) =>
+    text
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .replace(/[’']/g, "")
+      .toLowerCase();
+  return normalize(searchableText).includes(normalize(query.trim()));
+}
+
 // Compare whole name fragments, so Geralt matches Geralt of Rivia
 // while Ves never becomes a match for Vesemir.
 export function matchesCharacterName(characterName, referenceName) {
