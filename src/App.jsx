@@ -178,6 +178,24 @@ export default function App() {
   }
 
   function renderHome() {
+    const games = [
+      {
+        id: "one",
+        year: "2007",
+        title: "The Witcher",
+        summary:
+          "Geralt’s return, the Salamandra investigation, and the conflict in Vizima.",
+        entries: witcherOneChapters,
+      },
+      {
+        id: "two",
+        year: "2011",
+        title: "The Witcher 2: Assassins of Kings",
+        summary:
+          "Foltest’s murder, Roche and Iorveth’s routes, and Geralt’s recovered memories.",
+        entries: witcherTwoChapters,
+      },
+    ];
     return (
       <>
         <section className="hero">
@@ -192,8 +210,203 @@ export default function App() {
               Recaps of The Witcher and The Witcher 2, character histories, and
               the books behind the games.
             </p>
+            <div className="hero-actions">
+              <button
+                className="button primary"
+                onClick={() => openArticle(lastArticle ?? nextChapter)}
+              >
+                {lastArticle ? "Continue reading" : "Start the first recap"}
+              </button>
+              <span className="hero-meta">Witcher 3 plot protected</span>
+            </div>
           </div>
         </section>
+        <div className="home-body">
+          <div className="spoiler-notice">
+            <p>
+              <strong>Spoiler scope</strong> Full spoilers for The Witcher 1 &
+              2. No later Witcher 3 story revelations. Book ending spoilers are
+              opt-in.
+            </p>
+            <button onClick={() => goTo("sources")}>Our approach</button>
+          </div>
+          <section id="your-path" className="path-section">
+            <SectionHeading
+              eyebrow="GAME RECAPS"
+              title="The first two games"
+              action={
+                <button className="text-link" onClick={() => goTo("journey")}>
+                  All chapters
+                </button>
+              }
+            >
+              Follow the main stories and their alternative routes.
+            </SectionHeading>
+            <div className="game-grid">
+              {games.map((game) => {
+                const completedCount = game.entries.filter((entry) =>
+                  savedState.completed.includes(entry.id),
+                ).length;
+                return (
+                  <button
+                    key={game.id}
+                    className="game-card framed"
+                    onClick={() => openArticle(game.entries[0])}
+                  >
+                    <span className="game-card-copy">
+                      <span className="eyebrow">
+                        {game.year} · {game.entries.length} chapters
+                      </span>
+                      <strong>{game.title}</strong>
+                      <span className="game-card-summary">{game.summary}</span>
+                      <span className="game-card-footer">
+                        <span className="mini-progress">
+                          <span
+                            style={{
+                              width: `${(completedCount / game.entries.length) * 100}%`,
+                            }}
+                          />
+                        </span>
+                        <span>
+                          {completedCount} / {game.entries.length} remembered
+                        </span>
+                        <span className="text-link">Read the recap</span>
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+        </div>
+        <figure className="interlude">
+          <blockquote>
+            “Evil is evil. Lesser, greater, middling, it’s all the same.”
+            <cite>GERALT OF RIVIA · THE LAST WISH</cite>
+          </blockquote>
+        </figure>
+        <div className="home-body">
+          <section className="glossary-teaser">
+            <SectionHeading
+              eyebrow="CHARACTER GUIDE"
+              title="Returning characters"
+              action={
+                <button
+                  className="text-link"
+                  onClick={() => goTo("characters")}
+                >
+                  Browse {characterEntries.length} characters
+                </button>
+              }
+            >
+              Look up earlier appearances, relationships, and allegiances.
+            </SectionHeading>
+            <div className="portrait-row">
+              {["geralt", "yennefer", "triss", "ciri", "vesemir", "dandelion"]
+                .map((identifier) =>
+                  characterEntries.find(
+                    (character) => character.id === identifier,
+                  ),
+                )
+                .map((character) => (
+                  <button
+                    key={character.id}
+                    className="portrait-tile"
+                    onClick={() => goTo("character", character.id)}
+                  >
+                    <CharacterPortrait characterId={character.id} decorative />
+                    <span>{character.name}</span>
+                  </button>
+                ))}
+            </div>
+          </section>
+          <div className="home-split">
+            <button
+              className="books-panel framed"
+              onClick={() => goTo("continuity")}
+            >
+              <span className="book-fan" aria-hidden="true">
+                {["last-wish", "blood-of-elves", "lady-of-the-lake"].map(
+                  (identifier) => (
+                    <img
+                      key={identifier}
+                      src={
+                        publicationArtwork.find(
+                          (publication) => publication.id === identifier,
+                        )?.path
+                      }
+                      alt=""
+                    />
+                  ),
+                )}
+              </span>
+              <span className="books-panel-copy">
+                <span className="eyebrow">CONTINUITY & ADAPTATION</span>
+                <strong>Books & games</strong>
+                <span>Differences and documented decisions.</span>
+                <span className="text-link">Read the comparisons</span>
+              </span>
+            </button>
+            <section className="journey-strip framed">
+              <p className="eyebrow">READING PROGRESS</p>
+              <h3>Your saved progress</h3>
+              <div className="journey-count">
+                <strong>{completedChapters}</strong>
+                <span>/ {chapters.length}</span>
+              </div>
+              <div className="progress-track">
+                <span
+                  style={{
+                    width: `${(completedChapters / chapters.length) * 100}%`,
+                  }}
+                />
+              </div>
+              <p>
+                {completedChapters} of {chapters.length} chapters remembered.
+                Your progress stays in this browser.
+              </p>
+              <button
+                className="text-link"
+                onClick={() => openArticle(lastArticle ?? nextChapter)}
+              >
+                {lastArticle
+                  ? "Return to your reading"
+                  : "Start at Kaer Morhen"}
+              </button>
+            </section>
+          </div>
+          <section className="remember-section">
+            <SectionHeading
+              eyebrow="ABOUT THIS GUIDE"
+              title="Choices, sources, and spoilers"
+            />
+            <div className="principles-grid">
+              <div>
+                <h3>Alternative routes</h3>
+                <p>
+                  Different routes are marked throughout. Roche or Iorveth,
+                  Order or Scoia’tael: there is no single version of every
+                  decision.
+                </p>
+              </div>
+              <div>
+                <h3>Sources for each chapter</h3>
+                <p>
+                  Follow each chapter’s sources. Game events, book material, and
+                  documented creative decisions are clearly distinguished.
+                </p>
+              </div>
+              <div>
+                <h3>Witcher 3 spoiler protection</h3>
+                <p>
+                  Get the history you need for Witcher 3 without learning its
+                  later twists. Book ending details wait behind a separate
+                  choice.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
       </>
     );
   }
