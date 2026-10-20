@@ -9,9 +9,10 @@ import {
   interfaceArtwork,
   interfaceImages,
   publicationArtwork,
+  topicArtwork,
   worldArtwork,
 } from "./artwork.js";
-import { comparisonLayouts, getChapterArtwork } from "./visual-guide.js";
+import { getChapterArtwork } from "./visual-guide.js";
 import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
 import { witcherTwoChapters, witcherTwoSources } from "./data/witcher-two.js";
 import {
@@ -964,30 +965,12 @@ export default function App() {
         key={article.id}
         onClick={() => openArticle(article)}
       >
-        <div
-          className={`comparison-card-art ${article.id === "other-games" ? "comparison-game-art" : ""}`}
-        >
-          {article.id === "other-games" ? (
-            <>
-              {["thronebreaker", "rogue-mage"].map((identifier) => (
-                <img
-                  key={identifier}
-                  src={assetUrl(
-                    publicationArtwork.find(
-                      (publication) => publication.id === identifier,
-                    ).path,
-                  )}
-                  alt=""
-                  loading="lazy"
-                />
-              ))}
-            </>
-          ) : (
-            <CharacterPortrait
-              characterId={comparisonLayouts[article.id].character}
-              decorative
-            />
-          )}
+        <div className="comparison-card-art">
+          <img
+            src={assetUrl(topicArtwork[article.id].path)}
+            alt=""
+            loading="lazy"
+          />
           <span className="comparison-card-number">
             {String(index + 1).padStart(2, "0")}
           </span>

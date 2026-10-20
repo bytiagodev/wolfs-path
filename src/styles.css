@@ -1898,25 +1898,14 @@ main:focus {
 
 .comparison-card-art {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
   height: 230px;
   overflow: hidden;
   background: radial-gradient(ellipse at 30% 40%, #33271a, #0f0d0a 75%);
   border-bottom: 1px solid var(--line);
 }
 
-.comparison-card-art .character-portrait-frame {
-  height: 100%;
-  aspect-ratio: auto;
-}
-
-.comparison-game-art {
-  grid-template-columns: 1fr 1fr;
-}
-
-.comparison-game-art img {
-  min-width: 0;
+.comparison-card-art img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
