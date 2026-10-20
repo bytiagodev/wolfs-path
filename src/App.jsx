@@ -1143,7 +1143,9 @@ export default function App() {
             </a>{" "}
             Steam pages, along with Witcher 3 and expansion screenshots and the
             three game logos. The School of the Wolf medallion, Signs and quest
-            markers are game interface art, hosted by the Witcher Wiki.
+            markers are game interface art, hosted by the Witcher Wiki. Some
+            comparison images are Witcher 3 and GWENT artwork, also hosted by
+            the Witcher Wiki.
           </p>
           <details className="visual-credits">
             <summary>
@@ -1153,7 +1155,8 @@ export default function App() {
                   chapterArtwork.length +
                   publicationArtwork.length +
                   worldArtwork.length +
-                  interfaceArtwork.length}
+                  interfaceArtwork.length +
+                  Object.keys(topicArtwork).length}
               </span>
             </summary>
             {Object.entries(portraits).map(([identifier, portrait]) => (
@@ -1186,6 +1189,17 @@ export default function App() {
                 rel="noreferrer"
               >
                 <strong>{artwork.title ?? artwork.caption}</strong>
+                <span>{artwork.credit}</span>
+              </a>
+            ))}
+            {Object.entries(topicArtwork).map(([identifier, artwork]) => (
+              <a
+                key={`topic-${identifier}`}
+                href={artwork.sourcePage}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong>{artwork.caption}</strong>
                 <span>{artwork.credit}</span>
               </a>
             ))}
