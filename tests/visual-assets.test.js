@@ -2,12 +2,18 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { portraits } from "../src/portraits.js";
-import { publicationArtwork } from "../src/artwork.js";
-import { comparisonLayouts, getBookArtwork } from "../src/visual-guide.js";
+import { chapterArtwork, publicationArtwork } from "../src/artwork.js";
+import {
+  comparisonLayouts,
+  getBookArtwork,
+  getChapterArtwork,
+} from "../src/visual-guide.js";
 import {
   characterEntries,
   continuityArticles,
 } from "../src/data/continuity.js";
+import { witcherOneChapters } from "../src/data/witcher-one.js";
+import { witcherTwoChapters } from "../src/data/witcher-two.js";
 
 function assertLocalImage(asset) {
   assert.match(asset.path, /^\/images\/[a-z0-9/-]+\.(?:png|jpg|jpeg|webp)$/);
@@ -84,8 +90,30 @@ test("comparison spreads show every approved paragraph exactly once", () => {
   }
 });
 
-test("publication covers are available offline with original source credits", () => {
-  const artwork = [...publicationArtwork];
+test("all 21 recap chapters resolve to artwork from their own game", () => {
+  assert.equal(witcherOneChapters.length + witcherTwoChapters.length, 21);
+  for (const [chapters, game] of [
+    [witcherOneChapters, "one"],
+    [witcherTwoChapters, "two"],
+  ]) {
+    for (const chapter of chapters) {
+      const artwork = getChapterArtwork(chapter.id);
+      assert.ok(
+        chapterArtwork.includes(artwork),
+        `${chapter.id}: missing chapter artwork`,
+      );
+      assert.equal(
+        artwork.game,
+        game,
+        `${chapter.id}: artwork belongs to another game`,
+      );
+    }
+  }
+  assert.equal(getChapterArtwork("unrecognised-chapter"), undefined);
+});
+
+test("chapter illustrations and publication covers are available offline with original source credits", () => {
+  const artwork = [...chapterArtwork, ...publicationArtwork];
   assert.equal(new Set(artwork.map((asset) => asset.id)).size, artwork.length);
   for (const asset of artwork) assertLocalImage(asset);
   for (const identifier of [

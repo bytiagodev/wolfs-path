@@ -3,8 +3,18 @@ import CharacterPortrait from "./components/CharacterPortrait.jsx";
 import ComparisonSpread from "./components/ComparisonSpread.jsx";
 import SourcesLibrary from "./components/SourcesLibrary.jsx";
 import { portraits } from "./portraits.js";
-import { publicationArtwork } from "./artwork.js";
-import { comparisonLayouts, getBookArtwork } from "./visual-guide.js";
+import {
+  chapterArtwork,
+  interfaceArtwork,
+  interfaceImages,
+  publicationArtwork,
+  worldArtwork,
+} from "./artwork.js";
+import {
+  comparisonLayouts,
+  getBookArtwork,
+  getChapterArtwork,
+} from "./visual-guide.js";
 import { witcherOneChapters, witcherOneSources } from "./data/witcher-one.js";
 import { witcherTwoChapters, witcherTwoSources } from "./data/witcher-two.js";
 import {
@@ -55,15 +65,39 @@ function SectionHeading({ eyebrow, title, children, action }) {
   );
 }
 
-function ArticleLink({ article, onClick, completed = false, number }) {
+function ArticleLink({
+  article,
+  onClick,
+  completed = false,
+  number,
+  tracked = false,
+}) {
+  const artwork = getChapterArtwork(article.id);
   return (
     <button className="article-row" onClick={onClick}>
       <span className={`chapter-number ${completed ? "is-complete" : ""}`}>
         {String(number).padStart(2, "0")}
       </span>
+      {artwork && (
+        <img
+          className="article-thumbnail"
+          src={artwork.path}
+          alt=""
+          loading="lazy"
+        />
+      )}
       <span className="article-row-copy">
         <span className="eyebrow">{article.kicker}</span>
-        <strong>{article.title}</strong>
+        <strong>
+          {tracked && (
+            <img
+              className="quest-marker"
+              src={interfaceImages["main-quest"]}
+              alt="Next chapter"
+            />
+          )}
+          {article.title}
+        </strong>
         <span>{article.summary}</span>
       </span>
       <span className="row-duration">{readingMinutes(article)} min</span>
@@ -183,6 +217,9 @@ export default function App() {
         id: "one",
         year: "2007",
         title: "The Witcher",
+        logo: interfaceImages["logo-w1"],
+        image: "/images/witcher-one-scene.jpg",
+        alt: "Geralt beside a lake in The Witcher",
         summary:
           "Geralt’s return, the Salamandra investigation, and the conflict in Vizima.",
         entries: witcherOneChapters,
@@ -191,6 +228,9 @@ export default function App() {
         id: "two",
         year: "2011",
         title: "The Witcher 2: Assassins of Kings",
+        logo: interfaceImages["logo-w2"],
+        image: "/images/witcher-two-scene.jpg",
+        alt: "Geralt overlooking a mountain settlement in The Witcher 2",
         summary:
           "Foltest’s murder, Roche and Iorveth’s routes, and Geralt’s recovered memories.",
         entries: witcherTwoChapters,
@@ -199,7 +239,17 @@ export default function App() {
     return (
       <>
         <section className="hero">
+          <img
+            className="hero-image"
+            src="/images/world/w3-key-art.jpg"
+            alt=""
+          />
           <div className="hero-content">
+            <img
+              className="hero-medallion"
+              src={interfaceImages.medallion}
+              alt=""
+            />
             <p className="eyebrow">THE WOLF'S PATH</p>
             <h1 ref={pageHeading} tabIndex={-1}>
               Before
@@ -253,11 +303,16 @@ export default function App() {
                     className="game-card framed"
                     onClick={() => openArticle(game.entries[0])}
                   >
+                    <img src={game.image} alt={game.alt} />
                     <span className="game-card-copy">
                       <span className="eyebrow">
                         {game.year} · {game.entries.length} chapters
                       </span>
-                      <strong>{game.title}</strong>
+                      <img
+                        className="game-logo"
+                        src={game.logo}
+                        alt={game.title}
+                      />
                       <span className="game-card-summary">{game.summary}</span>
                       <span className="game-card-footer">
                         <span className="mini-progress">
@@ -280,6 +335,7 @@ export default function App() {
           </section>
         </div>
         <figure className="interlude">
+          <img src="/images/world/w3-0.jpg" alt="" loading="lazy" />
           <blockquote>
             “Evil is evil. Lesser, greater, middling, it’s all the same.”
             <cite>GERALT OF RIVIA · THE LAST WISH</cite>
@@ -351,6 +407,7 @@ export default function App() {
               <p className="eyebrow">READING PROGRESS</p>
               <h3>Your saved progress</h3>
               <div className="journey-count">
+                <img src={interfaceImages.xp} alt="" />
                 <strong>{completedChapters}</strong>
                 <span>/ {chapters.length}</span>
               </div>
@@ -382,6 +439,7 @@ export default function App() {
             />
             <div className="principles-grid">
               <div>
+                <img className="sign-icon" src={interfaceImages.axii} alt="" />
                 <h3>Alternative routes</h3>
                 <p>
                   Different routes are marked throughout. Roche or Iorveth,
@@ -390,6 +448,7 @@ export default function App() {
                 </p>
               </div>
               <div>
+                <img className="sign-icon" src={interfaceImages.yrden} alt="" />
                 <h3>Sources for each chapter</h3>
                 <p>
                   Follow each chapter’s sources. Game events, book material, and
@@ -397,6 +456,7 @@ export default function App() {
                 </p>
               </div>
               <div>
+                <img className="sign-icon" src={interfaceImages.quen} alt="" />
                 <h3>Witcher 3 spoiler protection</h3>
                 <p>
                   Get the history you need for Witcher 3 without learning its
@@ -420,6 +480,8 @@ export default function App() {
         intro:
           "From the walls of Kaer Morhen to the burning streets of Vizima.",
         entries: witcherOneChapters,
+        logo: interfaceImages["logo-w1"],
+        image: "/images/chapters/w1-04.jpg",
       },
       {
         id: "two",
@@ -428,11 +490,15 @@ export default function App() {
         intro:
           "The kingslayers, two very different roads, and the truth Geralt recovers.",
         entries: witcherTwoChapters,
+        logo: interfaceImages["logo-w2"],
+        image: "/images/chapters/w2-04.jpg",
       },
     ];
     return (
       <div className="page-content">
         <PageIntro
+          image="/images/world/w3-18.jpg"
+          position="50% 55%"
           eyebrow="GAME RECAPS"
           title="The Witcher 1 & 2"
           description="A chapter-by-chapter return to the first two games. Read in order, or pick up the part you’ve forgotten."
@@ -467,28 +533,38 @@ export default function App() {
           )
           .map((section) => (
             <section className="chapter-section" key={section.id}>
-              <SectionHeading
-                eyebrow={section.label}
-                title={section.title}
-                action={
-                  <span className="section-progress">
-                    {
-                      section.entries.filter((entry) =>
-                        savedState.completed.includes(entry.id),
-                      ).length
-                    }{" "}
-                    / {section.entries.length} remembered
-                  </span>
-                }
-              >
-                {section.intro}
-              </SectionHeading>
+              <div className="section-banner">
+                <img src={section.image} alt="" loading="lazy" />
+                <SectionHeading
+                  eyebrow={section.label}
+                  title={
+                    <img
+                      className="section-logo"
+                      src={section.logo}
+                      alt={section.title}
+                    />
+                  }
+                  action={
+                    <span className="section-progress">
+                      {
+                        section.entries.filter((entry) =>
+                          savedState.completed.includes(entry.id),
+                        ).length
+                      }{" "}
+                      / {section.entries.length} remembered
+                    </span>
+                  }
+                >
+                  {section.intro}
+                </SectionHeading>
+              </div>
               <div className="chapter-list">
                 {section.entries.map((article, index) => (
                   <ArticleLink
                     key={article.id}
                     article={article}
                     number={index + 1}
+                    tracked={article.id === nextChapter.id}
                     completed={savedState.completed.includes(article.id)}
                     onClick={() => openArticle(article)}
                   />
@@ -510,6 +586,9 @@ export default function App() {
     const nextArticle = articleCollection[articleIndex + 1];
     const previousArticle = articleCollection[articleIndex - 1];
     const bookSpoilersLocked = isBookArticle && !savedState.bookSpoilers;
+    const chapterArt = isBookArticle
+      ? null
+      : getChapterArtwork(currentArticle.id);
     const relatedCharacters = characterEntries.filter((character) =>
       currentArticle.characters.some((name) =>
         matchesCharacterName(character.name, name),
@@ -520,6 +599,10 @@ export default function App() {
         className={`reader-layout ${isBookArticle ? "comparison-reader-layout" : ""}`}
       >
         <header className="reader-banner">
+          <img
+            src={chapterArt?.path ?? "/images/rogue-mage-scene.jpg"}
+            alt={chapterArt?.caption ?? ""}
+          />
           <div className="reader-banner-copy">
             <button
               className="back-link"
@@ -554,6 +637,12 @@ export default function App() {
               </button>
             </div>
           </div>
+          {chapterArt && (
+            <span className="reader-banner-caption">
+              {chapterArt.game === "one" ? "The Witcher" : "The Witcher 2"}{" "}
+              imagery · {chapterArt.caption}
+            </span>
+          )}
         </header>
         <aside className="reader-sidebar">
           <p className="eyebrow">
@@ -575,6 +664,7 @@ export default function App() {
         <article className="reader">
           {bookSpoilersLocked ? (
             <div className="spoiler-gate">
+              <img className="gate-lock" src={interfaceImages.locked} alt="" />
               <h2>Book spoilers are hidden</h2>
               <p>
                 This comparison discusses the books, including the ending of the
@@ -728,6 +818,8 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
+          image="/images/world/w3-7.jpg"
+          position="50% 45%"
           eyebrow="CHARACTER GUIDE"
           title="Returning characters"
           description="The people behind the names. Their history, their loyalties, and what to remember before you meet again."
@@ -918,6 +1010,9 @@ export default function App() {
               : "Open to choose whether to reveal the book and game comparison."}
           </p>
           <span className="text-link">
+            {!savedState.bookSpoilers && (
+              <img className="lock-icon" src={interfaceImages.locked} alt="" />
+            )}
             {savedState.bookSpoilers
               ? "Read comparison"
               : "Book spoilers hidden"}
@@ -931,6 +1026,8 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
+          image="/images/rogue-mage-scene.jpg"
+          position="50% 55%"
           eyebrow="BOOKS & GAMES"
           title="Books & games"
           description="The same roots. Different continuities. Understand what CD Projekt Red continued, what it adapted, and where the evidence ends."
@@ -1002,6 +1099,8 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
+          image="/images/world/w3-15.jpg"
+          position="50% 40%"
           eyebrow="REFERENCE LIBRARY"
           title="Sources & lore"
           description="A reference library for this companion. Every recap and character entry links back to the sources used to write it."
@@ -1044,13 +1143,36 @@ export default function App() {
           <h2>Artwork & attribution</h2>
           <p>
             The Witcher universe was created by Andrzej Sapkowski. The Witcher
-            game artwork and characters © CD PROJEKT S.A.
+            game artwork and characters © CD PROJEKT S.A. Game screenshots via
+            the{" "}
+            <a
+              href="https://store.steampowered.com/app/20900/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              original game
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://store.steampowered.com/app/20920/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              sequel
+            </a>{" "}
+            Steam pages, along with Witcher 3 and expansion screenshots and the
+            three game logos. The School of the Wolf medallion, Signs and quest
+            markers are game interface art, hosted by the Witcher Wiki.
           </p>
           <details className="visual-credits">
             <summary>
               Image credits and original sources{" "}
               <span>
-                {Object.keys(portraits).length + publicationArtwork.length}
+                {Object.keys(portraits).length +
+                  chapterArtwork.length +
+                  publicationArtwork.length +
+                  worldArtwork.length +
+                  interfaceArtwork.length}
               </span>
             </summary>
             {Object.entries(portraits).map(([identifier, portrait]) => (
@@ -1070,7 +1192,12 @@ export default function App() {
                 <span>{portrait.credit}</span>
               </a>
             ))}
-            {[...publicationArtwork].map((artwork) => (
+            {[
+              ...chapterArtwork,
+              ...publicationArtwork,
+              ...worldArtwork,
+              ...interfaceArtwork,
+            ].map((artwork) => (
               <a
                 key={artwork.id}
                 href={artwork.sourcePage}
@@ -1094,6 +1221,8 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
+          image="/images/world/w3-2.jpg"
+          position="50% 50%"
           eyebrow="READING LIST"
           title="Bookmarked chapters"
           description="Your bookmarked chapters, ready when a name or a memory needs another look. Saved only in this browser."
@@ -1217,6 +1346,7 @@ export default function App() {
       </a>
       <header className="topbar">
         <a href="#/home" className="brand">
+          <img src={interfaceImages.medallion} alt="" />
           <span>THE WOLF’S PATH</span>
         </a>
         <nav className="main-tabs" aria-label="Main navigation">
@@ -1366,9 +1496,17 @@ export default function App() {
   );
 }
 
-function PageIntro({ eyebrow, title, description, headingRef }) {
+function PageIntro({
+  eyebrow,
+  title,
+  description,
+  headingRef,
+  image,
+  position = "50% 50%",
+}) {
   return (
-    <div className="page-intro">
+    <div className={`page-intro ${image ? "has-art" : ""}`}>
+      {image && <img src={image} alt="" style={{ objectPosition: position }} />}
       <div className="page-intro-copy">
         <p className="eyebrow">{eyebrow}</p>
         <h1 ref={headingRef} tabIndex={-1}>
@@ -1383,6 +1521,7 @@ function PageIntro({ eyebrow, title, description, headingRef }) {
 function EmptyState({ title, description, action }) {
   return (
     <div className="empty-state">
+      <img className="empty-medallion" src={interfaceImages.medallion} alt="" />
       <h2>{title}</h2>
       <p>{description}</p>
       {action}

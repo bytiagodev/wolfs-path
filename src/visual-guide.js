@@ -1,5 +1,35 @@
-import { publicationArtwork } from "./artwork.js";
+import { chapterArtwork, publicationArtwork } from "./artwork.js";
 import { bookComparisons } from "./data/book-comparisons.js";
+
+const chapterImages = {
+  "w1-kaer-morhen": "w1-kaer-morhen-art",
+  "w1-outskirts": "w1-ss-0",
+  "w1-vizima-investigation": "w1-ss-12",
+  "w1-trade-quarter": "w1-ss-5",
+  "w1-source-and-assault": "w1-ss-2",
+  "w1-murky-waters": "w1-ss-1",
+  "w1-destiny-and-choice": "w1-ss-6",
+  "w1-burning-vizima": "w1-ss-7",
+  "w1-old-manor": "w1-ss-16",
+  "w1-frozen-reflections": "w1-ss-15",
+  "between-the-first-two-games": "w2-ss-2",
+  "foltests-last-campaign": "w2-ss-12",
+  "flotsam-under-loredo": "w2-ss-3",
+  "letho-and-the-crossroads": "w2-ss-1",
+  "the-pontar-curse": "w2-ss-21",
+  "roches-war": "w2-ss-5",
+  "iorveths-vergen": "w2-ss-0",
+  "triss-and-the-figurine": "w2-ss-13",
+  "loc-muinnes-impossible-rescues": "w2-ss-20",
+  "summit-and-dragon": "w2-ss-15",
+  "lethos-final-account": "w2-ss-8",
+};
+
+export function getChapterArtwork(identifier) {
+  return chapterArtwork.find(
+    (artwork) => artwork.id === chapterImages[identifier],
+  );
+}
 
 export function getBookArtwork(identifier) {
   const layoutBook = comparisonLayouts[identifier]?.book;
