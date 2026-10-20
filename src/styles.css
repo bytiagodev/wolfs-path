@@ -609,6 +609,10 @@ main:focus {
   color: var(--gold-bright);
 }
 
+.footer-disclaimer {
+  margin-top: 18px;
+}
+
 /* ---------- Page intro with full-bleed art ---------- */
 
 .page-intro {
@@ -2783,6 +2787,10 @@ main:focus {
 
   .footer-row > span:last-child {
     justify-self: center;
+    text-align: center;
+  }
+
+  .footer-disclaimer {
     text-align: center;
   }
 }

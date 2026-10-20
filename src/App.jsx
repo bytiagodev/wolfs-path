@@ -1486,6 +1486,10 @@ export default function App() {
               <button onClick={() => goTo("sources")}>Sources & credits</button>
             </span>
           </div>
+          <p className="footer-disclaimer">
+            Unofficial fan project, not affiliated with or endorsed by CD
+            PROJEKT RED. The Witcher was created by Andrzej Sapkowski.
+          </p>
         </footer>
       </div>
       <dialog
