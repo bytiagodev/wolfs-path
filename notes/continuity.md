@@ -58,7 +58,7 @@ No essential book, mini-series or side game has to be inserted between them. The
 ## Which people and choices should the reader remember?
 
 ### Takeaway
-The data contains 24 character entries and, after the editorial addition, 12 continuity articles, ending before Wild Hunt's later events. Each entry has source IDs; community sources are honestly identified.
+The data contains 25 character entries and, after the editorial addition, 12 continuity articles, ending before Wild Hunt's later events. Each entry has source IDs; community sources are honestly identified.
 
 ### Cited Findings
 - Roche's and Iorveth's Flotsam crossroads are explicitly mutually exclusive. — [Official Prima guide](https://primagames.com/eguides/the-witcher-2-assassins-of-kings-eguide/walkthrough/chapter-1-flotsam)

@@ -6,6 +6,7 @@ import {
   parseRoute,
   readSavedState,
   readingMinutes,
+  searchRank,
   STORAGE_KEY,
   toggleItem,
 } from "../src/lib.js";
@@ -185,4 +186,23 @@ test("reading estimates retain a one-minute minimum and round longer articles up
     }),
     2,
   );
+});
+
+test("search ranks a name match above passing mentions in the prose", () => {
+  const character = { name: "Letho of Gulet", role: "The kingslayer" };
+  const chapter = {
+    title: "Two conspiracies, one weakened North",
+    summary: "Letho explains the plot.",
+    paragraphs: ["Letho, Letho and Letho again."],
+  };
+  const mention = { title: "Flotsam", paragraphs: ["Later, Letho appears."] };
+  assert.equal(searchRank(character, "letho").tier, 4);
+  assert.equal(searchRank(chapter, "Letho").tier, 3);
+  assert.equal(searchRank(mention, "LETHO").tier, 1);
+  assert.equal(searchRank(chapter, "Letho").hits, 4);
+  assert.equal(searchRank(mention, "Roach"), null);
+  assert.equal(searchRank({ name: "Síle de Tansarville" }, "sile").tier, 4);
+  assert.equal(searchRank({ paragraphs: ["On the approach."] }, "roach"), null);
+  assert.equal(searchRank({ name: "Letho of Gulet" }, "leth").tier, 4);
+  assert.equal(searchRank({ name: "Vesemir" }, "  "), null);
 });

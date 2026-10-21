@@ -264,4 +264,14 @@ export const portraits = {
       "CD PROJEKT RED, The Witcher game journal artwork, hosted by Anime Characters Database.",
     objectPosition: "50% 15%",
   },
+  roach: {
+    id: "roach",
+    path: "/images/portraits/roach.png",
+    sourcePage: "https://witcher.fandom.com/wiki/Roach",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/9/97/Tw3_journal_roach.png",
+    credit:
+      "CD PROJEKT RED, The Witcher 3: Wild Hunt character journal render; hosted by the Witcher Wiki",
+    objectPosition: "50% 30%",
+  },
 };

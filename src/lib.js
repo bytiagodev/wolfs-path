@@ -43,29 +43,53 @@ export function readingMinutes(article) {
   return Math.max(1, Math.ceil(wordCount / 210));
 }
 
+function normalizeSearchText(text) {
+  return text
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .replace(/[’']/g, "")
+    .toLowerCase();
+}
+
+function escapeRegExp(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Field groups from strongest to weakest. A hit in a name or title outranks
+// a passing mention deep in a recap.
+function searchFieldTiers(entry) {
+  return [
+    [entry.title, entry.name],
+    [entry.kicker, entry.role, entry.faction, entry.summary],
+    [entry.remember, ...(entry.takeaways ?? []), ...(entry.characters ?? [])],
+    [...(entry.paragraphs ?? []), ...(entry.earlier ?? [])],
+  ].map((fields) => normalizeSearchText(fields.filter(Boolean).join(" ")));
+}
+
+// Returns null when nothing matches. Matches must start a word, so Roach
+// never matches "approach". A higher tier is a stronger field, and hits
+// counts every mention as a tie-breaker.
+export function searchRank(entry, query) {
+  const needle = normalizeSearchText(query.trim());
+  if (!needle) return null;
+  const wordStart = new RegExp(
+    `(?:^|[^\\p{L}\\p{N}])${escapeRegExp(needle)}`,
+    "gu",
+  );
+  const counts = searchFieldTiers(entry).map(
+    (text) => text.match(wordStart)?.length ?? 0,
+  );
+  const strongest = counts.findIndex((count) => count > 0);
+  if (strongest === -1) return null;
+  return {
+    tier: counts.length - strongest,
+    hits: counts.reduce((total, count) => total + count, 0),
+  };
+}
+
+// An empty query matches everything, so filtered lists start full.
 export function matchesSearch(entry, query) {
-  const searchableText = [
-    entry.title,
-    entry.name,
-    entry.summary,
-    entry.role,
-    entry.faction,
-    entry.kicker,
-    ...(entry.paragraphs ?? []),
-    ...(entry.takeaways ?? []),
-    ...(entry.characters ?? []),
-    ...(entry.earlier ?? []),
-    entry.remember,
-  ]
-    .filter(Boolean)
-    .join(" ");
-  const normalize = (text) =>
-    text
-      .normalize("NFD")
-      .replace(/\p{M}/gu, "")
-      .replace(/[’']/g, "")
-      .toLowerCase();
-  return normalize(searchableText).includes(normalize(query.trim()));
+  return !query.trim() || searchRank(entry, query) !== null;
 }
 
 // Compare whole name fragments, so Geralt matches Geralt of Rivia

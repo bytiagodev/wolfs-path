@@ -164,6 +164,7 @@ test("the reference layer keeps book continuity, inter-game media and key return
     "ciri",
     "dandelion",
     "zoltan",
+    "roach",
     "vesemir",
     "roche",
     "iorveth",

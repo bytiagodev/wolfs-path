@@ -24,6 +24,7 @@ import {
   matchesSearch,
   matchesCharacterName,
   parseRoute,
+  searchRank,
   readSavedState,
   readingMinutes,
   STORAGE_KEY,
@@ -1282,42 +1283,49 @@ export default function App() {
     );
   }
 
+  // Rank every result together: the strongest field match first, then
+  // characters before chapters before comparisons, then the most mentions.
   const searchResults =
     searchQuery.trim().length > 1
       ? [
-          ...chapters
-            .filter((article) => matchesSearch(article, searchQuery))
-            .map((article) => ({
-              ...article,
-              type: "Chapter",
-              target: "chapter",
-            })),
-          ...characterEntries
-            .filter((character) => matchesSearch(character, searchQuery))
-            .map((character) => ({
-              ...character,
-              title: character.name,
-              type: "Character",
-              target: "character",
-            })),
-          ...continuityArticles
-            .filter((article) =>
-              matchesSearch(
-                savedState.bookSpoilers
-                  ? article
-                  : { title: article.title, kicker: article.kicker },
-                searchQuery,
-              ),
-            )
-            .map((article) => ({
-              ...article,
-              summary: savedState.bookSpoilers
-                ? article.summary
-                : "Book comparison · spoiler protection enabled",
-              type: "Books & games",
-              target: "article",
-            })),
+          ...chapters.map((article) => ({
+            ...article,
+            rank: searchRank(article, searchQuery),
+            type: "Chapter",
+            typeOrder: 1,
+            target: "chapter",
+          })),
+          ...characterEntries.map((character) => ({
+            ...character,
+            rank: searchRank(character, searchQuery),
+            title: character.name,
+            type: "Character",
+            typeOrder: 0,
+            target: "character",
+          })),
+          ...continuityArticles.map((article) => ({
+            ...article,
+            rank: searchRank(
+              savedState.bookSpoilers
+                ? article
+                : { title: article.title, kicker: article.kicker },
+              searchQuery,
+            ),
+            summary: savedState.bookSpoilers
+              ? article.summary
+              : "Book comparison · spoiler protection enabled",
+            type: "Books & games",
+            typeOrder: 2,
+            target: "article",
+          })),
         ]
+          .filter((result) => result.rank)
+          .sort(
+            (first, second) =>
+              second.rank.tier - first.rank.tier ||
+              first.typeOrder - second.typeOrder ||
+              second.rank.hits - first.rank.hits,
+          )
       : [];
 
   const navTabs = navigation.map(({ page, label }) => (

@@ -48,7 +48,7 @@ function assertLocalImage(asset) {
 
 test("every character has a distinct locally available credited game portrait", () => {
   const characterIds = characterEntries.map((character) => character.id).sort();
-  assert.equal(characterIds.length, 24);
+  assert.equal(characterIds.length, 25);
   assert.deepEqual(Object.keys(portraits).sort(), characterIds);
   assert.equal(
     new Set(Object.values(portraits).map((portrait) => portrait.path)).size,

@@ -370,6 +370,23 @@ export const characterEntries = [
     sourceIds: ["c-zoltan", "c-official-recap", "c-roche"],
   },
   {
+    id: "roach",
+    name: "Roach",
+    role: "Geralt’s horse",
+    faction: "Geralt’s friends",
+    initials: "RO",
+    summary:
+      "Geralt’s mare, and the one companion who has been on the road with him longer than anyone.",
+    earlier: [
+      "Books: Geralt’s mare and a quiet constant of his travels. Her Polish name, Płotka, is an affectionate diminutive of the roach fish.",
+      "W1 and W2: neither game lets Geralt ride, so she is only glimpsed, in illustrations for the first game and briefly in the second game’s closing cutscene.",
+      "W3: with Geralt from the opening scene. She answers his whistle and carries his saddlebags and contract trophies between towns.",
+    ],
+    remember:
+      "By the third game’s own account, Geralt calls every horse he owns Roach. The name belongs to the role, not to one animal.",
+    sourceIds: ["c-roach"],
+  },
+  {
     id: "vesemir",
     name: "Vesemir",
     role: "Senior witcher and teacher",
@@ -864,6 +881,7 @@ export const continuitySources = [
     ["ciri", "Ciri: earlier history", "Ciri/backstory"],
     ["dandelion", "Dandelion: names and earlier appearances", "Dandelion"],
     ["zoltan", "Zoltan Chivay", "Zoltan_Chivay"],
+    ["roach", "Roach", "Roach"],
     ["vesemir", "Vesemir", "Vesemir"],
     ["eskel", "Eskel", "Eskel"],
     ["lambert", "Lambert", "Lambert"],

@@ -18,7 +18,7 @@ The Witcher 3 opens with Geralt on Yennefer's trail, and it assumes you remember
 
 The recaps read like the quest journal they were modelled on. The Witcher is told in ten chapters and The Witcher 2 in eleven, each with its own piece of game art, a recap long enough to actually remind you, and a closing box of what to carry into the third game. Where the games split on a choice, the page says so and shows both sides. Roche and Iorveth get separate routes, and no playthrough is treated as the real one, including mine.
 
-Twenty-four characters sit in a glossary of Witcher 3 journal portraits, each with the history that matters before the Wild Hunt and the single thing to remember about them.
+Twenty-five characters sit in a glossary of Witcher 3 journal portraits, each with the history that matters before the Wild Hunt and the single thing to remember about them.
 
 ## The books
 
