@@ -274,4 +274,14 @@ export const portraits = {
       "CD PROJEKT RED, The Witcher 3: Wild Hunt character journal render; hosted by the Witcher Wiki",
     objectPosition: "50% 30%",
   },
+  mousesack: {
+    id: "mousesack",
+    path: "/images/portraits/mousesack.png",
+    sourcePage: "https://witcher.fandom.com/wiki/Mousesack",
+    sourceUrl:
+      "https://static.wikia.nocookie.net/witcher/images/6/63/Tw3_journal_mousesack.png",
+    credit:
+      "CD PROJEKT RED, The Witcher 3: Wild Hunt character journal render; hosted by the Witcher Wiki",
+    objectPosition: "50% 20%",
+  },
 };

@@ -338,6 +338,24 @@ export const characterEntries = [
     sourceIds: ["c-ciri", "c-blood-elves", "c-alvin"],
   },
   {
+    id: "mousesack",
+    name: "Mousesack / Ermion",
+    role: "Skellige druid",
+    faction: "Skellige",
+    initials: "ME",
+    summary:
+      "A druid who has known Geralt since the night he claimed Ciri, under a name most English players only meet in the third game.",
+    earlier: [
+      "The Last Wish: A druid from Skellige at Queen Calanthe’s court in Cintra. At Pavetta’s betrothal feast he passes Geralt warnings in runes made of breadcrumbs, and the two use their power together when Pavetta’s magic erupts.",
+      "Sword of Destiny: He stays in Cintra after Eist Tuirseach marries Calanthe, helps Pavetta control her power and becomes close to the young Ciri. Later he finds Geralt and Ciri in Brokilon and urges Geralt to take her into his care.",
+      "The first two games: He does not appear. In the first game, a druid hierophant mentions knowing Geralt through their “mutual friend, Mousesack”.",
+      "The Witcher 3: Appears on Skellige as Ermion. That name exists only in translations; the Polish original calls him Myszowór throughout.",
+    ],
+    remember:
+      "Mousesack and Ermion are the same man. He was at the feast where Geralt claimed Ciri through the Law of Surprise.",
+    sourceIds: ["c-mousesack", "c-wiki-last-wish", "c-wiki-sword-destiny"],
+  },
+  {
     id: "dandelion",
     name: "Dandelion / Jaskier",
     role: "Poet, bard and friend",
@@ -887,6 +905,7 @@ export const continuitySources = [
     ["dandelion", "Dandelion: names and earlier appearances", "Dandelion"],
     ["zoltan", "Zoltan Chivay", "Zoltan_Chivay"],
     ["roach", "Roach", "Roach"],
+    ["mousesack", "Mousesack / Ermion", "Mousesack"],
     ["vesemir", "Vesemir", "Vesemir"],
     ["eskel", "Eskel", "Eskel"],
     ["lambert", "Lambert", "Lambert"],
