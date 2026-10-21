@@ -396,6 +396,7 @@ button:hover .text-link {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: lowercase;
+  white-space: nowrap;
   transition: color 0.2s;
 }
 
@@ -2506,7 +2507,12 @@ main:focus {
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 1180px) {
+/* The centred tab bar needs about 1390px; tighten it until the drawer takes over. */
+@media (min-width: 1181px) and (max-width: 1400px) {
+  .topbar {
+    grid-template-columns: auto auto 1fr;
+  }
+
   .main-tabs .nav-link {
     padding: 0 14px;
   }
@@ -2518,26 +2524,9 @@ main:focus {
   .search-trigger {
     padding: 0 14px;
   }
-
-  .portrait-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .home-split {
-    grid-template-columns: 1fr;
-  }
-
-  .character-detail {
-    grid-template-columns: 300px minmax(0, 1fr);
-    column-gap: 40px;
-  }
 }
 
-@media (max-width: 960px) {
-  :root {
-    --gutter: 24px;
-  }
-
+@media (max-width: 1180px) {
   .topbar {
     grid-template-columns: auto 1fr auto;
     gap: 12px;
@@ -2636,6 +2625,33 @@ main:focus {
   .sidebar-progress small {
     color: var(--muted);
     font-size: 14px;
+  }
+
+  .search-trigger kbd {
+    display: none;
+  }
+
+  .search-trigger {
+    padding: 0 14px;
+  }
+
+  .portrait-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home-split {
+    grid-template-columns: 1fr;
+  }
+
+  .character-detail {
+    grid-template-columns: 300px minmax(0, 1fr);
+    column-gap: 40px;
+  }
+}
+
+@media (max-width: 960px) {
+  :root {
+    --gutter: 24px;
   }
 
   .game-grid {
