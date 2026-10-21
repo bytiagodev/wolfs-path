@@ -921,9 +921,19 @@ export default function App() {
         </div>
         <div className="character-history">
           <h2>Before the Wild Hunt</h2>
-          {currentCharacter.earlier.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          {currentCharacter.earlier.map((paragraph, index) => {
+            // Entries start with their source, e.g. "Books:" or "The Witcher 2:".
+            const [, label, text] =
+              paragraph.match(/^([^:]{1,40}):\s+(.*)$/s) ?? [];
+            return label ? (
+              <div className="history-entry" key={index}>
+                <p className="eyebrow">{label}</p>
+                <p>{text}</p>
+              </div>
+            ) : (
+              <p key={index}>{paragraph}</p>
+            );
+          })}
         </div>
         <div className="takeaways">
           <p className="eyebrow">THE THING TO REMEMBER</p>

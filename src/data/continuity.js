@@ -181,8 +181,8 @@ const canonArticles = [
       "For this purpose, follow the Vizima recap, the first game’s attempted assassination and the La Valette prologue. The larger gaps in Geralt’s personal memory are explained within Assassins of Kings itself.",
     ],
     takeaways: [
-      "W1’s final attack sets up Geralt’s royal service.",
-      "W2 follows shortly after W1.",
+      "The first game’s final attack sets up Geralt’s royal service.",
+      "The Witcher 2 begins shortly after the first game ends.",
       "Later-published novels are not an intervening game chapter.",
     ],
     characters: ["geralt", "foltest", "triss", "letho"],
@@ -209,7 +209,7 @@ const canonArticles = [
     takeaways: [
       "Both are CDPR bonus adventures for the first game.",
       "The Price of Neutrality takes place before its main campaign.",
-      "Neither supplies a missing W1-to-W2 chapter.",
+      "Neither supplies a missing chapter between the first two games.",
     ],
     characters: ["geralt", "dandelion", "eskel", "vesemir", "lambert"],
     sourceIds: [
@@ -265,7 +265,7 @@ const canonArticles = [
     characters: ["geralt", "roche", "iorveth", "letho", "sile"],
     sourceIds: ["c-netflix", "c-prima-branch", "c-sile"],
     branchNote:
-      "This archive describes both W2 routes. It does not prescribe a save or reveal W3’s later consequences.",
+      "This archive describes both routes through The Witcher 2. It does not prescribe a save or reveal Witcher 3’s later consequences.",
   },
 ];
 
@@ -279,12 +279,12 @@ export const characterEntries = [
     summary:
       "A professional monster hunter whose old friendships outlast his lost memories.",
     earlier: [
-      "Books: Ciri’s guardian and Yennefer’s partner, repeatedly drawn into the wars around them.",
-      "W1: returns without his memory and pursues the theft of witcher secrets.",
-      "W2: accused of killing Foltest; follows the real assassin while recovering his past.",
+      "Books: A witcher raised at Kaer Morhen who took “of Rivia” as a working name to sound credible to clients. Through the Law of Surprise he becomes bound to Ciri, and his last wish to a djinn ties his fate to Yennefer’s. The saga drags him out of his neutrality and into the wars around them both.",
+      "The Witcher: Reappears after being presumed dead, with no memory, and is brought back to Kaer Morhen by witchers who know him better than he knows himself. When Salamandra steals the school’s mutagens, he follows the trail through Vizima’s investigation, its civil war between the Order and the Scoia’tael, and finally to the Grand Master, Jacques de Aldersberg. The game ends with him saving Foltest from an assassin with witcher eyes.",
+      "The Witcher 2: Serves as Foltest’s bodyguard, then becomes the obvious suspect when Letho kills the king in front of him. Hunting the real kingslayer through Flotsam, Aedirn and Loc Muinne, he gets his past back in pieces: before the first game he traded himself to the Wild Hunt to free Yennefer.",
     ],
     remember:
-      "Other people remember a shared history that he initially cannot recall.",
+      "By the end of The Witcher 2 he remembers what the amnesia hid: Yennefer, the Wild Hunt and the bargain he made with it. That is where Witcher 3 picks him up.",
     sourceIds: ["c-board-lore", "c-classics", "c-identity"],
   },
   {
@@ -296,12 +296,12 @@ export const characterEntries = [
     summary:
       "Geralt’s long-established love and the woman who taught Ciri magic.",
     earlier: [
-      "Books: develops a profound mother-and-daughter bond with Ciri.",
-      "W1: absent from Geralt’s immediate story.",
-      "W2: Geralt’s memories and Letho’s testimony reveal her part in the Wild Hunt history.",
+      "Books: A sorceress from Vengerberg, reshaped at Aretuza like every sorceress. She meets Geralt in Rinde, where his last wish to a djinn binds them together, and they break up and reunite across the short stories. In the saga she teaches Ciri magic and becomes her mother in all but blood.",
+      "The Witcher: Absent. The first game deliberately leaves her out, so she exists only as a gap in Geralt’s memory.",
+      "The Witcher 2: Seen only through Geralt’s returning memories and Letho’s account. She was taken by the Wild Hunt, Geralt gave himself up in her place, and Letho travelled with her while she suffered from amnesia until Nilfgaardian agents captured them. When Letho last saw her, she was in the Empire.",
     ],
     remember:
-      "She belongs to Geralt’s life before his amnesia, even though she is offscreen in the early RPGs.",
+      "Witcher 3 treats her as someone you already know. That comes from the books, plus the second game’s revelation that Geralt traded himself to the Hunt for her.",
     sourceIds: ["c-blood-elves", "c-yennefer", "c-letho"],
   },
   {
@@ -313,9 +313,9 @@ export const characterEntries = [
     summary:
       "A friend from the books who becomes a central companion in both early games.",
     earlier: [
-      "Books: helps at Kaer Morhen while Ciri is training.",
-      "W1: aids Geralt at the keep and in Vizima; can become his partner.",
-      "W2: begins beside Geralt and is abducted during the kingslayer investigation.",
+      "Books: A Temerian court sorceress and Yennefer’s friend since Aretuza, called the Fourteenth of the Hill after she was wrongly counted among the dead at Sodden. She comes to Kaer Morhen to help with Ciri and becomes something like an older sister to her. Her affair with Geralt is brief, and after Thanedd she helps found the Lodge.",
+      "The Witcher: Helps Geralt recover at Kaer Morhen and is wounded in Salamandra’s attack. In Vizima she shelters him, helps organise the assault on Salamandra and wants to supervise Alvin’s magic. She can become Alvin’s guardian and Geralt’s partner.",
+      "The Witcher 2: Begins the game beside Geralt in Foltest’s army. Letho forces her to teleport him to Aedirn, and Nilfgaardian agents then compress her into a figurine and carry her to Loc Muinne. Rescuing her yourself is a choice; if Geralt goes elsewhere, Letho frees her.",
     ],
     remember:
       "Her friendships, royal service and Lodge membership can pull in different directions.",
@@ -330,8 +330,8 @@ export const characterEntries = [
     summary:
       "A princess with extraordinary inherited power, raised and protected by an unconventional family.",
     earlier: [
-      "Books: trains with Geralt and the Kaer Morhen witchers, then studies magic with Yennefer.",
-      "W1 and W2: her absence from the main playable story does not erase that prior family history.",
+      "Books: Princess Cirilla of Cintra, Queen Calanthe’s granddaughter and the child Geralt claimed through the Law of Surprise before she was born. She survives the fall of Cintra, trains with the witchers at Kaer Morhen and studies magic with Yennefer. Her Elder Blood is why so many powers want her.",
+      "The first two games: She never appears. The first game offers Alvin, a different child with uncontrolled power; the second keeps the Wild Hunt and Geralt’s lost years in view without bringing her on screen.",
     ],
     remember:
       "She is an established person in Geralt’s life; she is not Alvin.",
@@ -346,9 +346,9 @@ export const characterEntries = [
     summary:
       "Geralt’s travelling friend, whose talent for finding trouble comes with useful connections.",
     earlier: [
-      "Books: accompanies Geralt and records his adventures in song and prose.",
-      "W1: reunites with Geralt around Vizima.",
-      "W2: Geralt saves him and Zoltan from execution in Flotsam.",
+      "Books: With Geralt from the earliest stories. He is the reason Geralt meets the djinn in The Last Wish, he joins the dragon hunt in Sword of Destiny, and he walks the saga beside him as poet, liability and best friend.",
+      "The Witcher: Turns up in Vizima’s taverns and intrigues. He sees Alvin’s kidnappers and helps Geralt find them, brings the dimeritium amulet meant for the boy to Murky Waters, and leaves the lake with Geralt by boat when the fighting starts.",
+      "The Witcher 2: Waits on the Flotsam gallows with Zoltan, accused of debauchery, until Geralt disrupts the hanging. From then on he supplies contacts and gossip in a town where every faction tells a different story.",
     ],
     remember: "Jaskier, Dandilion and Dandelion are versions of the same name.",
     sourceIds: ["c-dandelion", "c-board-lore", "c-roche"],
@@ -362,9 +362,9 @@ export const characterEntries = [
     summary:
       "A practical, outspoken dwarf with a friendship forged amid war and displacement.",
     earlier: [
-      "Books: travels with refugees and meets Geralt’s company during the Second Northern War.",
-      "W1: an old friend Geralt meets again in and around Vizima.",
-      "W2: faces the gallows in Flotsam with Dandelion and helps Geralt reach Iorveth.",
+      "Books: Enters in Baptism of Fire, leading dwarves and refugees away from the war with a foul-mouthed parrot. He travels with Geralt’s company for a stretch and fights at the Battle of Brenna.",
+      "The Witcher: An old friend Geralt meets again in and around Vizima, one of the people who remember a history Geralt has lost.",
+      "The Witcher 2: Faces the Flotsam gallows with Dandelion, accused of helping the Scoia’tael. His contacts get Geralt to Iorveth, and on Iorveth’s route he helps defend Vergen.",
     ],
     remember: "His friendship with Geralt predates both RPGs.",
     sourceIds: ["c-zoltan", "c-official-recap", "c-roche"],
@@ -379,8 +379,8 @@ export const characterEntries = [
       "Geralt’s mare, and the one companion who has been on the road with him longer than anyone.",
     earlier: [
       "Books: Geralt’s mare and a quiet constant of his travels. Her Polish name, Płotka, is an affectionate diminutive of the roach fish.",
-      "W1 and W2: neither game lets Geralt ride, so she is only glimpsed, in illustrations for the first game and briefly in the second game’s closing cutscene.",
-      "W3: with Geralt from the opening scene. She answers his whistle and carries his saddlebags and contract trophies between towns.",
+      "The first two games: neither game lets Geralt ride, so she is only glimpsed, in illustrations for the first game and briefly in the second game’s closing cutscene.",
+      "The Witcher 3: with Geralt from the opening scene. She answers his whistle and carries his saddlebags and contract trophies between towns.",
     ],
     remember:
       "By the third game’s own account, Geralt calls every horse he owns Roach. The name belongs to the role, not to one animal.",
@@ -394,9 +394,9 @@ export const characterEntries = [
     initials: "VS",
     summary: "The elder at Kaer Morhen and a father figure to its witchers.",
     earlier: [
-      "Books: helps train Ciri during her time at Kaer Morhen.",
-      "W1: receives Geralt back into the keep and fights during Salamandra’s assault.",
-      "Bonus adventure: debates the duty of neutrality over Deidre’s refuge.",
+      "Books: The eldest witcher at Kaer Morhen and the one who keeps the dying school running. He helps train Ciri when she winters at the keep.",
+      "The Witcher: Takes Geralt back in after his return, though Geralt has to learn who he is all over again. He fights during Salamandra’s assault, and afterwards the surviving witchers bury Leo and split up to follow the attackers.",
+      "Bonus adventure: In The Price of Neutrality he debates the duty of neutrality over Deidre’s refuge.",
     ],
     remember:
       "Kaer Morhen is a shared home and training ground, not simply a castle Geralt visits.",
@@ -410,9 +410,9 @@ export const characterEntries = [
     initials: "ES",
     summary: "A trusted Kaer Morhen companion with his own life on the Path.",
     earlier: [
-      "Books: one of the witchers involved in Ciri’s training.",
-      "W1: present when Geralt returns to Kaer Morhen.",
-      "The Price of Neutrality: Deidre Ademeyn is his child of surprise.",
+      "Books: One of the handful of witchers still wintering at Kaer Morhen, and one of Ciri’s teachers there.",
+      "The Witcher: Among the witchers who know Geralt when he returns without his memory. He helps defend the keep and joins the search for the stolen secrets.",
+      "Bonus adventure: In The Price of Neutrality, Deidre Ademeyn is his child of surprise.",
     ],
     remember:
       "He and Geralt share a history from before the first game’s attack.",
@@ -427,9 +427,9 @@ export const characterEntries = [
     summary:
       "One of the Kaer Morhen witchers, remembered for his abrasive manner.",
     earlier: [
-      "Books: participates in Ciri’s training at the keep.",
-      "W1: helps train Leo and defend Kaer Morhen.",
-      "The Price of Neutrality: takes part in the dispute over Deidre’s sanctuary.",
+      "Books: One of the handful of witchers still wintering at Kaer Morhen, and one of Ciri’s teachers there.",
+      "The Witcher: Helps train the young Leo and defends the keep when Salamandra attacks. Leo is killed trying to stop the Professor.",
+      "Bonus adventure: In The Price of Neutrality he takes part in the dispute over Deidre’s sanctuary.",
     ],
     remember:
       "His barbed exchanges sit inside a longstanding bond with the other witchers.",
@@ -442,11 +442,11 @@ export const characterEntries = [
     faction: "Temeria",
     initials: "FT",
     summary:
-      "The monarch whose connection to Geralt begins with the striga contract and ends in the crisis of W2.",
+      "The monarch whose connection to Geralt begins with the striga contract and ends in the crisis of The Witcher 2.",
     earlier: [
-      "Books: hires Geralt to break the curse on his daughter Adda.",
-      "W1: Geralt becomes entangled in his capital’s rebellion and saves him from an assassin.",
-      "W2: Geralt serves as his bodyguard; Letho murders him during the La Valette siege.",
+      "Books: King of Temeria. In The Last Wish he hires Geralt to lift the striga curse on his daughter Adda. In the saga he fights Nilfgaard, wants the Scoia’tael cleared out of Temeria and, after Thanedd, makes a separate peace with Emhyr and expels his mages.",
+      "The Witcher: Away from Vizima for most of the game while orders forged in his name feed the intrigue. He returns in the final chapter to ask Geralt to save Adda from a renewed striga curse, and Geralt then saves him from an assassin with witcher eyes.",
+      "The Witcher 2: Keeps Geralt as his bodyguard during the La Valette siege while fighting to reach his children, Anaïs and Boussy. Letho, disguised as a monk, cuts his throat in front of them.",
     ],
     remember:
       "His death leaves both Geralt’s reputation and Temeria’s succession in crisis.",
@@ -461,8 +461,9 @@ export const characterEntries = [
     summary:
       "Foltest’s special-forces commander, determined to find the kingslayer and preserve Temeria.",
     earlier: [
-      "W2: interrogates Geralt, accepts that the real killer is elsewhere and helps him escape.",
-      "Roche route: leads Geralt into Henselt’s camp and the struggle over Temeria’s future.",
+      "The Witcher 2: Commander of the Blue Stripes, Temeria’s special forces. He interrogates Geralt after Foltest’s death, accepts that the real killer escaped, and helps him out of the dungeon. In Flotsam he is Iorveth’s committed enemy and the corrupt commandant Loredo’s opponent.",
+      "Roche’s route: Geralt joins him in Henselt’s camp, where Roche is part of a covert conspiracy against the king. Henselt has the Blue Stripes executed, and Geralt can stop Roche from killing him or let him take revenge. At Loc Muinne, Roche wants to rescue Foltest’s daughter Anaïs.",
+      "Iorveth’s route: He still turns up. With Ves he saves Geralt from Shilard’s mage, proof that political enemies can fight on the same side.",
     ],
     remember:
       "His loyalty is to Temeria, and his rivalry with Iorveth is deeply personal.",
@@ -477,8 +478,8 @@ export const characterEntries = [
     summary:
       "An elven guerrilla leader whose pursuit of a future for nonhumans brings him to Saskia’s cause.",
     earlier: [
-      "W2: initially works with Letho around Flotsam before the alliance collapses.",
-      "Iorveth route: Geralt joins him on the road to Vergen and Saskia’s resistance.",
+      "The Witcher 2: An elven Scoia’tael commander with a long record of violence. He first works with Letho around Flotsam, then pretends to be Geralt’s captive to test whether the kingslayer has betrayed the elves. He has.",
+      "Iorveth’s route: Leads his commando into Vergen, committing them to Saskia’s cause instead of an endless guerrilla war. After the victory he is alarmed by how Saskia now speaks, and follows her and Philippa to Loc Muinne.",
     ],
     remember:
       "Following him shows a different second act from Roche’s campaign.",
@@ -493,11 +494,12 @@ export const characterEntries = [
     summary:
       "A witcher tied to both the royal assassinations and Geralt’s forgotten past.",
     earlier: [
-      "Before W1, in the game account: Geralt saves his life and they pursue the Hunt together.",
-      "W2: kills Demavend and Foltest while working a plan backed by Nilfgaard.",
+      "Before the first game: Geralt saved him from a slizzard while chasing the Wild Hunt, and Letho and his companions joined the pursuit. After Geralt traded himself for Yennefer, Letho travelled with her until Nilfgaardian agents captured them, and the empire recruited him.",
+      "The Witcher 2: A witcher of the Viper School who kills Demavend and Foltest, working with Auckes and Serrit, because Emhyr promised to restore the school. He defeats Geralt under the Flotsam ruins but spares him for that old debt, then forces Triss to teleport him to Aedirn.",
+      "The Witcher 2 · Epilogue: Waits for Geralt after the summit and explains everything, before Geralt lets him leave or kills him.",
     ],
     remember:
-      "Geralt can fight him or let him leave at the end of W2; survival is a player choice.",
+      "Geralt can fight him or let him leave at the end of The Witcher 2; survival is a player choice.",
     sourceIds: ["c-letho", "c-second-game"],
   },
   {
@@ -509,9 +511,9 @@ export const characterEntries = [
     summary:
       "A powerful sorceress whose plans extend beyond service to a single ruler.",
     earlier: [
-      "Books: associated with Redanian power and the foundation of the Lodge of Sorceresses.",
-      "W2: assists Saskia in Vergen, but her cure also places Saskia under magical control.",
-      "W2: Radovid has her imprisoned and blinded at Loc Muinne.",
+      "Books: Adviser to the King of Redania. With Dijkstra she springs the coup on Thanedd, and afterwards she gathers the surviving sorceresses into the Lodge.",
+      "The Witcher 2: Gives Saskia magical support in Vergen and guides people through the spectral mist in owl form. Her cure for Saskia’s poisoning also places Saskia under her control.",
+      "The Witcher 2: At Loc Muinne, Radovid has her arrested and blinded. On Iorveth’s route, helping her is the only way to obtain the dagger that frees Saskia.",
     ],
     remember: "Her aid can advance a separate political objective.",
     sourceIds: ["c-philippa", "c-board-lore"],
@@ -525,9 +527,9 @@ export const characterEntries = [
     summary:
       "A physician who treats the human cost of the conflicts Geralt passes through.",
     earlier: [
-      "Books: knows Geralt and Dandelion from the Oxenfurt period.",
-      "W1: treats patients in Vizima and can become Alvin’s guardian and Geralt’s partner.",
-      "W2: a journal entry accounts for the end of their relationship if that W1 path was chosen.",
+      "Books: A medical student who knows Geralt and Dandelion from the Oxenfurt period.",
+      "The Witcher: Meets Geralt in the Outskirts and runs a hospital in Vizima. She works with him on the autopsy of a Salamandra witness and wants to give Alvin a stable home. On the neutral route, Geralt protects her hospital as the city burns. She can become Alvin’s guardian and Geralt’s partner.",
+      "The Witcher 2: A journal entry accounts for the end of their relationship if that first-game path was chosen.",
     ],
     remember:
       "Her romance and Alvin’s guardianship depend on your first-game decisions.",
@@ -542,11 +544,11 @@ export const characterEntries = [
     summary:
       "A book acquaintance whose history includes court service and the catastrophe at Thanedd.",
     earlier: [
-      "Books: serves as an adviser to Foltest and is present at the Thanedd conclave.",
-      "Books: takes part in the factional struggle there and later belongs to the Lodge.",
+      "Books: An adviser to Foltest who is present at the Thanedd conclave, takes part in the factional struggle there and later joins the Lodge of Sorceresses.",
+      "The first two games: No major role in either game.",
     ],
     remember:
-      "Geralt knows her from the novels’ magical and political world, not a major W1 or W2 companion quest.",
+      "Geralt knows her from the novels’ magical and political world, not a major companion in the first two games.",
     sourceIds: ["c-keira", "c-foltest", "c-lodge"],
   },
   {
@@ -558,8 +560,8 @@ export const characterEntries = [
     summary:
       "A veteran intelligence operator with a long and uncomfortable history with Geralt.",
     earlier: [
-      "Books: works at the centre of Redanian espionage and the Thanedd crisis.",
-      "Books: Geralt injures his leg when the two clash.",
+      "Books: The head of Redanian intelligence. He works with Philippa on the Thanedd coup, and when he and Geralt clash, Geralt injures his leg.",
+      "The first two games: He does not appear. His history with Geralt comes entirely from the books.",
     ],
     remember:
       "Their familiarity comes from the books; he is not a companion from the first two RPG campaigns.",
@@ -574,8 +576,9 @@ export const characterEntries = [
     summary:
       "The emperor behind the southern power’s expansion and the kingslayers’ destabilisation of the North.",
     earlier: [
-      "Books: rules Nilfgaard during its wars against the Northern Kingdoms.",
-      "W2: Letho names the emperor’s bargain to restore the Viper School as the incentive for the assassination campaign.",
+      "Books: Emperor of Nilfgaard during its wars against the Northern Kingdoms. He backs the Scoia’tael as a weapon against the North, and he wants Ciri, for reasons the protected book comparisons explain.",
+      "The Witcher: Offstage.",
+      "The Witcher 2: Revealed through Letho as the patron of the kingslayers. Killing kings, implicating the sorceresses and spreading disorder prepared the North for a Nilfgaardian invasion, and the Enhanced Edition closes with his armies moving north.",
     ],
     remember:
       "His imperial goals explain why the kings’ deaths are more than isolated murders. The protected book comparisons discuss his private history.",
@@ -590,8 +593,9 @@ export const characterEntries = [
     summary:
       "A calculating ruler exploiting neighbouring instability while pursuing his own quarrel with Philippa.",
     earlier: [
-      "W1: appears in the political manoeuvring around Temeria.",
-      "W2: seeks influence over Temeria through Foltest’s daughter Anaïs and orders Philippa’s brutal interrogation.",
+      "Books: Stays in the background. After his father is assassinated, Philippa works with Queen Hedwig to keep Redania in hand.",
+      "The Witcher: Geralt interrupts his magical conversation in a Salamandra hideout. Radovid admits he once tried to use the organisation, but says he has ended it.",
+      "The Witcher 2: Arrives at Loc Muinne seeking influence over Temeria through Anaïs. He has Philippa arrested and blinded, and on Roche’s route he reveals that Dethmold’s forces hold Anaïs.",
     ],
     remember:
       "The Anaïs settlement varies by route and choice; his ambitions do not.",
@@ -606,9 +610,9 @@ export const characterEntries = [
     summary:
       "Also called Sheala de Tancarville in book translations, she moves from the kayran hunt into the regicide conspiracy.",
     earlier: [
-      "Books: a member of the Lodge of Sorceresses.",
-      "W2: works with Geralt against Flotsam’s kayran and is implicated in Demavend’s assassination.",
-      "W2: tries to escape Loc Muinne through a sabotaged megascope.",
+      "Books: Known as Sheala de Tancarville in translation, and a founding member of the Lodge of Sorceresses.",
+      "The Witcher 2: Hunts the kayran with Geralt in Flotsam, then appears in Henselt’s camp. Auckes’s memories tie her to the kingslayers: she commissioned Demavend’s murder, though she denies that the Lodge ordered Foltest’s.",
+      "The Witcher 2: Escapes the summit with the dragon’s help and tries to flee through a portal whose diamond has been replaced with a defective one.",
     ],
     remember:
       "Geralt can remove the faulty component or leave her to die. Do not assume one outcome.",
@@ -623,9 +627,9 @@ export const characterEntries = [
     summary:
       "A foul-mouthed apparent fence in Vizima whose real profession is espionage.",
     earlier: [
-      "W1: becomes a suspect during Geralt’s investigation before his intelligence role is uncovered.",
-      "W1: can be defended when Count de Wett accuses him of treason.",
-      "W2: remembered through an agent’s delivery rather than as a travelling companion.",
+      "The Witcher: Poses as a foul-mouthed fence in Vizima’s Temple Quarter and becomes one of the suspects in the Salamandra investigation. He attends Leuvaarden’s reception, and his modest appearance hides his work in Temeria’s intelligence service.",
+      "The Witcher: Can be defended when Count de Wett accuses him of treason.",
+      "The Witcher 2: Remembered through an agent’s delivery rather than as a travelling companion.",
     ],
     remember: "His rough exterior is a cover. His earlier fate is conditional.",
     sourceIds: ["c-thaler"],
@@ -639,11 +643,11 @@ export const characterEntries = [
     summary:
       "The leader of Vergen’s resistance and the hope of a state shared by humans and nonhumans.",
     earlier: [
-      "W2: leads opposition to Henselt’s expansion into Upper Aedirn.",
-      "W2: is poisoned; Philippa’s supposed cure leaves her under control.",
-      "W2: is revealed as the dragon Saesenthessis.",
+      "The Witcher 2: The Dragonslayer, leader of Vergen’s coalition of humans, dwarves and elves against Henselt’s claim to Upper Aedirn.",
+      "Iorveth’s route: Poisoned after the war council, she is saved by Philippa’s cure, which also places her under Philippa’s control. During the siege she reveals that she is the dragon Saesenthessis and breaks Henselt’s army.",
+      "The Witcher 2 · Ending: Still controlled at Loc Muinne. Geralt can free her with the dagger from Philippa’s rescue path, or otherwise kill her or leave her alive.",
     ],
-    remember: "Her freedom and fate depend on W2’s route and final decisions.",
+    remember: "Her freedom and fate depend on The Witcher 2’s route and final decisions.",
     sourceIds: ["c-saskia", "c-philippa", "c-second-game"],
   },
   {
@@ -655,9 +659,9 @@ export const characterEntries = [
     summary:
       "The vulnerable child at the centre of the first game’s guardianship choices.",
     earlier: [
-      "W1: survives a barghest attack in the Outskirts.",
-      "W1: Geralt places him in Shani’s or Triss’s care.",
-      "W1: his uncontrolled gifts and disappearance are tied to the story’s final revelations.",
+      "The Witcher: A Source, a child with innate and uncontrolled magic, whom the Outskirts’ Reverend handed to Salamandra for experiments. Geralt rescues him, then rescues him again when Salamandra kidnaps him from Vizima’s hospital.",
+      "The Witcher: Geralt places him with Shani or Triss and gives him a dimeritium amulet to restrain his powers. He vanishes in a burst of magic when the fighting reaches Murky Waters.",
+      "The Witcher · Ending: Clues rather than an explicit reveal strongly imply that he travelled into the past and grew up to become Jacques de Aldersberg.",
     ],
     remember:
       "He is a game character distinct from Ciri. Their parallel magical vulnerability does not make them the same person.",
@@ -672,8 +676,9 @@ export const characterEntries = [
     summary:
       "Roche’s trusted subordinate in the special-forces unit that aids Geralt’s investigation.",
     earlier: [
-      "W2: travels with Roche’s unit during the hunt for Foltest’s killer.",
-      "Roche route: the fate of the Blue Stripes makes the conflict with Henselt personal.",
+      "The Witcher 2: A Blue Stripes soldier in Roche’s unit during the hunt for Foltest’s killer.",
+      "Roche’s route: The one survivor when Henselt executes the Blue Stripes, after the king assaults her. It turns Roche’s conflict with Henselt into something personal.",
+      "Iorveth’s route: With Roche, she saves Geralt from Shilard’s mage.",
     ],
     remember:
       "Her connection is to Roche and Temerian service, not the Lodge or the Scoia’tael.",
@@ -844,7 +849,7 @@ export const continuitySources = [
   },
   {
     id: "c-prima-branch",
-    title: "Official W2 guide: the Flotsam crossroads",
+    title: "Official Witcher 2 guide: the Flotsam crossroads",
     url: "https://primagames.com/eguides/the-witcher-2-assassins-of-kings-eguide/walkthrough/chapter-1-flotsam",
     kind: "Official strategy guide",
     detail:

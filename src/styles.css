@@ -2172,6 +2172,23 @@ main:focus {
   font-size: 32px;
 }
 
+.history-entry {
+  padding-left: 18px;
+  border-left: 1px solid var(--line-strong);
+}
+
+.history-entry + .history-entry {
+  margin-top: 26px;
+}
+
+.history-entry .eyebrow {
+  margin-bottom: 6px;
+}
+
+.character-history .history-entry p:last-child {
+  margin-bottom: 0;
+}
+
 .character-chapters {
   margin-top: 48px;
 }
