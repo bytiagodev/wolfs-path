@@ -47,6 +47,17 @@ const navigation = [
   { page: "continuity", label: "Books & games" },
 ];
 
+// The people closest to Geralt, for the "Friends & family" filter.
+const geraltsCircle = [
+  "yennefer",
+  "ciri",
+  "triss",
+  "dandelion",
+  "zoltan",
+  "shani",
+  "roach",
+];
+
 function goTo(page, identifier = "") {
   window.location.hash = `/${page}${identifier ? `/${encodeURIComponent(identifier)}` : ""}`;
 }
@@ -814,12 +825,16 @@ export default function App() {
         ) &&
         (characterFilter === "all" ||
           (characterFilter === "witchers"
-            ? /witcher/i.test(character.role + character.faction)
+            ? /witcher/i.test(`${character.role} ${character.faction}`)
             : characterFilter === "magic"
-              ? /sorcer|mage|magic/i.test(character.role + character.faction)
-              : /king|queen|emperor|intelligence|commander|politic|spy|soldier/i.test(
-                  character.role + character.faction,
-                ))),
+              ? /sorcer|\bmages?\b|\bmagic\b|druid/i.test(
+                  `${character.role} ${character.faction}`,
+                )
+              : characterFilter === "circle"
+                ? geraltsCircle.includes(character.id)
+                : /king|queen|emperor|intelligence|commander|politic|spy|soldier/i.test(
+                    `${character.role} ${character.faction}`,
+                  ))),
     );
     return (
       <div className="page-content">
@@ -836,6 +851,7 @@ export default function App() {
             {[
               ["all", "Everyone"],
               ["witchers", "Witchers"],
+              ["circle", "Friends & family"],
               ["magic", "Magic"],
               ["politics", "Power & politics"],
             ].map(([value, label]) => (
