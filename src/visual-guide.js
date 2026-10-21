@@ -23,17 +23,17 @@ const chapterImages = {
   "w1-burning-vizima": "w1-ss-7",
   "w1-old-manor": "w1-ss-16",
   "w1-frozen-reflections": "w1-ss-15",
-  "between-the-first-two-games": "w2-ss-2",
+  "between-the-first-two-games": "w2-ss-16",
   "foltests-last-campaign": "w2-ss-12",
-  "flotsam-under-loredo": "w2-ss-3",
+  "flotsam-under-loredo": "w2-ss-19",
   "letho-and-the-crossroads": "w2-ss-1",
   "the-pontar-curse": "w2-ss-21",
-  "roches-war": "w2-ss-5",
-  "iorveths-vergen": "w2-ss-0",
+  "roches-war": "w2-henselt-assassins",
+  "iorveths-vergen": "w2-ss-17",
   "triss-and-the-figurine": "w2-ss-13",
   "loc-muinnes-impossible-rescues": "w2-ss-20",
   "summit-and-dragon": "w2-ss-15",
-  "lethos-final-account": "w2-ss-8",
+  "lethos-final-account": "w2-shilard",
 };
 
 export function getChapterArtwork(identifier) {

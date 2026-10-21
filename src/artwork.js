@@ -109,16 +109,16 @@ export const chapterArtwork = [
     screenshotIndex: 15,
   },
   {
-    id: "w2-ss-2",
-    path: "/images/chapters/w2-ss-2.jpg",
+    id: "w2-ss-16",
+    path: "/images/chapters/w2-ss-16.jpg",
     game: "two",
-    caption: "Geralt at the royal camp before the La Valette siege.",
+    caption: "Geralt in a burning courtyard during the La Valette siege.",
     sourceUrl:
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_ba02b1f94ba86e0cac366f72d8aa88a42f0f1e54.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_eb2c6784827b1c61fc0f0824c11fb1ff99e47eb5.1920x1080.jpg",
     sourcePage:
       "https://store.steampowered.com/app/20920/The_Witcher_2_Assassins_of_Kings_Enhanced_Edition/",
     credit: "CD PROJEKT RED, official Steam store screenshot",
-    screenshotIndex: 2,
+    screenshotIndex: 16,
   },
   {
     id: "w2-ss-12",
@@ -133,16 +133,16 @@ export const chapterArtwork = [
     screenshotIndex: 12,
   },
   {
-    id: "w2-ss-3",
-    path: "/images/chapters/w2-ss-3.jpg",
+    id: "w2-ss-19",
+    path: "/images/chapters/w2-ss-19.jpg",
     game: "two",
-    caption: "A crowd gathered in Flotsam.",
+    caption: "Geralt casting Igni in the forest outside Flotsam.",
     sourceUrl:
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_7c0dc423f1b2c7217f8ce4b7a84c2a444ef61010.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_b3d7d28e09091777eb1ce18eda147f12b01b6336.1920x1080.jpg",
     sourcePage:
       "https://store.steampowered.com/app/20920/The_Witcher_2_Assassins_of_Kings_Enhanced_Edition/",
     credit: "CD PROJEKT RED, official Steam store screenshot",
-    screenshotIndex: 3,
+    screenshotIndex: 19,
   },
   {
     id: "w2-ss-1",
@@ -169,28 +169,28 @@ export const chapterArtwork = [
     screenshotIndex: 21,
   },
   {
-    id: "w2-ss-5",
-    path: "/images/chapters/w2-ss-5.jpg",
+    id: "w2-henselt-assassins",
+    path: "/images/chapters/w2-henselt-assassins.jpg",
     game: "two",
-    caption: "Kaedweni soldiers in Henselt’s camp.",
+    caption: "Geralt facing assassins in Henselt’s camp.",
     sourceUrl:
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_87bb8bff1e1b783f799fe07dda01dc250921c594.1920x1080.jpg",
+      "https://static.wikia.nocookie.net/witcher/images/d/d6/Geralt_vs_the_assassins_of_henselt_tW2_EE.jpg",
     sourcePage:
-      "https://store.steampowered.com/app/20920/The_Witcher_2_Assassins_of_Kings_Enhanced_Edition/",
-    credit: "CD PROJEKT RED, official Steam store screenshot",
-    screenshotIndex: 5,
+      "https://witcher.fandom.com/wiki/File:Geralt_vs_the_assassins_of_henselt_tW2_EE.jpg",
+    credit:
+      "CD PROJEKT RED, The Witcher 2 Enhanced Edition promotional screenshot; hosted by the Witcher Wiki",
   },
   {
-    id: "w2-ss-0",
-    path: "/images/chapters/w2-ss-0.jpg",
+    id: "w2-ss-17",
+    path: "/images/chapters/w2-ss-17.jpg",
     game: "two",
-    caption: "Geralt above a mountain town lit by fires.",
+    caption: "Geralt fighting on the Vergen palisade.",
     sourceUrl:
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_50472c40c90b4771382458f8e1c691793c63e1b0.1920x1080.jpg",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_c0f37cfc83ff701a7eeac1b0eb8b6b45fc36cba9.1920x1080.jpg",
     sourcePage:
       "https://store.steampowered.com/app/20920/The_Witcher_2_Assassins_of_Kings_Enhanced_Edition/",
     credit: "CD PROJEKT RED, official Steam store screenshot",
-    screenshotIndex: 0,
+    screenshotIndex: 17,
   },
   {
     id: "w2-ss-13",
@@ -229,16 +229,16 @@ export const chapterArtwork = [
     screenshotIndex: 15,
   },
   {
-    id: "w2-ss-8",
-    path: "/images/chapters/w2-ss-8.jpg",
+    id: "w2-shilard",
+    path: "/images/chapters/w2-shilard.jpg",
     game: "two",
-    caption: "Geralt in a hooded close-up.",
+    caption: "Geralt and Shilard at Loc Muinne.",
     sourceUrl:
-      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/ss_7113e666480f25b2e57b1def241d8ac43a4b8ab8.1920x1080.jpg",
+      "https://static.wikia.nocookie.net/witcher/images/8/85/Tw2_Shilard_and_Geralt_promo_EE.jpg",
     sourcePage:
-      "https://store.steampowered.com/app/20920/The_Witcher_2_Assassins_of_Kings_Enhanced_Edition/",
-    credit: "CD PROJEKT RED, official Steam store screenshot",
-    screenshotIndex: 8,
+      "https://witcher.fandom.com/wiki/File:Tw2_Shilard_and_Geralt_promo_EE.jpg",
+    credit:
+      "CD PROJEKT RED, The Witcher 2 Enhanced Edition promotional screenshot; hosted by the Witcher Wiki",
   },
   {
     id: "w1-01",
