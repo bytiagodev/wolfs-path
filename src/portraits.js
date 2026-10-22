@@ -2,7 +2,7 @@
 export const portraits = {
   geralt: {
     id: "geralt",
-    path: "/images/portraits/geralt.png",
+    path: "/images/portraits/geralt.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/main-characters/geralt-of-rivia",
     sourceUrl:
@@ -13,7 +13,7 @@ export const portraits = {
   },
   yennefer: {
     id: "yennefer",
-    path: "/images/portraits/yennefer.png",
+    path: "/images/portraits/yennefer.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/main-characters/yennefer-of-vengerberg",
     sourceUrl:
@@ -24,7 +24,7 @@ export const portraits = {
   },
   triss: {
     id: "triss",
-    path: "/images/portraits/triss.png",
+    path: "/images/portraits/triss.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/main-characters/triss-merigold",
     sourceUrl:
@@ -35,7 +35,7 @@ export const portraits = {
   },
   ciri: {
     id: "ciri",
-    path: "/images/portraits/ciri.png",
+    path: "/images/portraits/ciri.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/main-characters/cirilla",
     sourceUrl:
@@ -46,7 +46,7 @@ export const portraits = {
   },
   dandelion: {
     id: "dandelion",
-    path: "/images/portraits/dandelion.png",
+    path: "/images/portraits/dandelion.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/main-characters/dandelion",
     sourceUrl:
@@ -57,7 +57,7 @@ export const portraits = {
   },
   vesemir: {
     id: "vesemir",
-    path: "/images/portraits/vesemir.png",
+    path: "/images/portraits/vesemir.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/main-characters/vesemir",
     sourceUrl:
@@ -68,7 +68,7 @@ export const portraits = {
   },
   eskel: {
     id: "eskel",
-    path: "/images/portraits/eskel.png",
+    path: "/images/portraits/eskel.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/eskel",
     sourceUrl:
@@ -79,7 +79,7 @@ export const portraits = {
   },
   zoltan: {
     id: "zoltan",
-    path: "/images/portraits/zoltan.png",
+    path: "/images/portraits/zoltan.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/zoltan-chivay",
     sourceUrl:
@@ -90,7 +90,7 @@ export const portraits = {
   },
   lambert: {
     id: "lambert",
-    path: "/images/portraits/lambert.jpg",
+    path: "/images/portraits/lambert.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/lambert",
     sourceUrl:
@@ -102,7 +102,7 @@ export const portraits = {
   foltest: {
     id: "foltest",
     treatment: "scene",
-    path: "/images/portraits/foltest.jpg",
+    path: "/images/portraits/foltest.webp",
     sourcePage:
       "https://www.techspot.com/photos/article/405-the-witcher-2-performance/",
     sourceUrl:
@@ -112,7 +112,7 @@ export const portraits = {
   },
   roche: {
     id: "roche",
-    path: "/images/portraits/roche.jpg",
+    path: "/images/portraits/roche.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/vernon-roche",
     sourceUrl:
@@ -124,7 +124,7 @@ export const portraits = {
   iorveth: {
     id: "iorveth",
     treatment: "scene",
-    path: "/images/portraits/iorveth.jpg",
+    path: "/images/portraits/iorveth.webp",
     sourcePage:
       "https://www.neoseeker.com/news/18018-cd-projekt-claims-to-have-fully-accurate-method-of-identifying-witcher-2-pirates/",
     sourceUrl: "https://i.neoseeker.com/n/8/iorveth05.jpg",
@@ -134,7 +134,7 @@ export const portraits = {
   },
   letho: {
     id: "letho",
-    path: "/images/portraits/letho.jpg",
+    path: "/images/portraits/letho.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/letho",
     sourceUrl:
@@ -145,7 +145,7 @@ export const portraits = {
   },
   philippa: {
     id: "philippa",
-    path: "/images/portraits/philippa.jpg",
+    path: "/images/portraits/philippa.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/philippa-eilhart",
     sourceUrl:
@@ -156,7 +156,7 @@ export const portraits = {
   },
   shani: {
     id: "shani",
-    path: "/images/portraits/shani.png",
+    path: "/images/portraits/shani.webp",
     sourcePage: "https://witcher.huijiwiki.com/wiki/%E5%A4%8F%E5%A6%AE",
     sourceUrl:
       "https://huiji-thumb.huijistatic.com/witcher/uploads/thumb/2/2a/Tw3_journal_shani.png/640px-Tw3_journal_shani.png",
@@ -166,7 +166,7 @@ export const portraits = {
   },
   keira: {
     id: "keira",
-    path: "/images/portraits/keira.jpg",
+    path: "/images/portraits/keira.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/keira-metz",
     sourceUrl:
@@ -177,7 +177,7 @@ export const portraits = {
   },
   dijkstra: {
     id: "dijkstra",
-    path: "/images/portraits/dijkstra.png",
+    path: "/images/portraits/dijkstra.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/main-characters/dijkstra",
     sourceUrl:
@@ -188,7 +188,7 @@ export const portraits = {
   },
   emhyr: {
     id: "emhyr",
-    path: "/images/portraits/emhyr.png",
+    path: "/images/portraits/emhyr.webp",
     sourcePage: "https://witcher.fandom.com/wiki/File:Tw3_journal_emhyr.png",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/b/b6/Tw3_journal_emhyr.png",
@@ -199,7 +199,7 @@ export const portraits = {
 
   radovid: {
     id: "radovid",
-    path: "/images/portraits/radovid.png",
+    path: "/images/portraits/radovid.webp",
     sourcePage:
       "https://www.animecharactersdatabase.com/characters.php?id=96428",
     sourceUrl:
@@ -211,7 +211,7 @@ export const portraits = {
   sile: {
     id: "sile",
     treatment: "scene",
-    path: "/images/portraits/sile.jpg",
+    path: "/images/portraits/sile.webp",
     sourcePage:
       "https://steamcommunity.com/sharedfiles/filedetails/?id=958044520",
     sourceUrl:
@@ -222,7 +222,7 @@ export const portraits = {
   },
   thaler: {
     id: "thaler",
-    path: "/images/portraits/thaler.png",
+    path: "/images/portraits/thaler.webp",
     sourcePage:
       "https://www.gamerguides.com/the-witcher-3-wild-hunt/database/characters/secondary-characters/thaler",
     sourceUrl:
@@ -234,7 +234,7 @@ export const portraits = {
   saskia: {
     id: "saskia",
     treatment: "scene",
-    path: "/images/portraits/saskia.jpg",
+    path: "/images/portraits/saskia.webp",
     sourcePage: "https://thedailyfandom.org/retrospective-the-witcher-saga-2/",
     sourceUrl:
       "https://storage.googleapis.com/stateless-thedailyfandom-org/2020/05/68dbbf4d-witcher-2-12.jpg",
@@ -245,7 +245,7 @@ export const portraits = {
   alvin: {
     id: "alvin",
     treatment: "scene",
-    path: "/images/portraits/alvin.png",
+    path: "/images/portraits/alvin.webp",
     sourcePage:
       "https://write.as/wfb/the-witcher-one-abigails-decision-a-comprehensive-study",
     sourceUrl: "https://i.snap.as/HommWKi.png",
@@ -255,7 +255,7 @@ export const portraits = {
   },
   ves: {
     id: "ves",
-    path: "/images/portraits/ves.png",
+    path: "/images/portraits/ves.webp",
     sourcePage:
       "https://www.animecharactersdatabase.com/characters.php?id=96803",
     sourceUrl:
@@ -266,7 +266,7 @@ export const portraits = {
   },
   roach: {
     id: "roach",
-    path: "/images/portraits/roach.png",
+    path: "/images/portraits/roach.webp",
     sourcePage: "https://witcher.fandom.com/wiki/Roach",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/9/97/Tw3_journal_roach.png",
@@ -276,7 +276,7 @@ export const portraits = {
   },
   mousesack: {
     id: "mousesack",
-    path: "/images/portraits/mousesack.png",
+    path: "/images/portraits/mousesack.webp",
     sourcePage: "https://witcher.fandom.com/wiki/Mousesack",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/6/63/Tw3_journal_mousesack.png",

@@ -151,6 +151,16 @@ test("chapter illustrations and publication artwork are available offline with o
       game,
       `${identifier}: optional-game comparison needs its own image`,
     );
-    assert.match(game.path, /-scene\.jpg$/);
+    assert.match(game.path, /-scene\.webp$/);
+  }
+});
+
+test("chapter and comparison art has a lightweight thumbnail for lists and cards", () => {
+  for (const asset of [...chapterArtwork, ...Object.values(topicArtwork)]) {
+    const thumb = readFileSync(
+      new URL(`../public${asset.path.replace(/^\/images\//, "/images/thumbs/")}`, import.meta.url),
+    );
+    assert.equal(thumb.toString("ascii", 8, 12), "WEBP", `${asset.path}: thumbnail must be WebP`);
+    assert.ok(thumb.length < 120_000, `${asset.path}: thumbnail is too heavy`);
   }
 });

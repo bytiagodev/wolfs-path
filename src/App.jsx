@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import CharacterPortrait from "./components/CharacterPortrait.jsx";
 import ComparisonSpread from "./components/ComparisonSpread.jsx";
 import SourcesLibrary from "./components/SourcesLibrary.jsx";
-import { assetUrl } from "./asset-url.js";
+import { assetUrl, thumbUrl } from "./asset-url.js";
 import { portraits } from "./portraits.js";
 import {
   chapterArtwork,
@@ -92,7 +92,7 @@ function ArticleLink({
       {artwork && (
         <img
           className="article-thumbnail"
-          src={assetUrl(artwork.path)}
+          src={thumbUrl(artwork.path)}
           alt=""
           loading="lazy"
           style={{ objectPosition: artwork.objectPosition }}
@@ -232,7 +232,7 @@ export default function App() {
         year: "2007",
         title: "The Witcher",
         logo: interfaceImages["logo-w1"],
-        image: "/images/witcher-one-scene.jpg",
+        image: "/images/witcher-one-scene.webp",
         alt: "Geralt beside a lake in The Witcher",
         summary:
           "Geralt’s return, the Salamandra investigation, and the conflict in Vizima.",
@@ -243,7 +243,7 @@ export default function App() {
         year: "2011",
         title: "The Witcher 2: Assassins of Kings",
         logo: interfaceImages["logo-w2"],
-        image: "/images/witcher-two-scene.jpg",
+        image: "/images/witcher-two-scene.webp",
         alt: "Geralt overlooking a mountain settlement in The Witcher 2",
         summary:
           "Foltest’s murder, Roche and Iorveth’s routes, and Geralt’s recovered memories.",
@@ -255,7 +255,7 @@ export default function App() {
         <section className="hero">
           <img
             className="hero-image"
-            src={assetUrl("/images/world/w3-key-art.jpg")}
+            src={assetUrl("/images/world/w3-key-art.webp")}
             alt=""
           />
           <div className="hero-content">
@@ -349,7 +349,7 @@ export default function App() {
           </section>
         </div>
         <figure className="interlude">
-          <img src={assetUrl("/images/world/w3-0.jpg")} alt="" loading="lazy" />
+          <img src={assetUrl("/images/world/w3-0.webp")} alt="" loading="lazy" />
           <blockquote>
             “Evil is evil. Lesser, greater, middling, it’s all the same.”
             <cite>GERALT OF RIVIA · THE LAST WISH</cite>
@@ -492,7 +492,7 @@ export default function App() {
           "From the walls of Kaer Morhen to the burning streets of Vizima.",
         entries: witcherOneChapters,
         logo: interfaceImages["logo-w1"],
-        image: "/images/chapters/w1-04.jpg",
+        image: "/images/chapters/w1-04.webp",
       },
       {
         id: "two",
@@ -502,13 +502,13 @@ export default function App() {
           "The kingslayers, two very different roads, and the truth Geralt recovers.",
         entries: witcherTwoChapters,
         logo: interfaceImages["logo-w2"],
-        image: "/images/chapters/w2-04.jpg",
+        image: "/images/chapters/w2-04.webp",
       },
     ];
     return (
       <div className="page-content">
         <PageIntro
-          image="/images/world/w3-18.jpg"
+          image="/images/world/w3-18.webp"
           position="50% 55%"
           eyebrow="GAME RECAPS"
           title="The Witcher 1 & 2"
@@ -614,7 +614,7 @@ export default function App() {
       >
         <header className="reader-banner">
           <img
-            src={assetUrl(bannerArt?.path ?? "/images/rogue-mage-scene.jpg")}
+            src={assetUrl(bannerArt?.path ?? "/images/rogue-mage-scene.webp")}
             alt={bannerArt?.caption ?? ""}
             style={{ objectPosition: bannerArt?.objectPosition }}
           />
@@ -841,7 +841,7 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
-          image="/images/world/w3-7.jpg"
+          image="/images/world/w3-7.webp"
           position="50% 45%"
           eyebrow="CHARACTER GUIDE"
           title="Returning characters"
@@ -1038,7 +1038,7 @@ export default function App() {
       >
         <div className="comparison-card-art">
           <img
-            src={assetUrl(topicArtwork[article.id].path)}
+            src={thumbUrl(topicArtwork[article.id].path)}
             alt=""
             style={{
               objectPosition: topicArtwork[article.id].objectPosition,
@@ -1078,7 +1078,7 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
-          image="/images/rogue-mage-scene.jpg"
+          image="/images/rogue-mage-scene.webp"
           position="50% 55%"
           eyebrow="BOOKS & GAMES"
           title="Books & games"
@@ -1151,7 +1151,7 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
-          image="/images/world/w3-15.jpg"
+          image="/images/world/w3-15.webp"
           position="50% 40%"
           eyebrow="REFERENCE LIBRARY"
           title="Sources & lore"
@@ -1287,7 +1287,7 @@ export default function App() {
     return (
       <div className="page-content">
         <PageIntro
-          image="/images/world/w3-2.jpg"
+          image="/images/world/w3-2.webp"
           position="50% 50%"
           eyebrow="READING LIST"
           title="Bookmarked chapters"

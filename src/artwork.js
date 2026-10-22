@@ -2,7 +2,7 @@
 export const chapterArtwork = [
   {
     id: "w1-ss-0",
-    path: "/images/chapters/w1-ss-0.jpg",
+    path: "/images/chapters/w1-ss-0.webp",
     game: "one",
     caption: "Geralt with villagers beside timber cottages in the Outskirts.",
     sourceUrl:
@@ -14,7 +14,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-12",
-    path: "/images/chapters/w1-ss-12.jpg",
+    path: "/images/chapters/w1-ss-12.webp",
     game: "one",
     caption: "Geralt fighting swamp creatures by green sign light.",
     sourceUrl:
@@ -26,7 +26,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-5",
-    path: "/images/chapters/w1-ss-5.jpg",
+    path: "/images/chapters/w1-ss-5.webp",
     game: "one",
     caption: "Geralt and two figures in a furnished stone chamber.",
     sourceUrl:
@@ -38,7 +38,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-2",
-    path: "/images/chapters/w1-ss-2.jpg",
+    path: "/images/chapters/w1-ss-2.webp",
     game: "one",
     caption: "Geralt fighting an armed opponent on a stone staircase.",
     sourceUrl:
@@ -50,7 +50,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-1",
-    path: "/images/chapters/w1-ss-1.jpg",
+    path: "/images/chapters/w1-ss-1.webp",
     game: "one",
     caption: "Geralt with companions beside a lakeside campfire.",
     sourceUrl:
@@ -62,7 +62,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-6",
-    path: "/images/chapters/w1-ss-6.jpg",
+    path: "/images/chapters/w1-ss-6.webp",
     game: "one",
     caption: "A skirmish on wooden docks.",
     sourceUrl:
@@ -74,7 +74,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-7",
-    path: "/images/chapters/w1-ss-7.jpg",
+    path: "/images/chapters/w1-ss-7.webp",
     game: "one",
     caption: "King Foltest addressing Velerad among burning houses.",
     sourceUrl:
@@ -86,7 +86,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-16",
-    path: "/images/chapters/w1-ss-16.jpg",
+    path: "/images/chapters/w1-ss-16.webp",
     game: "one",
     caption: "Geralt fighting in a crypt lit by green magic.",
     sourceUrl:
@@ -98,7 +98,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-ss-15",
-    path: "/images/chapters/w1-ss-15.jpg",
+    path: "/images/chapters/w1-ss-15.webp",
     game: "one",
     caption: "Geralt fighting a beast on the frozen plains.",
     sourceUrl:
@@ -110,7 +110,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-16",
-    path: "/images/chapters/w2-ss-16.jpg",
+    path: "/images/chapters/w2-ss-16.webp",
     game: "two",
     caption: "Geralt in a burning courtyard during the La Valette siege.",
     sourceUrl:
@@ -122,7 +122,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-12",
-    path: "/images/chapters/w2-ss-12.jpg",
+    path: "/images/chapters/w2-ss-12.webp",
     game: "two",
     caption: "King Foltest beside Geralt in the castle.",
     sourceUrl:
@@ -134,7 +134,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-19",
-    path: "/images/chapters/w2-ss-19.jpg",
+    path: "/images/chapters/w2-ss-19.webp",
     game: "two",
     caption: "Geralt casting Igni in the forest outside Flotsam.",
     sourceUrl:
@@ -146,7 +146,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-1",
-    path: "/images/chapters/w2-ss-1.jpg",
+    path: "/images/chapters/w2-ss-1.webp",
     game: "two",
     caption: "A deer in the forest outside Flotsam.",
     sourceUrl:
@@ -158,7 +158,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-21",
-    path: "/images/chapters/w2-ss-21.jpg",
+    path: "/images/chapters/w2-ss-21.webp",
     game: "two",
     caption: "A spectral knight burning on the old battlefield.",
     sourceUrl:
@@ -170,7 +170,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-henselt-assassins",
-    path: "/images/chapters/w2-henselt-assassins.jpg",
+    path: "/images/chapters/w2-henselt-assassins.webp",
     game: "two",
     caption: "Geralt facing assassins in Henselt’s camp.",
     sourceUrl:
@@ -182,7 +182,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-17",
-    path: "/images/chapters/w2-ss-17.jpg",
+    path: "/images/chapters/w2-ss-17.webp",
     game: "two",
     caption: "Geralt fighting on the Vergen palisade.",
     sourceUrl:
@@ -194,7 +194,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-13",
-    path: "/images/chapters/w2-ss-13.jpg",
+    path: "/images/chapters/w2-ss-13.webp",
     game: "two",
     caption: "Triss by candlelight.",
     sourceUrl:
@@ -206,7 +206,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-20",
-    path: "/images/chapters/w2-ss-20.jpg",
+    path: "/images/chapters/w2-ss-20.webp",
     game: "two",
     caption: "Geralt casting a sign amid elven ruins.",
     sourceUrl:
@@ -218,7 +218,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-ss-15",
-    path: "/images/chapters/w2-ss-15.jpg",
+    path: "/images/chapters/w2-ss-15.webp",
     game: "two",
     caption: "Geralt in a burning town.",
     sourceUrl:
@@ -230,7 +230,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-shilard",
-    path: "/images/chapters/w2-shilard.jpg",
+    path: "/images/chapters/w2-shilard.webp",
     game: "two",
     caption: "Geralt and Shilard at Loc Muinne.",
     sourceUrl:
@@ -242,7 +242,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-01",
-    path: "/images/chapters/w1-01.jpg",
+    path: "/images/chapters/w1-01.webp",
     game: "one",
     caption: "Geralt beside timber cottages in a wooded settlement.",
     sourceUrl:
@@ -254,7 +254,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-02",
-    path: "/images/chapters/w1-02.jpg",
+    path: "/images/chapters/w1-02.webp",
     game: "one",
     caption: "Geralt fighting an armed opponent on a stone staircase.",
     sourceUrl:
@@ -266,7 +266,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-03",
-    path: "/images/chapters/w1-03.jpg",
+    path: "/images/chapters/w1-03.webp",
     game: "one",
     caption: "Geralt and two other figures in a furnished stone chamber.",
     sourceUrl:
@@ -278,7 +278,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-04",
-    path: "/images/chapters/w1-04.jpg",
+    path: "/images/chapters/w1-04.webp",
     game: "one",
     caption: "Geralt with a group beside a lakeside campfire.",
     sourceUrl:
@@ -290,7 +290,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-01",
-    path: "/images/chapters/w2-01.jpg",
+    path: "/images/chapters/w2-01.webp",
     game: "two",
     caption: "A deer watches a figure carrying wood through the forest.",
     sourceUrl:
@@ -302,7 +302,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-02",
-    path: "/images/chapters/w2-02.jpg",
+    path: "/images/chapters/w2-02.webp",
     game: "two",
     caption: "Armoured guards strike a man as villagers look on.",
     sourceUrl:
@@ -314,7 +314,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-03",
-    path: "/images/chapters/w2-03.jpg",
+    path: "/images/chapters/w2-03.webp",
     game: "two",
     caption: "King Foltest gestures beside Geralt and Vernon Roche.",
     sourceUrl:
@@ -326,7 +326,7 @@ export const chapterArtwork = [
   },
   {
     id: "w2-04",
-    path: "/images/chapters/w2-04.jpg",
+    path: "/images/chapters/w2-04.webp",
     game: "two",
     caption: "Geralt overlooks burning houses beneath castle walls.",
     sourceUrl:
@@ -338,7 +338,7 @@ export const chapterArtwork = [
   },
   {
     id: "w1-kaer-morhen-art",
-    path: "/images/chapters/w1-kaer-morhen.jpg",
+    path: "/images/chapters/w1-kaer-morhen.webp",
     game: "one",
     caption:
       "Geralt and the other witchers in Kaer Morhen courtyard after fighting the first attackers.",
@@ -357,7 +357,7 @@ export const publicationArtwork = [
   {
     id: "thronebreaker",
     title: "Thronebreaker: The Witcher Tales",
-    path: "/images/thronebreaker-scene.jpg",
+    path: "/images/thronebreaker-scene.webp",
     caption: "Geralt in an illustrated cutscene from Thronebreaker.",
     note: "Original publisher screenshot. No logo, store text, subtitles or HUD; cinematic letterboxing remains.",
     sourcePage: "https://store.steampowered.com/app/973760/",
@@ -372,7 +372,7 @@ export const publicationArtwork = [
   {
     id: "rogue-mage",
     title: "GWENT: Rogue Mage",
-    path: "/images/rogue-mage-scene.jpg",
+    path: "/images/rogue-mage-scene.webp",
     caption:
       "A magical laboratory with an open book, map and illuminated portal.",
     note: "Original publisher screenshot. No logo, store text or dialogue. Two small settings/exit icons remain in the lower right.",
@@ -388,7 +388,7 @@ export const publicationArtwork = [
   {
     id: "gwent",
     title: "GWENT: The Witcher Card Game",
-    path: "/images/gwent-scene.jpg",
+    path: "/images/gwent-scene.webp",
     caption: "A standalone GWENT match with an ice spell crossing the board.",
     note: "Original publisher gameplay screenshot. No store banner, logo or slogan; card values and game pieces remain.",
     sourcePage: "https://store.steampowered.com/app/1284410/",
@@ -403,7 +403,7 @@ export const publicationArtwork = [
   {
     id: "adventure-game",
     title: "The Witcher Adventure Game",
-    path: "/images/adventure-game-scene.jpg",
+    path: "/images/adventure-game-scene.webp",
     caption: "The digital board game map with Triss as the active character.",
     note: "Original publisher gameplay screenshot. The game interface, map labels and quest text remain; no store banner or slogan.",
     sourcePage: "https://store.steampowered.com/app/303800/",
@@ -421,7 +421,7 @@ export const publicationArtwork = [
 export const worldArtwork = [
   {
     id: "w3-key-art",
-    path: "/images/world/w3-key-art.jpg",
+    path: "/images/world/w3-key-art.webp",
     caption: "Geralt in the Remastered key art.",
     title: "The Witcher 3: Wild Hunt key art",
     sourceUrl:
@@ -431,7 +431,7 @@ export const worldArtwork = [
   },
   {
     id: "w3-0",
-    path: "/images/world/w3-0.jpg",
+    path: "/images/world/w3-0.webp",
     caption: "Geralt and a griffin over the hills of White Orchard.",
     title: "The Witcher 3: Wild Hunt",
     sourceUrl:
@@ -441,7 +441,7 @@ export const worldArtwork = [
   },
   {
     id: "w3-7",
-    path: "/images/world/w3-7.jpg",
+    path: "/images/world/w3-7.webp",
     caption: "Geralt below a stone castle in the mountains.",
     title: "The Witcher 3: Wild Hunt",
     sourceUrl:
@@ -451,7 +451,7 @@ export const worldArtwork = [
   },
   {
     id: "w3-18",
-    path: "/images/world/w3-18.jpg",
+    path: "/images/world/w3-18.webp",
     caption: "Banners over an abandoned Velen battlefield.",
     title: "The Witcher 3: Wild Hunt",
     sourceUrl:
@@ -461,7 +461,7 @@ export const worldArtwork = [
   },
   {
     id: "w3-15",
-    path: "/images/world/w3-15.jpg",
+    path: "/images/world/w3-15.webp",
     caption: "A Novigrad market square.",
     title: "The Witcher 3: Wild Hunt",
     sourceUrl:
@@ -471,7 +471,7 @@ export const worldArtwork = [
   },
   {
     id: "w3-2",
-    path: "/images/world/w3-2.jpg",
+    path: "/images/world/w3-2.webp",
     caption: "A longship approaching a Skellige fjord.",
     title: "The Witcher 3: Wild Hunt",
     sourceUrl:
@@ -483,7 +483,7 @@ export const worldArtwork = [
 
 export const topicArtwork = {
   "book-geralt": {
-    path: "/images/topics/book-geralt.jpg",
+    path: "/images/topics/book-geralt.webp",
     objectPosition: "50% 0%",
     caption: "Geralt in The Witcher 3.",
     sourceUrl:
@@ -492,7 +492,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "book-yennefer": {
-    path: "/images/topics/book-yennefer.jpg",
+    path: "/images/topics/book-yennefer.webp",
     objectPosition: "55% 35%",
     caption: "Geralt and Yennefer in the mountains.",
     sourceUrl:
@@ -502,7 +502,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
   },
   "book-ciri": {
-    path: "/images/topics/book-ciri.jpg",
+    path: "/images/topics/book-ciri.webp",
     objectPosition: "40% 25%",
     caption: "Ciri in The Witcher 3.",
     sourceUrl:
@@ -511,7 +511,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "book-wild-hunt": {
-    path: "/images/topics/book-wild-hunt.jpg",
+    path: "/images/topics/book-wild-hunt.webp",
     objectPosition: "50% 15%",
     caption: "The riders of the Wild Hunt, GWENT art.",
     sourceUrl:
@@ -521,7 +521,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
   },
   "book-triss": {
-    path: "/images/topics/book-triss.jpg",
+    path: "/images/topics/book-triss.webp",
     objectPosition: "55% 30%",
     caption: "Geralt and Triss.",
     sourceUrl:
@@ -531,7 +531,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
   },
   "book-foltest-adda": {
-    path: "/images/topics/book-foltest-adda.jpg",
+    path: "/images/topics/book-foltest-adda.webp",
     objectPosition: "60% 20%",
     caption: "King Foltest and Velerad in burning Vizima.",
     sourceUrl:
@@ -540,7 +540,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "book-emhyr": {
-    path: "/images/topics/book-emhyr.jpg",
+    path: "/images/topics/book-emhyr.webp",
     objectPosition: "65% 0%",
     caption: "Emperor Emhyr on his throne.",
     sourceUrl:
@@ -549,7 +549,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
   },
   "book-lodge": {
-    path: "/images/topics/book-lodge.jpg",
+    path: "/images/topics/book-lodge.webp",
     objectPosition: "45% 35%",
     caption: "Geralt in a magical clash in The Witcher 2.",
     sourceUrl:
@@ -558,7 +558,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "book-scoiatael": {
-    path: "/images/topics/book-scoiatael.jpg",
+    path: "/images/topics/book-scoiatael.webp",
     objectPosition: "55% 0%",
     caption: "Iorveth in The Witcher 2.",
     sourceUrl:
@@ -567,7 +567,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "book-friends": {
-    path: "/images/topics/book-friends.jpg",
+    path: "/images/topics/book-friends.webp",
     objectPosition: "50% 20%",
     caption: "Zoltan's company at the Battle of Brenna, GWENT art.",
     sourceUrl:
@@ -577,7 +577,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
   },
   "book-kaer-morhen": {
-    path: "/images/topics/book-kaer-morhen.jpg",
+    path: "/images/topics/book-kaer-morhen.webp",
     objectPosition: "60% 45%",
     caption: "Young Ciri with the witchers at Kaer Morhen.",
     sourceUrl:
@@ -587,7 +587,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
   },
   "separate-continuities": {
-    path: "/images/topics/separate-continuities.jpg",
+    path: "/images/topics/separate-continuities.webp",
     objectPosition: "55% 60%",
     caption: "A Novigrad street.",
     sourceUrl:
@@ -596,7 +596,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "saga-ending": {
-    path: "/images/topics/saga-ending.jpg",
+    path: "/images/topics/saga-ending.webp",
     objectPosition: "25% 15%",
     caption: "A rider before a manor in the mist.",
     sourceUrl:
@@ -605,7 +605,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "amnesia-and-hunt": {
-    path: "/images/topics/amnesia-and-hunt.jpg",
+    path: "/images/topics/amnesia-and-hunt.webp",
     objectPosition: "45% 40%",
     caption: "A night fight in The Witcher.",
     sourceUrl:
@@ -614,7 +614,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "family-before-games": {
-    path: "/images/topics/family-before-games.jpg",
+    path: "/images/topics/family-before-games.webp",
     objectPosition: "50% 45%",
     caption: "The training pendulum at Kaer Morhen.",
     sourceUrl:
@@ -623,7 +623,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
   },
   "triss-and-yennefer": {
-    path: "/images/topics/triss-and-yennefer.jpg",
+    path: "/images/topics/triss-and-yennefer.webp",
     objectPosition: "45% 15%",
     caption: "Triss in The Witcher 3.",
     sourceUrl:
@@ -632,7 +632,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
   },
   "documented-adaptation-decisions": {
-    path: "/images/topics/documented-adaptation-decisions.jpg",
+    path: "/images/topics/documented-adaptation-decisions.webp",
     objectPosition: "50% 20%",
     caption: "Geralt fighting under the moon in The Witcher.",
     sourceUrl:
@@ -641,7 +641,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "new-stories-familiar-history": {
-    path: "/images/topics/new-stories-familiar-history.jpg",
+    path: "/images/topics/new-stories-familiar-history.webp",
     objectPosition: "50% 5%",
     caption: "Temerian infantry, GWENT art.",
     sourceUrl:
@@ -651,7 +651,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
   },
   "names-and-translations": {
-    path: "/images/topics/names-and-translations.jpg",
+    path: "/images/topics/names-and-translations.webp",
     objectPosition: "65% 5%",
     caption: "Dandelion and Geralt in The Witcher 2.",
     sourceUrl:
@@ -660,7 +660,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED artwork; hosted by the Witcher Wiki",
   },
   "between-first-two": {
-    path: "/images/topics/between-first-two.jpg",
+    path: "/images/topics/between-first-two.webp",
     objectPosition: "50% 15%",
     caption: "A street fight in The Witcher 2.",
     sourceUrl:
@@ -669,7 +669,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam store screenshot",
   },
   "premium-adventures": {
-    path: "/images/topics/premium-adventures.jpg",
+    path: "/images/topics/premium-adventures.webp",
     objectPosition: "50% 5%",
     caption: "Witchers of the School of the Wolf, GWENT art.",
     sourceUrl:
@@ -679,7 +679,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, GWENT artwork; hosted by the Witcher Wiki",
   },
   "other-games": {
-    path: "/images/topics/other-games.jpg",
+    path: "/images/topics/other-games.webp",
     objectPosition: "50% 0%",
     caption: "Thronebreaker: The Witcher Tales key art.",
     sourceUrl:
@@ -688,7 +688,7 @@ export const topicArtwork = {
     credit: "CD PROJEKT RED, official Steam library artwork",
   },
   "screens-and-branches": {
-    path: "/images/topics/screens-and-branches.jpg",
+    path: "/images/topics/screens-and-branches.webp",
     objectPosition: "60% 45%",
     caption: "Geralt riding through sunflower fields.",
     sourceUrl:
@@ -701,7 +701,7 @@ export const topicArtwork = {
 export const interfaceArtwork = [
   {
     id: "logo-w1",
-    path: "/images/ui/logo-w1.png",
+    path: "/images/ui/logo-w1.webp",
     title: "The Witcher logo",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/logo_2x.png",
@@ -710,7 +710,7 @@ export const interfaceArtwork = [
   },
   {
     id: "logo-w2",
-    path: "/images/ui/logo-w2.png",
+    path: "/images/ui/logo-w2.webp",
     title: "The Witcher 2 logo",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20920/logo_2x.png",
@@ -719,7 +719,7 @@ export const interfaceArtwork = [
   },
   {
     id: "logo-w3",
-    path: "/images/ui/logo-w3.png",
+    path: "/images/ui/logo-w3.webp",
     title: "The Witcher 3 logo",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/logo_2x.png",
@@ -728,7 +728,7 @@ export const interfaceArtwork = [
   },
   {
     id: "ui-medallion",
-    path: "/images/ui/medallion.png",
+    path: "/images/ui/medallion.webp",
     title: "School of the Wolf medallion",
     sourceUrl:
       "https://static.wikia.nocookie.net/witcher/images/4/4b/Wolf_School_medallion.png",
