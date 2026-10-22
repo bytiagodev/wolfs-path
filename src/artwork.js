@@ -3,6 +3,7 @@ export const chapterArtwork = [
   {
     id: "w1-ss-0",
     path: "/images/chapters/w1-ss-0.webp",
+    objectPosition: "50% 30%",
     game: "one",
     caption: "Geralt with villagers beside timber cottages in the Outskirts.",
     sourceUrl:
@@ -27,6 +28,7 @@ export const chapterArtwork = [
   {
     id: "w1-ss-5",
     path: "/images/chapters/w1-ss-5.webp",
+    objectPosition: "50% 2%",
     game: "one",
     caption: "Geralt and two figures in a furnished stone chamber.",
     sourceUrl:
@@ -39,6 +41,7 @@ export const chapterArtwork = [
   {
     id: "w1-ss-2",
     path: "/images/chapters/w1-ss-2.webp",
+    objectPosition: "50% 30%",
     game: "one",
     caption: "Geralt fighting an armed opponent on a stone staircase.",
     sourceUrl:
@@ -51,6 +54,7 @@ export const chapterArtwork = [
   {
     id: "w1-ss-1",
     path: "/images/chapters/w1-ss-1.webp",
+    objectPosition: "50% 38%",
     game: "one",
     caption: "Geralt with companions beside a lakeside campfire.",
     sourceUrl:
@@ -63,6 +67,7 @@ export const chapterArtwork = [
   {
     id: "w1-ss-6",
     path: "/images/chapters/w1-ss-6.webp",
+    objectPosition: "50% 8%",
     game: "one",
     caption: "A skirmish on wooden docks.",
     sourceUrl:
@@ -75,6 +80,7 @@ export const chapterArtwork = [
   {
     id: "w1-ss-7",
     path: "/images/chapters/w1-ss-7.webp",
+    objectPosition: "50% 4%",
     game: "one",
     caption: "King Foltest addressing Velerad among burning houses.",
     sourceUrl:
@@ -99,6 +105,7 @@ export const chapterArtwork = [
   {
     id: "w1-ss-15",
     path: "/images/chapters/w1-ss-15.webp",
+    objectPosition: "50% 30%",
     game: "one",
     caption: "Geralt fighting a beast on the frozen plains.",
     sourceUrl:
@@ -123,6 +130,7 @@ export const chapterArtwork = [
   {
     id: "w2-ss-12",
     path: "/images/chapters/w2-ss-12.webp",
+    objectPosition: "50% 12%",
     game: "two",
     caption: "King Foltest beside Geralt in the castle.",
     sourceUrl:
@@ -195,6 +203,7 @@ export const chapterArtwork = [
   {
     id: "w2-ss-13",
     path: "/images/chapters/w2-ss-13.webp",
+    objectPosition: "50% 18%",
     game: "two",
     caption: "Triss by candlelight.",
     sourceUrl:
@@ -231,6 +240,7 @@ export const chapterArtwork = [
   {
     id: "w2-shilard",
     path: "/images/chapters/w2-shilard.webp",
+    objectPosition: "50% 6%",
     game: "two",
     caption: "Geralt and Shilard at Loc Muinne.",
     sourceUrl:
@@ -339,6 +349,7 @@ export const chapterArtwork = [
   {
     id: "w1-kaer-morhen-art",
     path: "/images/chapters/w1-kaer-morhen.webp",
+    objectPosition: "50% 22%",
     game: "one",
     caption:
       "Geralt and the other witchers in Kaer Morhen courtyard after fighting the first attackers.",
