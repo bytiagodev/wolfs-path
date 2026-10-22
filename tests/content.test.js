@@ -182,3 +182,26 @@ test("the reference layer keeps book continuity, inter-game media and key return
       `Missing reference: ${identifier}`,
     );
 });
+
+test("every playthrough choice links to real chapters and has distinct options", async () => {
+  const { playthroughChoices, choiceGames } = await import(
+    "../src/data/choices.js"
+  );
+  const chapterIds = new Set(
+    [...witcherOneChapters, ...witcherTwoChapters].map((chapter) => chapter.id),
+  );
+  const gameIds = new Set(choiceGames.map((game) => game.id));
+  const choiceIds = playthroughChoices.map((choice) => choice.id);
+  assert.equal(new Set(choiceIds).size, choiceIds.length);
+  for (const choice of playthroughChoices) {
+    assert.ok(gameIds.has(choice.game), `${choice.id}: unknown game`);
+    assert.ok(choice.chapters.length > 0, `${choice.id}: no chapters`);
+    for (const chapter of choice.chapters)
+      assert.ok(chapterIds.has(chapter), `${choice.id}: missing ${chapter}`);
+    const optionIds = choice.options.map((option) => option.id);
+    assert.ok(optionIds.length >= 2, `${choice.id}: needs two options`);
+    assert.equal(new Set(optionIds).size, optionIds.length);
+    for (const route of [choice.route, ...choice.options.map((o) => o.route)])
+      if (route) assert.ok(["roche", "iorveth"].includes(route));
+  }
+});

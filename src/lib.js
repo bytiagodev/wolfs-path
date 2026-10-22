@@ -15,6 +15,13 @@ export function readSavedState(storage) {
         : [],
       lastRead: typeof saved?.lastRead === "string" ? saved.lastRead : null,
       bookSpoilers: saved?.bookSpoilers === true,
+      choices: Object.fromEntries(
+        Object.entries(
+          saved?.choices && typeof saved.choices === "object"
+            ? saved.choices
+            : {},
+        ).filter(([, value]) => typeof value === "string"),
+      ),
     };
   } catch {
     return {
@@ -22,6 +29,7 @@ export function readSavedState(storage) {
       bookmarks: [],
       lastRead: null,
       bookSpoilers: false,
+      choices: {},
     };
   }
 }
@@ -136,6 +144,7 @@ export function parseRoute(hash) {
     "article",
     "sources",
     "saved",
+    "playthrough",
   ];
   let decodedIdentifier;
   try {

@@ -21,6 +21,11 @@ import {
   characterEntries,
 } from "./data/continuity.js";
 import {
+  choiceGames,
+  choicesForChapter,
+  playthroughChoices,
+} from "./data/choices.js";
+import {
   matchesSearch,
   matchesCharacterName,
   parseRoute,
@@ -429,6 +434,12 @@ export default function App() {
                   ? "Return to your reading"
                   : "Start at Kaer Morhen"}
               </button>
+              <button
+                className="text-link"
+                onClick={() => goTo("playthrough")}
+              >
+                Record your choices
+              </button>
             </section>
           </div>
           <section className="remember-section">
@@ -597,6 +608,9 @@ export default function App() {
     const nextArticle = articleCollection[articleIndex + 1];
     const previousArticle = articleCollection[articleIndex - 1];
     const bookSpoilersLocked = isBookArticle && !savedState.bookSpoilers;
+    const yourChoices = isBookArticle
+      ? []
+      : choicesForChapter(currentArticle.id, savedState.choices);
     const chapterArt = isBookArticle
       ? null
       : getChapterArtwork(currentArticle.id);
@@ -704,11 +718,35 @@ export default function App() {
           ) : (
             <>
               <p className="reader-lead">{currentArticle.summary}</p>
-              {currentArticle.branchNote && (
+              {(currentArticle.branchNote || yourChoices.length > 0) && (
                 <div className="branch-note">
                   <div>
-                    <strong>A fork in the Path</strong>
-                    <p>{currentArticle.branchNote}</p>
+                    <strong>
+                      {currentArticle.branchNote
+                        ? "A fork in the Path"
+                        : "Your playthrough"}
+                    </strong>
+                    {currentArticle.branchNote && (
+                      <p>{currentArticle.branchNote}</p>
+                    )}
+                    {yourChoices.length > 0 && (
+                      <ul className="branch-choices">
+                        {yourChoices.map(({ choice, option }) => (
+                          <li key={choice.id}>
+                            <span className="eyebrow">Your choice</span>
+                            {choice.title}: {option.label}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <button
+                      className="text-link"
+                      onClick={() => goTo("playthrough")}
+                    >
+                      {yourChoices.length
+                        ? "Edit your playthrough"
+                        : "Record your choices"}
+                    </button>
                   </div>
                 </div>
               )}
@@ -1280,6 +1318,110 @@ export default function App() {
     );
   }
 
+  function setChoice(choiceId, optionId) {
+    setSavedState((previous) => {
+      const choices = { ...previous.choices };
+      if (choices[choiceId] === optionId) delete choices[choiceId];
+      else choices[choiceId] = optionId;
+      return { ...previous, choices };
+    });
+  }
+
+  function renderPlaythrough() {
+    const chosenRoute = savedState.choices.route;
+    const recorded = playthroughChoices.filter(
+      (choice) => savedState.choices[choice.id],
+    ).length;
+    return (
+      <div className="page-content">
+        <PageIntro
+          image="/images/chapters/w2-04.webp"
+          position="50% 45%"
+          eyebrow="YOUR PLAYTHROUGH"
+          title="The choices you made"
+          description="Record how your own games went. The recaps still show every branch, but the chapters will remind you which one was yours. Saved only in this browser."
+          headingRef={pageHeading}
+        />
+        <div className="inline-notice">
+          <span>
+            {recorded} of {playthroughChoices.length} choices recorded. Tap a
+            choice again to clear it.
+          </span>
+          {recorded > 0 && (
+            <button
+              onClick={() =>
+                setSavedState((previous) => ({ ...previous, choices: {} }))
+              }
+            >
+              Clear all
+            </button>
+          )}
+        </div>
+        {choiceGames.map((game) => (
+          <section className="choice-group" key={game.id}>
+            <SectionHeading eyebrow={game.title.toUpperCase()} title={game.title} />
+            <div className="choice-list">
+              {playthroughChoices
+                .filter((choice) => choice.game === game.id)
+                .map((choice) => {
+                  const offRoute =
+                    choice.route && chosenRoute && choice.route !== chosenRoute;
+                  const options = choice.options.filter(
+                    (option) =>
+                      !option.route || !chosenRoute || option.route === chosenRoute,
+                  );
+                  return (
+                    <div
+                      className={`choice-card ${offRoute ? "is-off-route" : ""}`}
+                      key={choice.id}
+                    >
+                      <div className="choice-card-copy">
+                        {choice.route && (
+                          <p className="eyebrow">
+                            {choice.route === "roche"
+                              ? "Roche’s route"
+                              : "Iorveth’s route"}
+                          </p>
+                        )}
+                        <h3>{choice.title}</h3>
+                        <p>{offRoute ? "Not on your route." : choice.context}</p>
+                        <button
+                          className="text-link"
+                          onClick={() => goTo("chapter", choice.chapters[0])}
+                        >
+                          Read the chapter
+                        </button>
+                      </div>
+                      {!offRoute && (
+                        <div className="filter-bar choice-options">
+                          {options.map((option) => (
+                            <button
+                              key={option.id}
+                              className={
+                                savedState.choices[choice.id] === option.id
+                                  ? "active"
+                                  : ""
+                              }
+                              aria-pressed={
+                                savedState.choices[choice.id] === option.id
+                              }
+                              onClick={() => setChoice(choice.id, option.id)}
+                            >
+                              {option.label}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          </section>
+        ))}
+      </div>
+    );
+  }
+
   function renderSaved() {
     const savedArticles = allArticles.filter((article) =>
       savedState.bookmarks.includes(article.id),
@@ -1450,6 +1592,14 @@ export default function App() {
             )}
           </a>
           <a
+            href="#/playthrough"
+            className={`topbar-icon ${route.page === "playthrough" ? "active" : ""}`}
+            aria-label="Your playthrough"
+            title="Your playthrough"
+          >
+            Choices
+          </a>
+          <a
             href="#/sources"
             className={`topbar-icon ${route.page === "sources" ? "active" : ""}`}
             aria-label="Sources & lore"
@@ -1488,6 +1638,13 @@ export default function App() {
             {savedState.bookmarks.length > 0 && (
               <span className="nav-count">{savedState.bookmarks.length}</span>
             )}
+          </a>
+          <a
+            href="#/playthrough"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`nav-link ${route.page === "playthrough" ? "active" : ""}`}
+          >
+            <span>Your playthrough</span>
           </a>
           <a
             href="#/sources"
@@ -1533,7 +1690,9 @@ export default function App() {
                       ? renderArticle()
                       : route.page === "sources"
                         ? renderSources()
-                        : renderSaved()}
+                        : route.page === "playthrough"
+                          ? renderPlaythrough()
+                          : renderSaved()}
         </main>
         {storageError && (
           <p className="storage-warning" role="status">

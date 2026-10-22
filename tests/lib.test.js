@@ -25,6 +25,7 @@ const emptyState = {
   bookmarks: [],
   lastRead: null,
   bookSpoilers: false,
+  choices: {},
 };
 
 test("a new browser starts with no reading history and book spoilers hidden", () => {
@@ -49,6 +50,7 @@ test("saved reading history survives a reload without accepting invalid field ty
     bookmarks: ["letho"],
     lastRead: "w1-kaer-morhen",
     bookSpoilers: false,
+    choices: {},
   });
   assert.equal(requestedKey, STORAGE_KEY);
   assert.equal(
@@ -205,4 +207,23 @@ test("search ranks a name match above passing mentions in the prose", () => {
   assert.equal(searchRank({ paragraphs: ["On the approach."] }, "roach"), null);
   assert.equal(searchRank({ name: "Letho of Gulet" }, "leth").tier, 4);
   assert.equal(searchRank({ name: "Vesemir" }, "  "), null);
+});
+
+test("an empty character filter shows every character", () => {
+  assert.equal(matchesSearch({ name: "Roach", role: "Geralt’s horse" }, ""), true);
+  assert.equal(matchesSearch({ name: "Roach" }, "   "), true);
+  assert.equal(matchesSearch({ name: "Roach" }, "roa"), true);
+  assert.equal(matchesSearch({ name: "Roach" }, "letho"), false);
+});
+
+test("recorded playthrough choices survive a reload and ignore malformed values", () => {
+  const storage = {
+    getItem: () =>
+      JSON.stringify({ choices: { route: "roche", letho: 5, sile: null } }),
+  };
+  assert.deepEqual(readSavedState(storage).choices, { route: "roche" });
+  assert.deepEqual(
+    readSavedState({ getItem: () => '{"choices":"roche"}' }).choices,
+    {},
+  );
 });
