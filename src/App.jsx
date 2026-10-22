@@ -82,7 +82,8 @@ function ArticleLink({
   number,
   tracked = false,
 }) {
-  const artwork = getChapterArtwork(article.id);
+  // Chapters use their game art; book comparisons use their topic art.
+  const artwork = getChapterArtwork(article.id) ?? topicArtwork[article.id];
   return (
     <button className="article-row" onClick={onClick}>
       <span className={`chapter-number ${completed ? "is-complete" : ""}`}>
@@ -94,6 +95,7 @@ function ArticleLink({
           src={assetUrl(artwork.path)}
           alt=""
           loading="lazy"
+          style={{ objectPosition: artwork.objectPosition }}
         />
       )}
       <span className="article-row-copy">
@@ -915,6 +917,18 @@ export default function App() {
         matchesCharacterName(currentCharacter.name, name),
       ),
     );
+    // Book comparisons that discuss this character, their own one first.
+    const bookArticles = continuityArticles
+      .filter(
+        (article) =>
+          article.group === "compare" &&
+          article.characters.includes(currentCharacter.id),
+      )
+      .sort(
+        (first, second) =>
+          (second.characters[0] === currentCharacter.id) -
+          (first.characters[0] === currentCharacter.id),
+      );
     return (
       <div className="page-content character-detail">
         <button className="back-link" onClick={() => goTo("characters")}>
@@ -965,6 +979,32 @@ export default function App() {
               <ArticleLink
                 key={article.id}
                 article={article}
+                number={index + 1}
+                completed={savedState.completed.includes(article.id)}
+                onClick={() => openArticle(article)}
+              />
+            ))}
+          </section>
+        )}
+        {bookArticles.length > 0 && (
+          <section className="character-chapters">
+            <SectionHeading eyebrow="IN THE BOOKS" title="Book comparisons">
+              {savedState.bookSpoilers
+                ? null
+                : "These discuss the books, including how the saga ends. You’ll be asked before anything is revealed."}
+            </SectionHeading>
+            {bookArticles.map((article, index) => (
+              <ArticleLink
+                key={article.id}
+                article={
+                  savedState.bookSpoilers
+                    ? article
+                    : {
+                        ...article,
+                        summary:
+                          "Book and game comparison. Book spoiler protection is enabled.",
+                      }
+                }
                 number={index + 1}
                 completed={savedState.completed.includes(article.id)}
                 onClick={() => openArticle(article)}
