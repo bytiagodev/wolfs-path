@@ -656,7 +656,9 @@ export default function App() {
                 aria-label={
                   savedState.bookmarks.includes(currentArticle.id)
                     ? "Remove bookmark"
-                    : "Bookmark chapter"
+                    : isBookArticle
+                      ? "Bookmark comparison"
+                      : "Bookmark chapter"
                 }
                 aria-pressed={savedState.bookmarks.includes(currentArticle.id)}
               >
@@ -1051,7 +1053,10 @@ export default function App() {
           </section>
         )}
         <details className="chapter-sources">
-          <summary>Character sources</summary>
+          <summary>
+            Character sources{" "}
+            <span>{sourceLinks(currentCharacter.sourceIds).length}</span>
+          </summary>
           {sourceLinks(currentCharacter.sourceIds).map((source) => (
             <a
               href={source.url}
@@ -1432,8 +1437,8 @@ export default function App() {
           image="/images/world/w3-2.webp"
           position="50% 50%"
           eyebrow="READING LIST"
-          title="Bookmarked chapters"
-          description="Your bookmarked chapters, ready when a name or a memory needs another look. Saved only in this browser."
+          title="Your bookmarks"
+          description="Bookmarked chapters and comparisons, ready when a name or a memory needs another look. Saved only in this browser."
           headingRef={pageHeading}
         />
         {savedArticles.length ? (
@@ -1460,7 +1465,7 @@ export default function App() {
         ) : (
           <EmptyState
             title="No bookmarks yet"
-            description="Use the bookmark icon in any chapter to keep it here."
+            description="Use the bookmark button on any chapter or comparison to keep it here."
             action={
               <button
                 className="button primary"
