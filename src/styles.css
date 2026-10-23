@@ -2697,7 +2697,7 @@ main:focus {
   }
 
   .character-detail-portrait {
-    position: static;
+    position: relative;
     width: min(100%, 360px);
     margin-top: 8px;
   }
