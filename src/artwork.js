@@ -433,7 +433,7 @@ export const worldArtwork = [
   {
     id: "w3-key-art",
     path: "/images/world/w3-key-art.webp",
-    caption: "Geralt in the Remastered key art.",
+    caption: "Geralt in the Wild Hunt key art.",
     title: "The Witcher 3: Wild Hunt key art",
     sourceUrl:
       "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/library_hero_2x.jpg",

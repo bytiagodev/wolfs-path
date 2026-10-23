@@ -28,7 +28,7 @@ Those pages spoil the whole saga, so they stay locked until you choose to open t
 
 ## The look
 
-It is dressed as the game's own menus rather than a reading app. Near-black worn surfaces, thin frames with gold corners, parchment text in Alegreya, gold for anything you can click and red only for markers. The art runs in its real colours at full strength, from the Remastered key art on the front page to the GWENT paintings behind the book pages. The icons are the game's too: the School of the Wolf medallion, the five Signs, the yellow main quest marker.
+It is dressed as the game's own menus rather than a reading app. Near-black worn surfaces, thin frames with gold corners, parchment text in Alegreya, gold for anything you can click and red only for markers. The art runs in its real colours at full strength, from the Wild Hunt key art on the front page to the GWENT paintings behind the book pages. The icons are the game's too: the School of the Wolf medallion, the five Signs, the yellow main quest marker.
 
 Progress, bookmarks and the spoiler switch live in the browser, so it remembers where you stopped without an account. React, plain JavaScript, Vite and CSS. No backend.
 
