@@ -397,8 +397,8 @@ export const characterEntries = [
       "Geralt’s mare, and the one companion who has been on the road with him longer than anyone.",
     earlier: [
       "Books: Geralt’s mare and a quiet constant of his travels. Her Polish name, Płotka, is an affectionate diminutive of the roach fish.",
-      "The first two games: neither game lets Geralt ride, so she is only glimpsed, in illustrations for the first game and briefly in the second game’s closing cutscene.",
-      "The Witcher 3: with Geralt from the opening scene. She answers his whistle and carries his saddlebags and contract trophies between towns.",
+      "The first two games: Neither game lets Geralt ride, so she is only glimpsed, in illustrations for the first game and briefly in the second game’s closing cutscene.",
+      "The Witcher 3: With Geralt from the opening scene. She answers his whistle and carries his saddlebags and contract trophies between towns.",
     ],
     remember:
       "By the third game’s own account, Geralt calls every horse he owns Roach. The name belongs to the role, not to one animal.",
